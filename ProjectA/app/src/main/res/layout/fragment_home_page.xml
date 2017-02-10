@@ -4,11 +4,15 @@
 
     android:layout_height="match_parent">
 
-    <ImageView
-        android:scaleType="center"
-        android:src="@mipmap/logo_title_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:paddingTop="@dimen/fragment_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            android:src="@mipmap/logo_title_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 
 </RelativeLayout>
