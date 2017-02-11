@@ -10,10 +10,10 @@ import com.jieleo.projecta.R;
  */
 
 
-public class ClassifyPageFragment extends BaseFragment {
+public class GiftPageFragmnet extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_classify_page;
+        return R.layout.fragment_gift_page;
     }
 
     @Override

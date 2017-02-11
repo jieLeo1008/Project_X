@@ -1,5 +1,6 @@
 package com.jieleo.projecta.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -39,15 +40,19 @@ public class HomePageFragment extends BaseFragment {
     @Override
     protected void initData() {
         detailsBeen=new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        String[] data=new String[]{"精选","关注","送女票","精选","关注","送女票","精选","关注","送女票"};
+        for (int i = 0; i < data.length; i++) {
             DetailsBean detailsBean =new DetailsBean();
-            detailsBean.setTitle(i+"");
+            detailsBean.setTitle(data[i]);
             detailsBeen.add(detailsBean);
         }
         homePageFragmentPageAdapter.setDetialsBeen(detailsBeen);
         vp.setAdapter(homePageFragmentPageAdapter);
         tabLayout.setupWithViewPager(vp);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setSelectedTabIndicatorHeight(2);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF2D47"));
+
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab=tabLayout.getTabAt(i);
             tab.setText(homePageFragmentPageAdapter.getPageTitle(i));

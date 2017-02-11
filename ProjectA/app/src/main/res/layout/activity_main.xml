@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jieleo.projecta.activity.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_activity_main"
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_weight="12"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/weight_height">
+    </FrameLayout>
+    <RadioGroup
+        android:background="@drawable/radio_group_shape"
+        android:id="@+id/radio_group_main_activity"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/weight_height">
+        <RadioButton
+            android:id="@+id/radio_btn_home_page"
+            android:drawableTop="@drawable/radio_btn_home_page_selector"
+            android:text="@string/home_page_name"
+            android:checked="true"
+            style="@style/radio_btn_style"
+            android:layout_height="match_parent" />
 
-    </android.support.v4.view.ViewPager>
-</RelativeLayout>
+        <RadioButton
+            android:id="@+id/radio_bt_gift_page"
+            android:drawableTop="@drawable/radio_btn_gift_page_selector"
+            android:text="@string/gift_page_name"
+            style="@style/radio_btn_style"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_mall_page"
+            android:drawableTop="@drawable/radio_btn_mall_page_selector"
+            android:text="@string/mall_page_name"
+            style="@style/radio_btn_style"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_category_page"
+            android:drawableTop="@drawable/radio_btn_category_page_selector"
+            android:text="@string/category_page_name"
+            style="@style/radio_btn_style"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_profile_page"
+            android:drawableTop="@drawable/radio_btn_profile_page_selector"
+            android:text="@string/profile_page_name"
+            style="@style/radio_btn_style"
+            android:layout_height="match_parent" />
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -10,10 +10,10 @@ import com.jieleo.projecta.R;
  */
 
 
-public class ListPageFragmnet extends BaseFragment {
+public class MallPageFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_list_page;
+        return R.layout.fragment_mall_page;
     }
 
     @Override

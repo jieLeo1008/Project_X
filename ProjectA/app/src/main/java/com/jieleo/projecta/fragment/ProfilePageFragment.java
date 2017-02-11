@@ -10,10 +10,10 @@ import com.jieleo.projecta.R;
  */
 
 
-public class StorePageFragment extends BaseFragment {
+public class ProfilePageFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_store_page;
+        return R.layout.fragment_profile_page;
     }
 
     @Override
