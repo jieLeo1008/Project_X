@@ -20,6 +20,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         bindEvent();
     }
 
+
+
     /**
      * 绑定布局
      * @return 布局的Id
