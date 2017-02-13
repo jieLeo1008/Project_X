@@ -24,49 +24,57 @@ import com.jieleo.projecta.bean.homepage.DetialsBean;
  */
 
 
-public class DetailsRecyclerViewAdapter extends RecyclerView.Adapter<DetailsRecyclerViewAdapter.MainHolder> {
+public class DetailsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private DetialsBean detialsBean;
     private Context context;
-
-    public DetailsRecyclerViewAdapter(Context context) {
-        this.context = context;
-    }
-
-    public void setDetialsBean(DetialsBean detialsBean) {
-        this.detialsBean = detialsBean;
-        notifyDataSetChanged();
-    }
+    public static final int HEAD_VIEW = 0;
+    public static final int BODY_VIEW = 1;
 
     @Override
-    public MainHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_details_home_page, parent, false);
-        MainHolder mainHolder = new MainHolder(itemView);
-        return mainHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(MainHolder holder, int position) {
-        DetialsBean.DataBean.ItemsBean itemsBean = detialsBean.getData().getItems().get(position);
-        holder.nickNameTv.setText(itemsBean.getAuthor().getNickname());
-        holder.autherIntroductionTv.setText(itemsBean.getAuthor().getIntroduction());
-        if (itemsBean.getColumn() != null) {
-            holder.columnTitleTv.setText(itemsBean.getColumn().getTitle());
-            holder.columnTv.setText("栏目");
-        } else {
-            holder.columnTitleTv.setText("");
-            holder.columnTv.setText("");
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = null;
+        RecyclerView.ViewHolder viewHolder = null;
+        switch (viewType) {
+            case HEAD_VIEW:
+                itemView = LayoutInflater.from(context).inflate(R.layout.item_head_body_details_home_page, parent, false);
+                viewHolder = new HeadViewHolder(itemView);
+                break;
+            case BODY_VIEW:
+                itemView = LayoutInflater.from(context).inflate(R.layout.item_body_details_home_page, parent, false);
+                viewHolder = new BodyViewHolder(itemView);
+                break;
         }
-        holder.titleTv.setText(itemsBean.getTitle());
-        holder.introductionTv.setText(itemsBean.getIntroduction());
-        holder.likesCountTv.setText(itemsBean.getLikes_count() + "");
-//        Glide.with(context).load(itemsBean.getAuthor().getAvatar_url()).into(holder.autherHeadIv);
-        Glide.with(context).load(itemsBean.getCover_image_url()).into(holder.coverImageIv);
-        Glide.with(context).load(itemsBean.getAuthor().getAvatar_url()).transform(new CircleTransform(context)).into(holder.autherHeadIv);
-
+        return viewHolder;
     }
 
-    //实现圆形头像的内部类
-        public static class CircleTransform extends BitmapTransformation{
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        int itemViewType = getItemViewType(position);
+        switch (itemViewType) {
+            case HEAD_VIEW:
+                break;
+            case BODY_VIEW:
+                BodyViewHolder bodyViewHolder= (BodyViewHolder) holder;
+                DetialsBean.DataBean.ItemsBean itemsBean = detialsBean.getData().getItems().get(position+1);
+                bodyViewHolder.nickNameTv.setText(itemsBean.getAuthor().getNickname());
+                bodyViewHolder.autherIntroductionTv.setText(itemsBean.getAuthor().getIntroduction());
+                if (itemsBean.getColumn() != null) {
+                    bodyViewHolder.columnTitleTv.setText(itemsBean.getColumn().getTitle());
+                    bodyViewHolder.columnTv.setText("栏目");
+                } else {
+                    bodyViewHolder.columnTitleTv.setText("");
+                    bodyViewHolder.columnTv.setText("");
+                }
+                bodyViewHolder.titleTv.setText(itemsBean.getTitle());
+                bodyViewHolder.introductionTv.setText(itemsBean.getIntroduction());
+                bodyViewHolder.likesCountTv.setText(itemsBean.getLikes_count() + "");
+                Glide.with(context).load(itemsBean.getCover_image_url()).into(bodyViewHolder.coverImageIv);
+                Glide.with(context).load(itemsBean.getAuthor().getAvatar_url()).transform(new CircleTransform(context)).into(bodyViewHolder.autherHeadIv);
+                break;
+        }
+    }
+
+    public static class CircleTransform extends BitmapTransformation {
 
             public CircleTransform(Context context) {
                 super(context);
@@ -108,16 +116,31 @@ public class DetailsRecyclerViewAdapter extends RecyclerView.Adapter<DetailsRecy
 
 
     @Override
-    public int getItemCount() {
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return HEAD_VIEW;
+        } else {
+            return BODY_VIEW;
+        }
+    }
 
+    @Override
+    public int getItemCount() {
         return detialsBean != null ? detialsBean.getData().getItems().size() : 0;
     }
 
-    class MainHolder extends RecyclerView.ViewHolder {
+    class HeadViewHolder extends RecyclerView.ViewHolder {
+
+        public HeadViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    class BodyViewHolder extends RecyclerView.ViewHolder {
         ImageView autherHeadIv, coverImageIv;
         TextView nickNameTv, autherIntroductionTv, columnTitleTv, likesCountTv, columnTv, titleTv, introductionTv;
 
-        public MainHolder(View itemView) {
+        public BodyViewHolder(View itemView) {
             super(itemView);
             autherHeadIv = (ImageView) itemView.findViewById(R.id.iv_author_head_item_details_home_page);
             coverImageIv = (ImageView) itemView.findViewById(R.id.iv_cover_image_item_details_home_page);
@@ -130,5 +153,123 @@ public class DetailsRecyclerViewAdapter extends RecyclerView.Adapter<DetailsRecy
             introductionTv = (TextView) itemView.findViewById(R.id.tv_introduction_item_details_home_page);
         }
     }
+//    private DetialsBean detialsBean;
+//    private Context context;
+//
+//    public static final int HEAD_VIEW=0;
+//    public static final int BODY_VIEW=1;
+//
+//    public DetailsRecyclerViewAdapter(Context context) {
+//        this.context = context;
+//    }
+//
+//
+//    public void setDetialsBean(DetialsBean detialsBean) {
+//        this.detialsBean = detialsBean;
+//        notifyDataSetChanged();
+//    }
+//
+//    @Override
+//    public MainHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View itemView = LayoutInflater.from(context).inflate(R.layout.item_body_details_home_page, parent, false);
+//        MainHolder mainHolder = new MainHolder(itemView);
+//        return mainHolder;
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(MainHolder holder, int position) {
+//        DetialsBean.DataBean.ItemsBean itemsBean = detialsBean.getData().getItems().get(position);
+//        holder.nickNameTv.setText(itemsBean.getAuthor().getNickname());
+//        holder.autherIntroductionTv.setText(itemsBean.getAuthor().getIntroduction());
+//        if (itemsBean.getColumn() != null) {
+//            holder.columnTitleTv.setText(itemsBean.getColumn().getTitle());
+//            holder.columnTv.setText("栏目");
+//        } else {
+//            holder.columnTitleTv.setText("");
+//            holder.columnTv.setText("");
+//        }
+//        holder.titleTv.setText(itemsBean.getTitle());
+//        holder.introductionTv.setText(itemsBean.getIntroduction());
+//        holder.likesCountTv.setText(itemsBean.getLikes_count() + "");
+////        Glide.with(context).load(itemsBean.getAuthor().getAvatar_url()).into(holder.autherHeadIv);
+//        Glide.with(context).load(itemsBean.getCover_image_url()).into(holder.coverImageIv);
+//        Glide.with(context).load(itemsBean.getAuthor().getAvatar_url()).transform(new CircleTransform(context)).into(holder.autherHeadIv);
+//
+//    }
+//
+//    @Override
+//    public int getItemViewType(int position) {
+//        if(position==0){
+//            return HEAD_VIEW;
+//        }else {
+//            return BODY_VIEW;
+//        }
+//    }
+//
+//    //实现圆形头像的内部类
+//        public static class CircleTransform extends BitmapTransformation{
+//
+//            public CircleTransform(Context context) {
+//                super(context);
+//            }
+//
+//            @Override
+//            protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+//                return circleBitmap(pool,toTransform);
+//            }
+//
+//            @Override
+//            public String getId() {
+//                return getClass().getName();
+//            }
+//
+//            private static Bitmap circleBitmap(BitmapPool pool,Bitmap sorece){
+//                if (sorece==null){
+//                    return sorece;
+//                }
+//                int size=Math.min(sorece.getWidth(),sorece.getHeight());
+//                int x=(sorece.getWidth()-size)/2;
+//                int y=(sorece.getHeight()-size)/2;
+//
+//                Bitmap squared=Bitmap.createBitmap(sorece,x,y,size,size);
+//                Bitmap result=pool.get(size,size, Bitmap.Config.ARGB_8888);
+//                if (result==null){
+//                    result=Bitmap.createBitmap(size,size, Bitmap.Config.ARGB_8888);
+//                }
+//
+//                Canvas canvas=new Canvas(result);
+//                Paint paint=new Paint();
+//                paint.setShader(new BitmapShader(squared,BitmapShader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+//                paint.setAntiAlias(true);
+//                float r=size/2f;
+//                canvas.drawCircle(r,r,r,paint);
+//                return  result;
+//            }
+//        }
+//
+//
+//    @Override
+//    public int getItemCount() {
+//
+//        return detialsBean != null ? detialsBean.getData().getItems().size() : 0;
+//    }
+//
+//    class MainHolder extends RecyclerView.ViewHolder {
+//        ImageView autherHeadIv, coverImageIv;
+//        TextView nickNameTv, autherIntroductionTv, columnTitleTv, likesCountTv, columnTv, titleTv, introductionTv;
+//
+//        public MainHolder(View itemView) {
+//            super(itemView);
+//            autherHeadIv = (ImageView) itemView.findViewById(R.id.iv_author_head_item_details_home_page);
+//            coverImageIv = (ImageView) itemView.findViewById(R.id.iv_cover_image_item_details_home_page);
+//            nickNameTv = (TextView) itemView.findViewById(R.id.tv_author_nickname_item_details_home_page);
+//            autherIntroductionTv = (TextView) itemView.findViewById(R.id.tv_author_introduction_item_details_home_page);
+//            columnTitleTv = (TextView) itemView.findViewById(R.id.tv_column_title_details_home_page);
+//            likesCountTv = (TextView) itemView.findViewById(R.id.tv_likes_count_details_home_page);
+//            columnTv = (TextView) itemView.findViewById(R.id.tv_column_details_home_page);
+//            titleTv = (TextView) itemView.findViewById(R.id.tv_title_item_details_home_page);
+//            introductionTv = (TextView) itemView.findViewById(R.id.tv_introduction_item_details_home_page);
+//        }
+//    }
 
 }
