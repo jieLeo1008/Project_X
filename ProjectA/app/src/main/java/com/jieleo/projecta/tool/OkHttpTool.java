@@ -64,7 +64,25 @@ public class OkHttpTool implements NetInter{
     }
 
     @Override
-    public <T> void startRequest(String url, Class<T> tClass, CallBack<T> callBack) {
+    public <T> void startRequest(String url, final Class<T> tClass, final CallBack<T> callBack) {
+            Request request =new Request.Builder().url(url).build();
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callBack.onError(e);
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String str =response.body().string();
+                final T result=mGson.fromJson(str,tClass);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callBack.onsuccess(result);
+                    }
+                });
+            }
+        });
     }
 }

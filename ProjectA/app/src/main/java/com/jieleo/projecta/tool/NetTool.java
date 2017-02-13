@@ -22,7 +22,7 @@ public class NetTool implements NetInter{
         return ourInstance;
     }
 
-    private NetTool() {
+    private  NetTool() {
         netInter=new OkHttpTool();
     }
 
@@ -33,6 +33,6 @@ public class NetTool implements NetInter{
 
     @Override
     public <T> void startRequest(String url, Class<T> tClass, CallBack<T> callBack) {
-
+        netInter.startRequest(url,tClass,callBack);
     }
 }

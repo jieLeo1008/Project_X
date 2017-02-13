@@ -26,7 +26,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        initData();
+        bindEvent();
     }
 
     protected abstract int getLayoutId() ;

@@ -8,7 +8,11 @@ import android.view.View;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.HomePageFragmentPageAdapter;
-import com.jieleo.projecta.bean.homepage.DetailsBean;
+import com.jieleo.projecta.bean.homepage.TitleBean;
+import com.jieleo.projecta.inter.CallBack;
+import com.jieleo.projecta.tool.NetTool;
+import com.jieleo.projecta.tool.OkHttpTool;
+import com.jieleo.projecta.website.WebsiteInter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,7 @@ public class HomePageFragment extends BaseFragment {
 
     private HomePageFragmentPageAdapter homePageFragmentPageAdapter;
 
-    private List<DetailsBean> detailsBeen;
+    private List<TitleBean.DataBean.ChannelsBean> channelsBeen;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home_page;
@@ -39,14 +43,20 @@ public class HomePageFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        detailsBeen=new ArrayList<>();
-        String[] data=new String[]{"精选","关注","送女票","精选","关注","送女票","精选","关注","送女票"};
-        for (int i = 0; i < data.length; i++) {
-            DetailsBean detailsBean =new DetailsBean();
-            detailsBean.setTitle(data[i]);
-            detailsBeen.add(detailsBean);
-        }
-        homePageFragmentPageAdapter.setDetialsBeen(detailsBeen);
+        channelsBeen=new ArrayList<>();
+        NetTool.getInstance().startRequest(WebsiteInter.CHANNELS_URL, TitleBean.class, new CallBack<TitleBean>() {
+            @Override
+            public void onsuccess(TitleBean responce) {
+                channelsBeen=responce.getData().getChannels();
+                homePageFragmentPageAdapter.setChannelsBeen(channelsBeen);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+
         vp.setAdapter(homePageFragmentPageAdapter);
         tabLayout.setupWithViewPager(vp);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);

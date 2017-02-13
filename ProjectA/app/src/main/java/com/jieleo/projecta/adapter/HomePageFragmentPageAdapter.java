@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jieleo.projecta.bean.homepage.DetailsBean;
+import com.jieleo.projecta.bean.homepage.TitleBean;
 import com.jieleo.projecta.fragment.DetialHomePageFragment;
 
 import java.util.List;
@@ -15,28 +15,28 @@ import java.util.List;
 
 
 public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
-    private List<DetailsBean>  detialsBeen;
+    private List<TitleBean.DataBean.ChannelsBean> channelsBeen;
     public HomePageFragmentPageAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    public void setDetialsBeen(List<DetailsBean> detialsBeen) {
-        this.detialsBeen = detialsBeen;
+    public void setChannelsBeen(List<TitleBean.DataBean.ChannelsBean> channelsBeen) {
+        this.channelsBeen = channelsBeen;
         notifyDataSetChanged();
     }
 
     @Override
     public Fragment getItem(int position) {
-        return DetialHomePageFragment.getInstance(detialsBeen.get(position));
+        return DetialHomePageFragment.getInstance(channelsBeen.get(position).getName());
     }
 
     @Override
     public int getCount() {
-        return detialsBeen!=null?detialsBeen.size():0;
+        return channelsBeen!=null? channelsBeen.size():0;
     }
 
     public  String getPageTitle(int position){
-        return detialsBeen.get(position).getTitle();
+        return channelsBeen.get(position).getName();
     }
 
 }
