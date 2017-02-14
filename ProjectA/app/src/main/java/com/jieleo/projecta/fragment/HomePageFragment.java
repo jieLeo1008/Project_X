@@ -26,6 +26,7 @@ public class HomePageFragment extends BaseFragment {
 
     private ViewPager vp; private TabLayout tabLayout;
 
+
     private HomePageFragmentPageAdapter homePageFragmentPageAdapter;
 
     private List<TitleBean.DataBean.ChannelsBean> channelsBeen;
@@ -38,7 +39,7 @@ public class HomePageFragment extends BaseFragment {
     protected void initView(View view, Bundle savedInstanceState) {
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout_home_page_fragment);
         vp = (ViewPager) view.findViewById(R.id.vp_home_page_fragment);
-        homePageFragmentPageAdapter=new HomePageFragmentPageAdapter(getFragmentManager());
+        homePageFragmentPageAdapter=new HomePageFragmentPageAdapter(getChildFragmentManager());
     }
 
     @Override

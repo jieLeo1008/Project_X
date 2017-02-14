@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.adapter.DetailsRecyclerViewAdapter;
 import com.jieleo.projecta.fragment.CategoryPageFragment;
 import com.jieleo.projecta.fragment.HomePageFragment;
 import com.jieleo.projecta.fragment.GiftPageFragmnet;

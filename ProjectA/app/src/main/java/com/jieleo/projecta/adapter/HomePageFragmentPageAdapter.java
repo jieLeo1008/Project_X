@@ -27,7 +27,7 @@ public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        return DetialHomePageFragment.getInstance(channelsBeen.get(position).getName());
+        return DetialHomePageFragment.getInstance(channelsBeen.get(position).getId());
     }
 
     @Override
