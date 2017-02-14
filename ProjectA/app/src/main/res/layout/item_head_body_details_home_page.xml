@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@drawable/fragment_bg_shape"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="330dp">
 
     <com.youth.banner.Banner
         android:id="@+id/banner_home_page"
-        android:layout_gravity="center"
-        app:image_scale_type="center"
         android:layout_width="wrap_content"
         android:layout_height="150dp">
     </com.youth.banner.Banner>
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
         <ImageView
             android:id="@+id/iv_first_head_body_details_home_page"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginRight="1dp"
             android:layout_height="match_parent" />
         <ImageView
             android:id="@+id/iv_second_head_body_details_home_page"
@@ -30,17 +31,21 @@
             android:id="@+id/iv_third_head_body_details_home_page"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginLeft="1dp"
             android:layout_height="match_parent" />
 
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
         <ImageView
             android:id="@+id/iv_fourth_head_body_details_home_page"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginRight="1dp"
             android:layout_height="match_parent" />
         <ImageView
             android:id="@+id/iv_fifth_head_body_details_home_page"
@@ -51,6 +56,7 @@
             android:id="@+id/iv_sixth_head_body_details_home_page"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginLeft="1dp"
             android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>
