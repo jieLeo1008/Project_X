@@ -3,6 +3,7 @@ package com.jieleo.projecta.tool;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.jieleo.projecta.inter.CallBack;
@@ -75,6 +76,7 @@ public class OkHttpTool implements NetInter{
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str =response.body().string();
+
                 final T result=mGson.fromJson(str,tClass);
                 mHandler.post(new Runnable() {
                     @Override

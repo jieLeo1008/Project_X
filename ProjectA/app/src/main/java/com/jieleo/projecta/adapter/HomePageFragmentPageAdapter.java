@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.jieleo.projecta.bean.homepage.TitleBean;
-import com.jieleo.projecta.fragment.DetialHomePageFragment;
+import com.jieleo.projecta.fragment.HomePageDetailsFragment;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import java.util.List;
 
 
 public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
+    private static final String TAG = "HomePageFragmentPageAda";
     private List<TitleBean.DataBean.ChannelsBean> channelsBeen;
     public HomePageFragmentPageAdapter(FragmentManager fm) {
         super(fm);
@@ -27,7 +28,7 @@ public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        return DetialHomePageFragment.getInstance(channelsBeen.get(position).getId());
+        return HomePageDetailsFragment.getInstance(position,channelsBeen.get(position));
     }
 
     @Override
@@ -35,8 +36,13 @@ public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
         return channelsBeen!=null? channelsBeen.size():0;
     }
 
-    public  String getPageTitle(int position){
+//    public  String getPageTitle(int position){
+//        return channelsBeen.get(position).getName();
+//    }
+
+
+    @Override
+    public CharSequence getPageTitle(int position) {
         return channelsBeen.get(position).getName();
     }
-
 }

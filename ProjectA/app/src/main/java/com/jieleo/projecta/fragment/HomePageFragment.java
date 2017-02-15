@@ -44,7 +44,6 @@ public class HomePageFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        channelsBeen=new ArrayList<>();
         NetTool.getInstance().startRequest(WebsiteInter.CHANNELS_URL, TitleBean.class, new CallBack<TitleBean>() {
             @Override
             public void onsuccess(TitleBean responce) {
@@ -61,14 +60,9 @@ public class HomePageFragment extends BaseFragment {
         vp.setAdapter(homePageFragmentPageAdapter);
         tabLayout.setupWithViewPager(vp);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.setSelectedTabIndicatorHeight(2);
+        tabLayout.setSelectedTabIndicatorHeight(3);
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF2D47"));
 
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab=tabLayout.getTabAt(i);
-            tab.setText(homePageFragmentPageAdapter.getPageTitle(i));
-
-        }
     }
 
     @Override

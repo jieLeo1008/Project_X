@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 
-public class DetialsBean  {
+public class DetailsBean {
 
     /**
      * code : 200
