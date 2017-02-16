@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#f88"
-    android:layout_height="100dp">
+    android:layout_height="@dimen/activity_horizontal_margin_200">
 
     <ImageView
         android:id="@+id/iv_head_gift_page"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

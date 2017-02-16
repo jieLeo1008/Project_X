@@ -47,7 +47,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType==HEAD_VIEW&&id==0){
-            return BaseViewHolder.createViewHolder(context, parent, R.layout.item_head_body_details_home_page);
+            return BaseViewHolder.createViewHolder(context, parent, R.layout.item_head_details_home_page);
         }else if (viewType==BODY_VIEW&&id==0){
             return BaseViewHolder.createViewHolder(context, parent, R.layout.item_body_details_home_page);
         }else if (viewType==HEAD_VIEW&&id!=0){

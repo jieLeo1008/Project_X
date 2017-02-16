@@ -45,25 +45,24 @@ public class GiftDetailsPageFragment extends BaseFragment {
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(giftPageRecyclerViewAdapter);
         mLRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,LinearLayoutManager.VERTICAL,false));
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
-
-
     }
 
     @Override
     protected void initData() {
-        Log.e(TAG, "initData: " );
             Bundle bundle=getArguments();
             int id=bundle.getInt("id",1);
             String url =WebsiteInter.getGiftDetailsUrl(id);
+
+
             NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
                 @Override
                 public void onsuccess(GiftDetailsBean responce) {
                     dataBean = responce.getData();
-                    giftPageRecyclerViewAdapter.setDataBean(dataBean);
                     View head=LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page,mLRecyclerView,false);
                     ImageView imageView= (ImageView) head.findViewById(R.id.iv_head_gift_page);
                     Glide.with(getContext()).load(dataBean.getCover_image()).into(imageView);
                     mLRecyclerViewAdapter.addHeaderView(head);
+                    giftPageRecyclerViewAdapter.setDataBean(dataBean);
                 }
 
                 @Override

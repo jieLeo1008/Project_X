@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:paddingLeft="@dimen/avtivity_horizontal_margin_10"
-    android:paddingRight="@dimen/avtivity_horizontal_margin_10"
+    android:paddingLeft="@dimen/activity_horizontal_margin_10"
+    android:paddingRight="@dimen/activity_horizontal_margin_10"
     android:background="@drawable/fragment_bg_shape"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iv_author_head_item_details_home_page"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="@dimen/item_body_details_home_page_head_iv_width_and_height"
+        android:layout_height="@dimen/item_body_details_home_page_head_iv_width_and_height" />
 
     <TextView
         android:id="@+id/tv_author_nickname_item_details_home_page"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
+        style="@style/item_body_details_home_page_title"
         android:layout_alignTop="@id/iv_author_head_item_details_home_page"
         android:layout_toRightOf="@id/iv_author_head_item_details_home_page" />
 
@@ -23,21 +21,16 @@
         android:id="@+id/tv_author_introduction_item_details_home_page"
         android:layout_below="@id/tv_author_nickname_item_details_home_page"
         android:layout_alignLeft="@id/tv_author_nickname_item_details_home_page"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp" />
+        style="@style/item_body_details_home_page_title" />
     <ImageView
         android:id="@+id/iv_cover_image_item_details_home_page"
         android:layout_below="@id/iv_author_head_item_details_home_page"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        style="@style/item_body_details_home_page_cover_image"/>
     <TextView
         android:id="@+id/tv_title_item_details_home_page"
         android:layout_below="@id/iv_cover_image_item_details_home_page"
         android:layout_width="match_parent"
-        android:textSize="20sp"
+        android:textSize="@dimen/item_body_home_page_textSize"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_introduction_item_details_home_page"
@@ -48,7 +41,7 @@
         android:layout_below="@id/tv_introduction_item_details_home_page"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="@dimen/item_body_home_page_liner_height">
         <TextView
             android:id="@+id/tv_column_details_home_page"
             android:layout_width="0dp"
@@ -69,7 +62,6 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="2174"
             android:layout_gravity="center_vertical"
             android:drawableLeft="@mipmap/icon_heart_unselected"
             android:layout_height="match_parent" />

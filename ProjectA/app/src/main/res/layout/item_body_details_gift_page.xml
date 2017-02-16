@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="@dimen/item_gift_page_margin"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/iv_details_gift_page"
         android:scaleType="fitXY"
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        android:layout_width="@dimen/item_body_details_image_view_width"
+        android:layout_height="@dimen/item_body_details_image_view_height" />
     <TextView
         android:layout_below="@id/iv_details_gift_page"
-        android:text="尼玛"
-        android:id="@+id/tv_short_description_details_gift_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/item_body_details_gift_page_text_view"
+        android:id="@+id/tv_short_description_details_gift_page" />
     <TextView
         android:id="@+id/tv_name_details_gift_page"
+        style="@style/item_body_details_gift_page_text_view"
         android:layout_below="@id/tv_short_description_details_gift_page"
-        android:layout_width="match_parent"
-        android:text="尼玛"
-        android:layout_height="wrap_content" />
+       />
     <TextView
         android:layout_below="@id/tv_name_details_gift_page"
-        android:id="@+id/tv_price_details_gift_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/item_body_details_gift_page_text_view"
+        android:id="@+id/tv_price_details_gift_page"/>
 </RelativeLayout>

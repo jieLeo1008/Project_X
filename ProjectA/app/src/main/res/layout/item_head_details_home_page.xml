@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/fragment_bg_shape"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_head_details_home_page">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner_home_page"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/banner_height">
+    </com.youth.banner.Banner>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_horizontal_margin_80">
+        <ImageView
+            android:id="@+id/iv_first_head_body_details_home_page"
+            android:layout_marginRight="@dimen/layout_margin_1dp"
+            style="@style/item_head_details_home_page_image"/>
+        <ImageView
+            android:id="@+id/iv_second_head_body_details_home_page"
+            style="@style/item_head_details_home_page_image"/>
+        <ImageView
+            android:id="@+id/iv_third_head_body_details_home_page"
+            style="@style/item_head_details_home_page_image"
+            android:layout_marginLeft="@dimen/layout_margin_1dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/item_head_details_home_page_liner"
+        >
+        <ImageView
+            android:id="@+id/iv_fourth_head_body_details_home_page"
+            style="@style/item_head_details_home_page_image"
+            android:layout_marginRight="@dimen/layout_margin_1dp"
+             />
+        <ImageView
+            android:id="@+id/iv_fifth_head_body_details_home_page"
+            style="@style/item_head_details_home_page_image"/>
+        <ImageView
+            android:id="@+id/iv_sixth_head_body_details_home_page"
+            style="@style/item_head_details_home_page_image"
+            android:layout_marginLeft="@dimen/layout_margin_1dp"
+             />
+    </LinearLayout>
+</LinearLayout>

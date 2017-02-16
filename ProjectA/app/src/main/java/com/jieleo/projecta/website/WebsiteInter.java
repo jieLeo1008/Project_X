@@ -23,6 +23,11 @@ public class WebsiteInter {
     public static final String LIST_OTHER = "?limit=20&offset=0";
 
     public static final String GIFT="http://api.liwushuo.com/v2/ranks_v2/ranks?";
+
+
+    public static final String MALLDOWN="http://api.liwushuo.com/v2/shop/items?limit=20&offset=0";
+
+    public static final String MallUP = "http://api.liwushuo.com/v2/shopitem_collections";
     public  static  String getHomePageDetailsUrl(int id){
         String Id=id+"";
         String url=BASIC_URL+part1+Id+part2;

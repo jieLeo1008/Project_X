@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_height="match_parent">
+    <LinearLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/liner_layout_height">
 
+        <TextView
+            android:layout_weight="9"
+            android:layout_width="0dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/mall_title_tv_shape"
+            android:layout_height="@dimen/text_view_height" />
+        <ImageView
+            android:src="@mipmap/icon_cart_black"
+            android:scaleType="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/l_recycler_view_mall_page_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.jdsjlzx.recyclerview.LRecyclerView>
 </LinearLayout>

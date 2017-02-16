@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/activity_horizontal_margin_200">
+    <ImageView
+        android:id="@+id/iv_head_fourth_mall_page"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_horizontal_margin_100" />
+    <TextView
+        android:id="@+id/tv_head_fourth_mall_page"
+        android:layout_below="@id/iv_head_fourth_mall_page"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_20" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/tv_head_fourth_mall_page"
+        android:id="@+id/recycler_view_head_fourth_mall_page"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/activity_horizontal_margin_140">
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

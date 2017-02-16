@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.fragment.BaseFragment;
 import com.jieleo.projecta.fragment.CategoryPageFragment;
 import com.jieleo.projecta.fragment.HomePageFragment;
 import com.jieleo.projecta.fragment.GiftPageFragmnet;
@@ -25,6 +26,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private ProfilePageFragment profilePageFragment;
     private FragmentTransaction fragmentTransaction,fmTransaction;
 
+    private BaseFragment currentFragment;
+
     @Override
     public int setLayout() {
         return R.layout.activity_main;
@@ -39,15 +42,23 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         categoryPageFragment = new CategoryPageFragment();
         profilePageFragment = new ProfilePageFragment();
         fragmentManager=getSupportFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content,homePageFragment);
-        fragmentTransaction.commit();
+//        fragmentTransaction=fragmentManager.beginTransaction();
+//        fragmentTransaction.add(R.id.content,homePageFragment);
+//        fragmentTransaction.commit();
 
     }
 
     @Override
     protected void initData() {
-
+        fragmentManager.beginTransaction().add(R.id.content,homePageFragment)
+                .add(R.id.content,giftPageFragmnet)
+                .add(R.id.content,mallPageFragment)
+                .add(R.id.content,categoryPageFragment)
+                .add(R.id.content,profilePageFragment)
+                .commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        hideAll(fragmentTransaction);
+        fragmentTransaction.show(homePageFragment).commit();
     }
 
     @Override
@@ -58,25 +69,36 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         fmTransaction = fragmentManager.beginTransaction();
+        hideAll(fmTransaction);
         switch (checkedId){
             case R.id.radio_btn_home_page:
-                fmTransaction.replace(R.id.content,homePageFragment);
+                fmTransaction.show(homePageFragment);
                 break;
             case R.id.radio_bt_gift_page:
-                fmTransaction.replace(R.id.content, giftPageFragmnet);
+                fmTransaction.show(giftPageFragmnet);
                 break;
             case R.id.radio_btn_mall_page:
-                fmTransaction.replace(R.id.content, mallPageFragment);
+                fmTransaction.show( mallPageFragment);
                 break;
             case R.id.radio_btn_category_page:
-                fmTransaction.replace(R.id.content, categoryPageFragment);
+                fmTransaction.show( categoryPageFragment);
                 break;
             case R.id.radio_btn_profile_page:
-                fmTransaction.replace(R.id.content, profilePageFragment);
+                fmTransaction.show(profilePageFragment);
                 break;
 
         }
         fmTransaction.commit();
 
     }
+
+    private void hideAll(FragmentTransaction fragmentTransaction){
+        fragmentTransaction.hide(homePageFragment)
+                .hide(giftPageFragmnet)
+                .hide(mallPageFragment)
+                .hide(categoryPageFragment)
+                .hide(profilePageFragment);
+    }
+
+
 }

@@ -4,9 +4,8 @@
 android:layout_height="match_parent">
     <TextView
         android:id="@+id/gift_tv"
-        android:text="礼物榜"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
+        android:text="@string/gift_page_title"
+        style="@style/gift_title_style"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
@@ -16,8 +15,8 @@ android:layout_height="match_parent">
         android:id="@+id/iv_share_gift_home_page"
         android:src="@mipmap/icon_share_black"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_10"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_10"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -26,7 +25,7 @@ android:layout_height="match_parent">
         android:id="@+id/tab_layout_gift_page_fragment"
         android:layout_below="@id/gift_tv"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="@dimen/tab_layout_height">
     </android.support.design.widget.TabLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_gift_page_fragment"

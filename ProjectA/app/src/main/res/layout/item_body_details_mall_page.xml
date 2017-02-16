@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/iv_body_mall_page"
+        style="@style/item_body_details_mall_page_image"/>
+    <TextView
+        android:id="@+id/tv_body_short_description_mall_page"
+        style="@style/item_body_details_mall_page_text"/>
+    <TextView
+        android:id="@+id/tv_body_title_mall_page"
+        style="@style/item_body_details_mall_page_text"/>
+    <TextView
+        android:id="@+id/tv_body_price_mall_page"
+        style="@style/item_body_details_mall_page_text"/>
+</LinearLayout>
