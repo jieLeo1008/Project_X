@@ -1,22 +1,17 @@
 package com.jieleo.projecta.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
-import com.github.jdsjlzx.view.CommonHeader;
 import com.jieleo.projecta.R;
-import com.jieleo.projecta.adapter.GiftPageFragmentAdapter;
 import com.jieleo.projecta.adapter.GiftPageRecyclerViewAdapter;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.jieleo.projecta.bean.gift.GiftTitleBean;
@@ -24,7 +19,6 @@ import com.jieleo.projecta.inter.CallBack;
 import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +31,7 @@ public class GiftDetailsPageFragment extends BaseFragment {
     private static final String TAG = "GiftDetailsPageFragment";
     private LRecyclerView mLRecyclerView;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
+    private GiftDetailsBean.DataBean dataBean;
 
     @Override
     protected int getLayoutId() {
@@ -51,6 +46,7 @@ public class GiftDetailsPageFragment extends BaseFragment {
         mLRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,LinearLayoutManager.VERTICAL,false));
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
 
+
     }
 
     @Override
@@ -62,8 +58,12 @@ public class GiftDetailsPageFragment extends BaseFragment {
             NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
                 @Override
                 public void onsuccess(GiftDetailsBean responce) {
-                    List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen=responce.getData().getItems();
-                    giftPageRecyclerViewAdapter.setItemsBeen(itemsBeen);
+                    dataBean = responce.getData();
+                    giftPageRecyclerViewAdapter.setDataBean(dataBean);
+                    View head=LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page,mLRecyclerView,false);
+                    ImageView imageView= (ImageView) head.findViewById(R.id.iv_head_gift_page);
+                    Glide.with(getContext()).load(dataBean.getCover_image()).into(imageView);
+                    mLRecyclerViewAdapter.addHeaderView(head);
                 }
 
                 @Override

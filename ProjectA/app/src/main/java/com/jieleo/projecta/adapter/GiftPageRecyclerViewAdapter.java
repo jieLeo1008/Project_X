@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 
-import java.util.List;
 
 /**
  * Created by yuyongjie on 17/2/15.
@@ -15,15 +14,15 @@ import java.util.List;
 
 
 public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen;
+    private GiftDetailsBean.DataBean dataBean;
     private Context context;
 
     public GiftPageRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setItemsBeen(List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen) {
-        this.itemsBeen = itemsBeen;
+    public void setDataBean(GiftDetailsBean.DataBean dataBean) {
+        this.dataBean = dataBean;
         notifyDataSetChanged();
     }
 
@@ -34,14 +33,14 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.setCustromImage(R.id.iv_details_gift_page,itemsBeen.get(position).getCover_image_url());
-        holder.setText(R.id.tv_short_description_details_gift_page,itemsBeen.get(position).getShort_description());
-        holder.setText(R.id.tv_name_details_gift_page,itemsBeen.get(position).getName());
-        holder.setText(R.id.tv_price_details_gift_page,itemsBeen.get(position).getPrice());
+        holder.setCustromImage(R.id.iv_details_gift_page,dataBean.getItems().get(position).getCover_image_url());
+        holder.setText(R.id.tv_short_description_details_gift_page,dataBean.getItems().get(position).getShort_description());
+        holder.setText(R.id.tv_name_details_gift_page,dataBean.getItems().get(position).getName());
+        holder.setText(R.id.tv_price_details_gift_page,dataBean.getItems().get(position).getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return itemsBeen!=null?itemsBeen.size():0;
+        return dataBean!=null?dataBean.getItems().size():0;
     }
 }
