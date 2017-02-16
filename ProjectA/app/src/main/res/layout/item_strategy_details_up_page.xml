@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_item_strategy_details_up_page"
+        android:layout_width="@dimen/activity_horizontal_margin_200"
+        android:layout_height="@dimen/activity_horizontal_margin_100" />
+    <LinearLayout
+        android:layout_width="@dimen/dp_60"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_title_item_strategy_up_page"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60" />
+        <TextView
+            android:id="@+id/tv_author_item_strategy_up_page"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40" />
+    </LinearLayout>
+</LinearLayout>
