@@ -6,17 +6,24 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.jieleo.projecta.adapter.category.StrategyDownRecyclerViewAdapter;
+import com.jieleo.projecta.adapter.category.StrategyUpRecyclerViewAdapter;
+import com.jieleo.projecta.bean.category.StrategyDownBean;
+import com.jieleo.projecta.bean.category.StrategyUpBean;
 import com.jieleo.projecta.bean.homepage.BannerBean;
 import com.jieleo.projecta.inter.CallBack;
 import com.jieleo.projecta.tool.NetTool;
@@ -32,7 +39,7 @@ import java.util.List;
 
 
 public class BaseViewHolder extends RecyclerView.ViewHolder {
-    private View view;
+    private View mview;
 
     private SparseArray<View> sparseArray;
 
@@ -40,7 +47,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView,Context context) {
         super(itemView);
-        view=itemView;
+        mview =itemView;
         sparseArray=new SparseArray<>();
         mContext=context;
     }
@@ -49,6 +56,18 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         View itemView= LayoutInflater.from(context).inflate(layoutId,group,false);
         BaseViewHolder holder=new BaseViewHolder(itemView,context);
         return holder;
+    }
+
+    public static BaseViewHolder createGridViewholder(View view,ViewGroup group,int layoutId){
+        BaseViewHolder baseViewHolder=null;
+        if (view==null){
+            view=LayoutInflater.from(group.getContext()).inflate(layoutId,group,false);
+            baseViewHolder=new BaseViewHolder(view,group.getContext());
+            view.setTag(baseViewHolder);
+        }else {
+            baseViewHolder= (BaseViewHolder) view.getTag();
+        }
+        return baseViewHolder;
     }
 
     public <T extends View> T getView(int resId){
@@ -83,6 +102,42 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return this;
     }
+
+
+
+    public BaseViewHolder setHorizonalRecyclerView(int resId,String url){
+        RecyclerView recyclerView=getView(resId);
+        if (url!=null){
+            final StrategyUpRecyclerViewAdapter strategyUpRecyclerViewAdapter=new StrategyUpRecyclerViewAdapter(mContext);
+            recyclerView.setLayoutManager(new GridLayoutManager(mContext,3,LinearLayoutManager.HORIZONTAL,false));
+            recyclerView.setAdapter(strategyUpRecyclerViewAdapter);
+            NetTool.getInstance().startRequest(url, StrategyUpBean.class, new CallBack<StrategyUpBean>() {
+                @Override
+                public void onsuccess(StrategyUpBean responce) {
+                    StrategyUpBean strategyUpBean=responce;
+                    strategyUpRecyclerViewAdapter.setStrategyUpBean(strategyUpBean);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+            });
+        }
+        return  this;
+    }
+
+    public BaseViewHolder setVerticalRecyclerView(int resId,StrategyDownBean.DataBean.ChannelGroupsBean channelGroupsBean){
+        RecyclerView recyclerView=getView(resId);
+        if (channelGroupsBean!=null){
+            StrategyDownRecyclerViewAdapter strategyDownRecyclerViewAdapter=new StrategyDownRecyclerViewAdapter(mContext);
+            recyclerView.setLayoutManager(new GridLayoutManager(mContext,2,LinearLayoutManager.VERTICAL,false));
+            recyclerView.setAdapter(strategyDownRecyclerViewAdapter);
+            strategyDownRecyclerViewAdapter.setChannelGroupsBean(channelGroupsBean);
+        }
+        return this;
+    }
+
 
     public BaseViewHolder setBanner(int resId,String url){
         final Banner banner=getView(resId);

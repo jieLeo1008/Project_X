@@ -8,6 +8,7 @@
     <dimen name="fragment_title_tv_margin_right">10dp</dimen>
     <dimen name="activity_horizontal_margin_100">100dp</dimen>
     <dimen name="activity_horizontal_margin_140">140dp</dimen>
+    <dimen name="activity_horizontal_margin_120">120dp</dimen>
     <dimen name="activity_horizontal_margin_200">200dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="fragment_title_tv_margin_left">15dp</dimen>
