@@ -1,6 +1,7 @@
 package com.jieleo.projecta.adapter.category.single;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.jieleo.projecta.bean.category.SingleBean;
 
 
 public class BodyGridViewAdapter extends BaseAdapter {
+    private static final String TAG = "BodyGridViewAdapter";
     private SingleBean.DataBean.CategoriesBean categoriesBean;
     private Context context;
 
@@ -47,12 +49,13 @@ public class BodyGridViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         MyHolder myHolder=null;
         if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.item_body_right_single_page,parent,false);
+            convertView= LayoutInflater.from(context).inflate(R.layout.item_grid_right_single_page,parent,false);
             myHolder=new MyHolder(convertView);
             convertView.setTag(myHolder);
         }else {
             myHolder= (MyHolder) convertView.getTag();
         }
+        Log.e(TAG, "getView: +++++++++++++++++++"+categoriesBean.getSubcategories().get(position).getName() );
         myHolder.textView.setText(categoriesBean.getSubcategories().get(position).getName());
         return convertView;
     }

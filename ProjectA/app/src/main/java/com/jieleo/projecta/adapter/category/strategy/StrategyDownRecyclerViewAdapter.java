@@ -35,7 +35,6 @@ public class StrategyDownRecyclerViewAdapter extends RecyclerView.Adapter<BaseVi
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        Log.e(TAG, "onBindViewHolder: "+channelGroupsBean.getChannels().get(position).getCover_image_url() );
             holder.setCustromImage(R.id.iv_cover_image_item_details_down_strategy_page,channelGroupsBean.getChannels().get(position).getCover_image_url());
     }
 
