@@ -1,4 +1,4 @@
-package com.jieleo.projecta.adapter.category;
+package com.jieleo.projecta.adapter.category.strategy;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -30,13 +30,13 @@ public class StrategyDownRecyclerViewAdapter extends RecyclerView.Adapter<BaseVi
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return BaseViewHolder.createViewHolder(context,parent, R.layout.item_strategy_down_page);
+        return BaseViewHolder.createViewHolder(context,parent, R.layout.item_strategy_details_down_page);
     }
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         Log.e(TAG, "onBindViewHolder: "+channelGroupsBean.getChannels().get(position).getCover_image_url() );
-//            holder.setCustromImage(R.id.iv_cover_image_item_details_down_strategy_page,channelGroupsBean.getChannels().get(position).getCover_image_url());
+            holder.setCustromImage(R.id.iv_cover_image_item_details_down_strategy_page,channelGroupsBean.getChannels().get(position).getCover_image_url());
     }
 
     @Override

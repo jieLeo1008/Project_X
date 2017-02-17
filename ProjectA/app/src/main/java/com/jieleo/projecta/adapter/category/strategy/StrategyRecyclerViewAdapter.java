@@ -1,4 +1,4 @@
-package com.jieleo.projecta.adapter.category;
+package com.jieleo.projecta.adapter.category.strategy;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,7 +56,7 @@ public class StrategyRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
                 holder.setHorizonalRecyclerView(R.id.recycler_view_item_up_strategy_page,WebsiteInter.STRATEGY_UP_TITLE);
                 break;
             case DOWN_VIEW:
-                holder.setVerticalRecyclerView(R.id.recycler_view_down_strategy_page,strategyDownBean.getData().getChannel_groups().get(position));
+                holder.setVerticalRecyclerView(R.id.recycler_view_down_strategy_page,strategyDownBean.getData().getChannel_groups().get(position-1));
                 break;
 
         }

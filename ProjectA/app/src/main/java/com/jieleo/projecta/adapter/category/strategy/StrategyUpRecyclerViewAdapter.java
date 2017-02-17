@@ -1,4 +1,4 @@
-package com.jieleo.projecta.adapter.category;
+package com.jieleo.projecta.adapter.category.strategy;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

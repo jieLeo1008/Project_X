@@ -65,9 +65,9 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
             holder.setBanner(R.id.banner_home_page, WebsiteInter.BANNER);
             NetTool.getInstance().startRequest(WebsiteInter.MODULE, SecondBannerBean.class, new CallBack<SecondBannerBean>() {
                 @Override
-                public void onsuccess(SecondBannerBean responce) {
+                public void onSuccess(SecondBannerBean response) {
                     List<String> bannerRes = new ArrayList<>();
-                    secondBannerBean = responce;
+                    secondBannerBean = response;
                     for (int i = 0; i < 6; i++) {
                         bannerRes.add(secondBannerBean.getData().getSecondary_banners().get(i).getImage_url());
                     }

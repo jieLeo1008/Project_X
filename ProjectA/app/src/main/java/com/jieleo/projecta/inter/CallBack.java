@@ -5,7 +5,7 @@ package com.jieleo.projecta.inter;
  */
 
 public interface CallBack<T> {
-    void onsuccess(T responce);
+    void onSuccess(T response);
 
     void  onError(Throwable e );
 

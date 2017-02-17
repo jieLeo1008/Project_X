@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jieleo.projecta.R;
-import com.jieleo.projecta.adapter.category.StrategyRecyclerViewAdapter;
+import com.jieleo.projecta.adapter.category.strategy.StrategyRecyclerViewAdapter;
 import com.jieleo.projecta.bean.category.StrategyDownBean;
 import com.jieleo.projecta.inter.CallBack;
 import com.jieleo.projecta.tool.NetTool;
@@ -29,7 +29,7 @@ public class StrategyFragment extends BaseFragment {
     protected void initView(View view, Bundle savedInstanceState) {
         mRecyclerView= (RecyclerView) view.findViewById(R.id.recycler_view_strategy_page);
         strategyRecyclerViewAdapter=new StrategyRecyclerViewAdapter(getContext());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mRecyclerView.setAdapter(strategyRecyclerViewAdapter);
     }
 
@@ -38,8 +38,8 @@ public class StrategyFragment extends BaseFragment {
 
         NetTool.getInstance().startRequest(WebsiteInter.STRATEGY, StrategyDownBean.class, new CallBack<StrategyDownBean>() {
             @Override
-            public void onsuccess(StrategyDownBean responce) {
-                StrategyDownBean strategyDownBean =responce;
+            public void onSuccess(StrategyDownBean response) {
+                StrategyDownBean strategyDownBean = response;
                 strategyRecyclerViewAdapter.setStrategyDownBean(strategyDownBean);
 
             }

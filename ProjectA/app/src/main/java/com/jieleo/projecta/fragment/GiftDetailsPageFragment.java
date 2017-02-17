@@ -56,8 +56,8 @@ public class GiftDetailsPageFragment extends BaseFragment {
 
             NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
                 @Override
-                public void onsuccess(GiftDetailsBean responce) {
-                    dataBean = responce.getData();
+                public void onSuccess(GiftDetailsBean response) {
+                    dataBean = response.getData();
                     View head=LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page,mLRecyclerView,false);
                     ImageView imageView= (ImageView) head.findViewById(R.id.iv_head_gift_page);
                     Glide.with(getContext()).load(dataBean.getCover_image()).into(imageView);

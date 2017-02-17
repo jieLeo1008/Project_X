@@ -38,8 +38,8 @@ public class GiftPageFragmnet extends BaseFragment {
     protected void initData() {
         NetTool.getInstance().startRequest(WebsiteInter.GIFT, GiftTitleBean.class, new CallBack<GiftTitleBean>() {
             @Override
-            public void onsuccess(GiftTitleBean responce) {
-                GiftTitleBean giftTitleBean=responce;
+            public void onSuccess(GiftTitleBean response) {
+                GiftTitleBean giftTitleBean= response;
                 giftPageFragmentAdapter.setGiftTitleBean(giftTitleBean);
             }
 

@@ -54,8 +54,8 @@ public class HomePageDetailsFragment extends BaseFragment {
         mDetialsRecyclerViewAdapter = new HomePageDetailsRecyclerViewAdapter(getContext());
         NetTool.getInstance().startRequest(url, DetailsBean.class, new CallBack<DetailsBean>() {
             @Override
-            public void onsuccess(DetailsBean responce) {
-                detailsBean = responce;
+            public void onSuccess(DetailsBean response) {
+                detailsBean = response;
                 mDetialsRecyclerViewAdapter.setDetailsBean(detailsBean);
                 mDetialsRecyclerViewAdapter.setId(position);
 

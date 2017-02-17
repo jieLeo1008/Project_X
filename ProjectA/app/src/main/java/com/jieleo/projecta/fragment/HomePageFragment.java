@@ -46,8 +46,8 @@ public class HomePageFragment extends BaseFragment {
     protected void initData() {
         NetTool.getInstance().startRequest(WebsiteInter.CHANNELS_URL, TitleBean.class, new CallBack<TitleBean>() {
             @Override
-            public void onsuccess(TitleBean responce) {
-                channelsBeen=responce.getData().getChannels();
+            public void onSuccess(TitleBean response) {
+                channelsBeen= response.getData().getChannels();
                 homePageFragmentPageAdapter.setChannelsBeen(channelsBeen);
             }
 

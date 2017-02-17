@@ -52,8 +52,8 @@ public class MallPageFragment extends BaseFragment {
     protected void initData() {
         NetTool.getInstance().startRequest(WebsiteInter.MALLDOWN, MallBodyBean.class, new CallBack<MallBodyBean>() {
             @Override
-            public void onsuccess(MallBodyBean responce) {
-                MallBodyBean mallBodyBean=responce;
+            public void onSuccess(MallBodyBean response) {
+                MallBodyBean mallBodyBean= response;
                 mallPageRecyclerViewAdapter.setMallBodyBean(mallBodyBean);
             }
 
@@ -65,8 +65,8 @@ public class MallPageFragment extends BaseFragment {
 
         NetTool.getInstance().startRequest(WebsiteInter.MallUP, MallHeadBean.class, new CallBack<MallHeadBean>() {
             @Override
-            public void onsuccess(MallHeadBean responce) {
-                MallHeadBean mallHeadBean=responce;
+            public void onSuccess(MallHeadBean response) {
+                MallHeadBean mallHeadBean= response;
 
 
                 View headViewFIrst= LayoutInflater.from(getContext()).inflate(R.layout.item_head_first_mall_page,mLRecyclerView,false);
