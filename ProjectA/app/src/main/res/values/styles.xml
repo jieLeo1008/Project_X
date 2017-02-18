@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="StartTheme" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+    </style>
+
     <style name="radio_btn_style">
         <item name="android:layout_width">@dimen/weight_width</item>
         <item name="android:layout_weight">1</item>

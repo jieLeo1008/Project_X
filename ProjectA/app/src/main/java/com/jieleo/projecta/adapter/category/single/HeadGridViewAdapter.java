@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.category.SingleBean;
 
@@ -54,12 +56,15 @@ public class HeadGridViewAdapter extends BaseAdapter {
             holder= (MyHolder) convertView.getTag();
         }
         holder.textView.setText(categoriesBean.getSubcategories().get(position).getName());
+        Glide.with(context).load(categoriesBean.getSubcategories().get(position).getIcon_url()).into(holder.imageView);
         return convertView;
     }
     class  MyHolder {
         TextView textView;
+        ImageView imageView;
         public MyHolder(View itemView) {
             textView = (TextView) itemView.findViewById(R.id.tv_grid_head_right_single_page);
+            imageView= (ImageView) itemView.findViewById(R.id.iv_grid_head_right_single_page);
         }
     }
 }

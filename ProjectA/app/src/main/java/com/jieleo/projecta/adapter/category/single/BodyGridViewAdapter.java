@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.category.SingleBean;
 
@@ -37,7 +39,7 @@ public class BodyGridViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return position;
     }
 
     @Override
@@ -55,16 +57,18 @@ public class BodyGridViewAdapter extends BaseAdapter {
         }else {
             myHolder= (MyHolder) convertView.getTag();
         }
-        Log.e(TAG, "getView: +++++++++++++++++++"+categoriesBean.getSubcategories().get(position).getName() );
         myHolder.textView.setText(categoriesBean.getSubcategories().get(position).getName());
+        Glide.with(context).load(categoriesBean.getSubcategories().get(position).getIcon_url()).into(myHolder.imageView);
         return convertView;
     }
 
     class MyHolder{
         TextView textView;
+        ImageView imageView;
 
         public MyHolder(View itemView) {
             textView = (TextView) itemView.findViewById(R.id.tv_grid_body_single_page);
+            imageView= (ImageView) itemView.findViewById(R.id.iv_grid_body_single_page);
         }
     }
 }

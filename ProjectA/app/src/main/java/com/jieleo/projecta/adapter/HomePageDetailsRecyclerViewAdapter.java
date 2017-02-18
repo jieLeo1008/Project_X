@@ -28,6 +28,9 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
     public static final int HEAD_VIEW = 0;
     public static final int BODY_VIEW = 1;
 
+    private final int TYPE_HAS_HEAD = 0;
+    private final int TYPE_NORMAL = 1;
+
     public HomePageDetailsRecyclerViewAdapter(Context context) {
         this.context = context;
     }
@@ -102,7 +105,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
             holder.setCircleImage(R.id.iv_author_head_item_details_home_page, itemsBean.getAuthor().getAvatar_url());
 
         }else if (itemViewType==BODY_VIEW&&id!=0){
-            DetailsBean.DataBean.ItemsBean itemsBean = detailsBean.getData().getItems().get(position );
+            DetailsBean.DataBean.ItemsBean itemsBean = detailsBean.getData().getItems().get(position);
             holder.setText(R.id.tv_author_nickname_item_details_home_page, itemsBean.getAuthor().getNickname());
             holder.setText(R.id.tv_author_introduction_item_details_home_page, itemsBean.getAuthor().getIntroduction());
             if (itemsBean.getColumn() != null) {
@@ -121,7 +124,11 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
 
     @Override
     public int getItemCount() {
-        return detailsBean != null ? detailsBean.getData().getItems().size() + 1 : 0;
+        if(id == 0){
+
+            return detailsBean != null ? detailsBean.getData().getItems().size() + 1 : 0;
+        }
+        return detailsBean != null ? detailsBean.getData().getItems().size() : 0;
     }
 
 

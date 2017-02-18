@@ -22,6 +22,9 @@ public class RightListViewAdapter extends BaseAdapter{
     private static final String TAG = "RightListViewAdapter";
     private SingleBean singleBean;
     private Context context;
+    private final int TYPE_FIRST = 0;
+
+    private final int TYPE_NORMAL = 1;
 
     public void setSingleBean(SingleBean singleBean) {
         this.singleBean = singleBean;
@@ -37,9 +40,10 @@ public class RightListViewAdapter extends BaseAdapter{
         return singleBean!=null?singleBean.getData().getCategories().size():0;
     }
 
+
     @Override
     public Object getItem(int position) {
-        return null;
+        return position;
     }
 
     @Override
@@ -50,18 +54,12 @@ public class RightListViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position==0){
-            FirstHolder firstHolder=null;
-            if (convertView==null){
             convertView=LayoutInflater.from(context).inflate(R.layout.item_head_right_single_page,parent,false);
-                firstHolder=new FirstHolder(convertView);
-                convertView.setTag(firstHolder);
-            }else {
-                firstHolder= (FirstHolder) convertView.getTag();
-            }
+            MyGridView gridView= (MyGridView) convertView.findViewById(R.id.grid_view_head);
+
             HeadGridViewAdapter headGridViewAdapter=new HeadGridViewAdapter(context);
-            firstHolder.gridView.setAdapter(headGridViewAdapter);
+            gridView.setAdapter(headGridViewAdapter);
             headGridViewAdapter.setCategoriesBean(singleBean.getData().getCategories().get(position));
-            convertView=null;
         }else {
             MyHolder holder=null;
             if (convertView==null){
@@ -71,12 +69,27 @@ public class RightListViewAdapter extends BaseAdapter{
             }else {
                 holder= (MyHolder) convertView.getTag();
             }
-//            holder.textView.setText(singleBean.getData().getCategories().get(position).getName());
+            holder.textView.setText(singleBean.getData().getCategories().get(position).getName());
             BodyGridViewAdapter bodyGridViewAdapter=new BodyGridViewAdapter(context);
             holder.gridView.setAdapter(bodyGridViewAdapter);
             bodyGridViewAdapter.setCategoriesBean(singleBean.getData().getCategories().get(position));
         }
         return convertView;
+    }
+
+    //返回对应的行布局类型
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return TYPE_FIRST;
+        }
+        return TYPE_NORMAL;
+    }
+
+    //返回当前的行布局总数
+    @Override
+    public int getViewTypeCount() {
+        return 2;
     }
 
     class MyHolder {
@@ -92,11 +105,4 @@ public class RightListViewAdapter extends BaseAdapter{
 
     }
 
-    class FirstHolder{
-        GridView gridView;
-
-        public FirstHolder(View itemView) {
-            gridView= (GridView) itemView.findViewById(R.id.grid_view_head);
-        }
-    }
 }

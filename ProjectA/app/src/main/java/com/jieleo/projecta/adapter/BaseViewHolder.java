@@ -98,7 +98,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder setCircleImage(int resId, String url) {
         ImageView imageView = getView(resId);
         if (url != null) {
-            Log.d("BaseViewHolder", url);
             Glide.with(mContext).load(url).transform(new CircleTransform(mContext)).into(imageView);
         }
         return this;

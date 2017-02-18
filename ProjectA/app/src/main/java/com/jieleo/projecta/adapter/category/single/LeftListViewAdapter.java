@@ -1,6 +1,7 @@
 package com.jieleo.projecta.adapter.category.single;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,12 @@ import com.jieleo.projecta.bean.category.SingleBean;
 public class LeftListViewAdapter extends BaseAdapter {
     private SingleBean singleBean;
     private Context context;
+    private int  selectedId;
+
+    public void setSelectedId(int selectedId) {
+        this.selectedId = selectedId;
+        notifyDataSetChanged();
+    }
 
     public void setSingleBean(SingleBean singleBean) {
         this.singleBean = singleBean;
@@ -35,7 +42,7 @@ public class LeftListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return position;
     }
 
     @Override
@@ -43,9 +50,12 @@ public class LeftListViewAdapter extends BaseAdapter {
         return position;
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         MyHolder holder=null;
+        convertView=null;
         if (convertView==null){
             convertView= LayoutInflater.from(context).inflate(R.layout.item_left_single_page,parent,false);
             holder=new MyHolder(convertView);
@@ -54,6 +64,11 @@ public class LeftListViewAdapter extends BaseAdapter {
             holder= (MyHolder) convertView.getTag();
         }
         holder.textView.setText(singleBean.getData().getCategories().get(position).getName());
+        if (selectedId==position){
+            holder.textView.setTextColor(Color.RED);
+
+
+        }
         return convertView;
     }
     class  MyHolder {
