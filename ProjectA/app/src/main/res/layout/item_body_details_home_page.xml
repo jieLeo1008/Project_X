@@ -23,6 +23,7 @@
         android:layout_alignLeft="@id/tv_author_nickname_item_details_home_page"
         style="@style/item_body_details_home_page_title" />
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/iv_cover_image_item_details_home_page"
         android:layout_below="@id/iv_author_head_item_details_home_page"
         style="@style/item_body_details_home_page_cover_image"/>
@@ -36,7 +37,8 @@
         android:id="@+id/tv_introduction_item_details_home_page"
         android:layout_below="@id/tv_title_item_details_home_page"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="13sp"
+        android:layout_height="30dp" />
     <LinearLayout
         android:layout_below="@id/tv_introduction_item_details_home_page"
         android:orientation="horizontal"

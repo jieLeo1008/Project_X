@@ -2,6 +2,7 @@ package com.jieleo.projecta.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.jieleo.projecta.R;
@@ -101,6 +102,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
             }
             holder.setText(R.id.tv_title_item_details_home_page, itemsBean.getTitle());
             holder.setText(R.id.tv_introduction_item_details_home_page, itemsBean.getIntroduction());
+            holder.setText(R.id.tv_likes_count_details_home_page,itemsBean.getLikes_count()+"");
             holder.setCustromImage(R.id.iv_cover_image_item_details_home_page, itemsBean.getCover_image_url());
             holder.setCircleImage(R.id.iv_author_head_item_details_home_page, itemsBean.getAuthor().getAvatar_url());
 
@@ -116,6 +118,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
                 holder.setText(R.id.tv_column_details_home_page, "");
             }
             holder.setText(R.id.tv_title_item_details_home_page, itemsBean.getTitle());
+            holder.setText(R.id.tv_likes_count_details_home_page,itemsBean.getLikes_count()+"");
             holder.setText(R.id.tv_introduction_item_details_home_page, itemsBean.getIntroduction());
             holder.setCustromImage(R.id.iv_cover_image_item_details_home_page, itemsBean.getCover_image_url());
             holder.setCircleImage(R.id.iv_author_head_item_details_home_page, itemsBean.getAuthor().getAvatar_url());

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-
+    android:background="#FFFFFF"
     android:layout_height="match_parent">
 
     <ImageView
@@ -19,4 +19,139 @@
         android:gravity="center"
         android:layout_width="100dp"
         android:layout_height="20dp" />
+
+
+    <ImageView
+        android:layout_below="@id/tv_sign_up_profile_page"
+        android:layout_marginTop="30dp"
+        android:id="@+id/iv_mobile_profile_page"
+        android:layout_marginLeft="56dp"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/icon_mobile"
+        android:layout_height="40dp" />
+    <TextView
+        android:text="+86"
+        android:id="@+id/tv_86_profile_page"
+        android:drawableRight="@mipmap/arrow_grey_down"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/iv_mobile_profile_page"
+        android:layout_alignTop="@id/iv_mobile_profile_page"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp" />
+    <EditText
+        android:layout_toRightOf="@id/tv_86_profile_page"
+        android:layout_alignTop="@id/tv_86_profile_page"
+        android:layout_width="match_parent"
+        android:hint="输入手机号"
+        android:background="@null"
+        android:inputType="number"
+        android:id="@+id/et_uesr_name_profile_page"
+        android:layout_marginLeft="5dp"
+        android:textCursorDrawable="@drawable/edit_text_cursor_shape"
+        android:textSize="13sp"
+        android:layout_marginRight="50dp"
+        android:layout_height="35dp" />
+    <TextView
+        android:layout_below="@id/et_uesr_name_profile_page"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="50dp"
+        android:background="#999999"
+        android:layout_height="@dimen/layout_margin_1dp" />
+
+    <ImageView
+        android:id="@+id/iv_password_profile_page"
+        android:src="@mipmap/icon_password"
+        android:layout_below="@id/iv_mobile_profile_page"
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp" />
+    <EditText
+        android:id="@+id/et_password_profile_page"
+        android:layout_toRightOf="@id/iv_password_profile_page"
+        android:layout_alignTop="@id/iv_password_profile_page"
+        android:hint="输入密码"
+        android:textSize="13sp"
+        android:drawableRight="@mipmap/ic_visible_close"
+        android:gravity="center_vertical"
+        android:textCursorDrawable="@drawable/edit_text_cursor_shape"
+        android:layout_marginRight="50dp"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+    <TextView
+        android:layout_below="@id/et_password_profile_page"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="50dp"
+        android:background="#999999"
+        android:layout_height="@dimen/layout_margin_1dp" />
+
+
+    <Button
+        android:layout_below="@id/et_password_profile_page"
+        android:layout_marginLeft="56dp"
+        android:layout_marginRight="50dp"
+        android:text="确定"
+        android:background="#c79a9a"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:id="@+id/liner_layout_bottom_profile_page"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:scaleType="center"
+            android:src="@mipmap/icon_share_sina"
+            android:layout_height="60dp" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:scaleType="center"
+            android:src="@mipmap/icon_share_wechat"
+            android:layout_height="60dp" />
+        <ImageView
+            android:layout_weight="1"
+            android:src="@mipmap/icon_share_qq"
+            android:scaleType="center"
+            android:layout_width="0dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_above="@id/liner_layout_bottom_profile_page"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:background="#f88"
+            android:layout_height="@dimen/layout_margin_1dp" />
+        <TextView
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:text="使用社交账号登陆"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="#f88"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/layout_margin_1dp" />
+    </LinearLayout>
 </RelativeLayout>

@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:orientation="vertical" android:layout_width="120dp"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iv_head_first_details_mall_page"
+        android:layout_gravity="center"
         android:layout_width="@dimen/activity_horizontal_margin_100"
         android:layout_height="@dimen/activity_horizontal_margin_100" />
     <TextView
         android:id="@+id/tv_head_first_short_description_details_mall_page"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_head_first_details_mall_text_height" />
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="15dp" />
     <TextView
         android:id="@+id/tv_head_first_price_details_mall_page"
+        android:gravity="center"
+        android:textColor="#f00"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_head_first_details_mall_text_height" />
 </LinearLayout>

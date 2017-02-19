@@ -10,7 +10,7 @@
 
 
     <style name="StartTheme" parent="AppTheme">
-        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+        <item name="android:windowBackground">@mipmap/first_start_image</item>
     </style>
 
     <style name="radio_btn_style">
