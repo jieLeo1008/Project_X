@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_head_first_mall_page_height">
+    android:layout_height="400dp">
 
     <ImageView
         android:id="@+id/iv_head_second_mall_page"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_horizontal_margin_100" />
+        style="@style/item_head_mall_page_big_image"/>
     <TextView
         android:id="@+id/tv_head_second_mall_page"
         android:layout_below="@id/iv_head_second_mall_page"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_20" />
+        style="@style/item_head_mall_page_text_view"/>
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/tv_head_second_mall_page"
         android:id="@+id/recycler_view_head_second_mall_page"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/activity_horizontal_margin_140">
+        style="@style/item_head_mall_page_recycler_view">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

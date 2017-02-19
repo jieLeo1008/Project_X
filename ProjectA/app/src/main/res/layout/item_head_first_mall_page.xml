@@ -4,25 +4,16 @@
     android:layout_height="400dp">
     <ImageView
         android:id="@+id/iv_head_first_mall_page"
-        android:scaleType="fitXY"
-        android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        style="@style/item_head_mall_page_big_image" />
     <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:id="@+id/tv_head_first_mall_page"
         android:layout_below="@id/iv_head_first_mall_page"
-        android:layout_width="match_parent"
-        android:textSize="25sp"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content" />
+        style="@style/item_head_mall_page_text_view"
+         />
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="19dp"
         android:layout_below="@id/tv_head_first_mall_page"
         android:id="@+id/recycler_view_head_first_mall_page"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/activity_horizontal_margin_140">
+        style="@style/item_head_mall_page_recycler_view">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

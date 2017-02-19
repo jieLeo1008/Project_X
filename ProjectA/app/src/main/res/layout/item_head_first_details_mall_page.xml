@@ -5,21 +5,12 @@
 
     <ImageView
         android:id="@+id/iv_head_first_details_mall_page"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/activity_horizontal_margin_100"
-        android:layout_height="@dimen/activity_horizontal_margin_100" />
+        style="@style/item_head_details_mall_page_ImageView" />
     <TextView
         android:id="@+id/tv_head_first_short_description_details_mall_page"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="15dp" />
+        style="@style/item_head_details_mall_page_TextView"
+        />
     <TextView
         android:id="@+id/tv_head_first_price_details_mall_page"
-        android:gravity="center"
-        android:textColor="#f00"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_head_first_details_mall_text_height" />
+        style="@style/item_head_details_mall_page_price_TextView"/>
 </LinearLayout>

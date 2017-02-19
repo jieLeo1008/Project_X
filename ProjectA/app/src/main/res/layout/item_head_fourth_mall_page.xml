@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/activity_horizontal_margin_200">
+    android:layout_height="420dp">
     <ImageView
         android:id="@+id/iv_head_fourth_mall_page"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_horizontal_margin_100" />
+        style="@style/item_head_mall_page_big_image" />
     <TextView
         android:id="@+id/tv_head_fourth_mall_page"
         android:layout_below="@id/iv_head_fourth_mall_page"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_20" />
+        style="@style/item_head_mall_page_text_view"
+       />
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/tv_head_fourth_mall_page"
         android:id="@+id/recycler_view_head_fourth_mall_page"
@@ -18,4 +17,17 @@
         android:layout_height="@dimen/activity_horizontal_margin_140">
 
     </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_below="@id/recycler_view_head_fourth_mall_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="你好"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 </RelativeLayout>
