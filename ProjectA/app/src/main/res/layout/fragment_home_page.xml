@@ -52,6 +52,7 @@
 
         </android.support.design.widget.TabLayout>
         <ImageView
+            android:id="@+id/iv_pop_home_page"
             android:layout_weight="1"
             android:layout_width="@dimen/weight_width"
             android:scaleType="center"
