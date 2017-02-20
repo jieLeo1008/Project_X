@@ -64,10 +64,9 @@ public class LeftListViewAdapter extends BaseAdapter {
             holder= (MyHolder) convertView.getTag();
         }
         holder.textView.setText(singleBean.getData().getCategories().get(position).getName());
+
         if (selectedId==position){
             holder.textView.setTextColor(Color.RED);
-
-
         }
         return convertView;
     }

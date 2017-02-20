@@ -18,6 +18,9 @@ public class MallHeadFirstAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private Context context;
     private static final String TAG = "MallHeadFirstAdapter";
 
+
+
+
     public void setItemsBean(MallHeadBean.DataBean.ItemsBeanX itemsBean) {
         this.itemsBean = itemsBean;
         notifyDataSetChanged();
@@ -34,17 +37,25 @@ public class MallHeadFirstAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.setCustromImage(R.id.iv_head_first_details_mall_page,itemsBean.getItems().get(position).getCover_image_url());
-        holder.setText(R.id.tv_head_first_short_description_details_mall_page,itemsBean.getItems().get(position).getShort_description());
-        if (itemsBean.getItems().get(position).getSkus()!=null){
-            holder.setText(R.id.tv_head_first_price_details_mall_page,"¥"+itemsBean.getItems().get(position).getSkus().get(0).getFixed_price());
+
+
+        if (position==6){
+            holder.setLocalImage(R.id.iv_head_first_details_mall_page,R.mipmap.icon_commodity_more);
         }else {
-            holder.setText(R.id.tv_head_first_price_details_mall_page,"");
+            holder.setCustromImage(R.id.iv_head_first_details_mall_page,itemsBean.getItems().get(position).getCover_image_url());
+            holder.setText(R.id.tv_head_first_short_description_details_mall_page,itemsBean.getItems().get(position).getShort_description());
+            if (itemsBean.getItems().get(position).getSkus()!=null){
+                holder.setText(R.id.tv_head_first_price_details_mall_page,"¥"+itemsBean.getItems().get(position).getSkus().get(0).getFixed_price());
+            }else {
+                holder.setText(R.id.tv_head_first_price_details_mall_page,"");
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return itemsBean!=null?itemsBean.getItems().size():0;
+        return itemsBean!=null?7:0;
     }
+
+
 }

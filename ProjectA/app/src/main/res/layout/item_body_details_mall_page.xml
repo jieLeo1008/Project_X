@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:background="@drawable/body_details_mall_page_item_shape"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_height="240dp">
 
     <ImageView
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/iv_body_mall_page"
         style="@style/item_body_details_mall_page_image"/>
     <TextView
         android:id="@+id/tv_body_short_description_mall_page"
+        android:textSize="13sp"
+        android:layout_marginTop="5dp"
+        android:textColor="#000000"
         style="@style/item_body_details_mall_page_text"/>
     <TextView
         android:id="@+id/tv_body_title_mall_page"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
         style="@style/item_body_details_mall_page_text"/>
     <TextView
         android:id="@+id/tv_body_price_mall_page"
+        android:layout_marginTop="10dp"
+        android:textColor="#f00"
         style="@style/item_body_details_mall_page_text"/>
 </LinearLayout>

@@ -34,13 +34,17 @@ public class StrategyUpRecyclerViewAdapter extends RecyclerView.Adapter<BaseView
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
+        if (position==11){
+            holder.setLocalImage(R.id.iv_item_strategy_details_up_page,R.mipmap.click_to_show_more);
+        }else {
         holder.setCustromImage(R.id.iv_item_strategy_details_up_page, strategyUpBean.getData().getColumns().get(position).getCover_image_url());
         holder.setText(R.id.tv_title_item_strategy_up_page, strategyUpBean.getData().getColumns().get(position).getTitle());
         holder.setText(R.id.tv_author_item_strategy_up_page,strategyUpBean.getData().getColumns().get(position).getAuthor());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return strategyUpBean != null ? strategyUpBean.getData().getColumns().size() : 0;
+        return strategyUpBean != null ? 12 : 0;
     }
 }

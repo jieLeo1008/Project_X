@@ -95,6 +95,15 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public BaseViewHolder setLocalImage(int id,int resId){
+        ImageView imageView=getView(id);
+        if (resId!=0){
+            imageView.setImageResource(resId);
+        }
+        return this;
+    }
+
+
     public BaseViewHolder setCircleImage(int resId, String url) {
         ImageView imageView = getView(resId);
         if (url != null) {

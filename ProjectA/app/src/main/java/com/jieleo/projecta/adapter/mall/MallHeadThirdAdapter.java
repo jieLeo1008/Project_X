@@ -33,14 +33,19 @@ public class MallHeadThirdAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
+        if (position==6){
+            holder.setLocalImage(R.id.iv_head_third_details_mall_page,R.mipmap.icon_commodity_more);
+        }else {
         holder.setCustromImage(R.id.iv_head_third_details_mall_page,itemsBean.getItems().get(position).getCover_image_url());
         holder.setText(R.id.tv_head_third_short_description_details_mall_page,itemsBean.getItems().get(position).getShort_description());
         holder.setText(R.id.tv_head_third_price_details_mall_page,"¥"+itemsBean.getItems().get(position).getSkus().get(0).getFixed_price());
+        }
+
 
     }
 
     @Override
     public int getItemCount() {
-        return itemsBean!=null?itemsBean.getItems().size():0;
+        return itemsBean!=null?7:0;
     }
 }
