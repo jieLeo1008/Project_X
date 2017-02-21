@@ -9,6 +9,7 @@ import com.jieleo.projecta.R;
  */
 
 public class FirstStartActivity extends  BaseActivity {
+
     @Override
     public int setLayout() {
         return R.layout.activity_first_start;
