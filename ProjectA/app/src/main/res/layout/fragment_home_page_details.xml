@@ -3,11 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/recycler_view_details_home_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </com.github.jdsjlzx.recyclerview.LRecyclerView>
 
 </LinearLayout>

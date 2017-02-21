@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="480dp">
+
+    <ImageView
+    android:id="@+id/iv_head_first_mall_page"
+    style="@style/item_head_mall_page_big_image" />
+    <TextView
+    android:id="@+id/tv_head_first_mall_page"
+    android:layout_below="@id/iv_head_first_mall_page"
+    style="@style/item_head_mall_page_text_view"
+    />
+    <android.support.v7.widget.RecyclerView
+    android:layout_below="@id/tv_head_first_mall_page"
+    android:id="@+id/recycler_view_head_first_mall_page"
+    style="@style/item_head_mall_page_recycler_view">
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

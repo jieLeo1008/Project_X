@@ -36,9 +36,7 @@ public class HomePageFragmentPageAdapter extends FragmentPagerAdapter{
         return channelsBeen!=null? channelsBeen.size():0;
     }
 
-//    public  String getPageTitle(int position){
-//        return channelsBeen.get(position).getName();
-//    }
+
 
 
     @Override

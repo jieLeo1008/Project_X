@@ -13,10 +13,10 @@ import com.jieleo.projecta.bean.mall.MallHeadBean;
  */
 
 
-public class MallHeadFirstAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class MallHeadAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private MallHeadBean.DataBean.ItemsBeanX itemsBean;
     private Context context;
-    private static final String TAG = "MallHeadFirstAdapter";
+    private static final String TAG = "MallHeadAdapter";
 
 
 
@@ -26,7 +26,7 @@ public class MallHeadFirstAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
-    public MallHeadFirstAdapter(Context context) {
+    public MallHeadAdapter(Context context) {
         this.context = context;
     }
 

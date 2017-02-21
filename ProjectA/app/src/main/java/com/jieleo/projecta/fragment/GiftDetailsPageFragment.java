@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
@@ -31,7 +32,8 @@ public class GiftDetailsPageFragment extends BaseFragment {
     private static final String TAG = "GiftDetailsPageFragment";
     private LRecyclerView mLRecyclerView;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
-    private GiftDetailsBean.DataBean dataBean;
+    private List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen;
+    private String nextUrl;
 
     @Override
     protected int getLayoutId() {
@@ -57,18 +59,45 @@ public class GiftDetailsPageFragment extends BaseFragment {
             NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
                 @Override
                 public void onSuccess(GiftDetailsBean response) {
-                    dataBean = response.getData();
                     View head=LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page,mLRecyclerView,false);
                     ImageView imageView= (ImageView) head.findViewById(R.id.iv_head_gift_page);
-                    Glide.with(getContext()).load(dataBean.getCover_image()).into(imageView);
+                    Glide.with(getContext()).load(response.getData().getCover_image()).into(imageView);
                     mLRecyclerViewAdapter.addHeaderView(head);
-                    giftPageRecyclerViewAdapter.setDataBean(dataBean);
+                    itemsBeen=response.getData().getItems();
+                    giftPageRecyclerViewAdapter.setItemsBeen(itemsBeen);
+                    nextUrl=response.getData().getPaging().getNext_url();
                 }
 
                 @Override
                 public void onError(Throwable e) {
                 }
             });
+
+        mLRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                if (nextUrl!=null){
+                    NetTool.getInstance().startRequest(nextUrl, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
+                        @Override
+                        public void onSuccess(GiftDetailsBean response) {
+                            if (response.getData().getPaging().getNext_url()!=null){
+                            nextUrl=response.getData().getPaging().getNext_url();
+                            }
+                            itemsBeen.addAll(response.getData().getItems());
+                            giftPageRecyclerViewAdapter.notifyDataSetChanged();
+                            mLRecyclerView.setNoMore(false);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+                    });
+                }else {
+                    mLRecyclerView.setNoMore(true);
+                }
+            }
+        });
 
     }
 

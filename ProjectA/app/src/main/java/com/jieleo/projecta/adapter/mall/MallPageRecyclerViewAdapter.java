@@ -8,17 +8,19 @@ import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.bean.mall.MallBodyBean;
 
+import java.util.List;
+
 /**
  * Created by yuyongjie on 17/2/16.
  */
 
 
 public class MallPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private MallBodyBean mallBodyBean;
+    private List<MallBodyBean.DataBean.ItemsBean> itemsBeen;
     private Context context;
 
-    public void setMallBodyBean(MallBodyBean mallBodyBean) {
-        this.mallBodyBean = mallBodyBean;
+    public void setItemsBeen(List<MallBodyBean.DataBean.ItemsBean> itemsBeen) {
+        this.itemsBeen = itemsBeen;
         notifyDataSetChanged();
     }
 
@@ -36,7 +38,7 @@ public class MallPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
 //        holder.setIsRecyclable(true);
-        MallBodyBean.DataBean.ItemsBean itemsBean =mallBodyBean.getData().getItems().get(position);
+        MallBodyBean.DataBean.ItemsBean itemsBean =itemsBeen.get(position);
         holder.setCustromImage(R.id.iv_body_mall_page,itemsBean.getCover_image_url());
         holder.setText(R.id.tv_body_short_description_mall_page,itemsBean.getShort_description());
         holder.setText(R.id.tv_body_title_mall_page,itemsBean.getTitle());
@@ -50,6 +52,6 @@ public class MallPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemCount() {
-        return mallBodyBean!=null?mallBodyBean.getData().getItems().size():0;
+        return itemsBeen!=null?itemsBeen.size():0;
     }
 }

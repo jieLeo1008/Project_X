@@ -1,18 +1,35 @@
 package com.jieleo.projecta.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.adapter.HomePageDetailsRecyclerViewAdapter;
+import com.jieleo.projecta.bean.homepage.BannerBean;
 import com.jieleo.projecta.bean.homepage.DetailsBean;
+import com.jieleo.projecta.bean.homepage.SecondBannerBean;
 import com.jieleo.projecta.bean.homepage.TitleBean;
 import com.jieleo.projecta.inter.CallBack;
 import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yuyongjie on 17/2/11.
@@ -21,16 +38,18 @@ import com.jieleo.projecta.website.WebsiteInter;
 
 public class HomePageDetailsFragment extends BaseFragment {
     private static final String TAG = "HomePageDetailsFragment";
-    private RecyclerView mRecyclerView;
+    private LRecyclerView mLRecyclerView;
+    private LRecyclerViewAdapter lRecyclerViewAdapter;
 
-    private int id,position;
+    private int id, position;
+
+    private List<DetailsBean.DataBean.ItemsBean> itemsBeen;
 
 
-
-    private DetailsBean detailsBean;
 
 
     private HomePageDetailsRecyclerViewAdapter mDetialsRecyclerViewAdapter;
+    private String netUrl;
 
     @Override
     protected int getLayoutId() {
@@ -40,24 +59,24 @@ public class HomePageDetailsFragment extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_details_home_page);
+        mLRecyclerView = (LRecyclerView) view.findViewById(R.id.recycler_view_details_home_page);
 
     }
 
     @Override
     protected void initData() {
 
-        Bundle bundle=getArguments();
-        id=bundle.getInt("id",108);
-        position=bundle.getInt("position",0);
-        String url=WebsiteInter.getHomePageDetailsUrl(id);
+        Bundle bundle = getArguments();
+        id = bundle.getInt("id", 108);
+        position = bundle.getInt("position", 0);
+        String url = WebsiteInter.getHomePageDetailsUrl(id);
         mDetialsRecyclerViewAdapter = new HomePageDetailsRecyclerViewAdapter(getContext());
         NetTool.getInstance().startRequest(url, DetailsBean.class, new CallBack<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean response) {
-                detailsBean = response;
-                mDetialsRecyclerViewAdapter.setDetailsBean(detailsBean);
-                mDetialsRecyclerViewAdapter.setId(position);
+                itemsBeen = response.getData().getItems();
+                mDetialsRecyclerViewAdapter.setItemsBeen(itemsBeen);
+                netUrl = response.getData().getPaging().getNext_url();
 
             }
 
@@ -67,10 +86,100 @@ public class HomePageDetailsFragment extends BaseFragment {
 
             }
         });
-
+        lRecyclerViewAdapter = new LRecyclerViewAdapter(mDetialsRecyclerViewAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mDetialsRecyclerViewAdapter);
+        mLRecyclerView.setLayoutManager(layoutManager);
+        mLRecyclerView.setAdapter(lRecyclerViewAdapter);
+
+
+        if (position == 0) {
+            View itemHeadView = LayoutInflater.from(getContext()).inflate(R.layout.item_head_details_home_page, mLRecyclerView, false);
+            final Banner banner = (Banner) itemHeadView.findViewById(R.id.banner_home_page);
+            NetTool.getInstance().startRequest(WebsiteInter.BANNER, BannerBean.class, new CallBack<BannerBean>() {
+                @Override
+                public void onSuccess(BannerBean response) {
+                    BannerBean bannerBean = response;
+                    List<String> bannerRes = new ArrayList<String>();
+                    for (int i = 0; i < bannerBean.getData().getBanners().size(); i++) {
+                        bannerRes.add(bannerBean.getData().getBanners().get(i).getImage_url());
+                    }
+                    banner.setImageLoader(new ImageLoader());
+                    banner.setImages(bannerRes);
+                    banner.isAutoPlay(true);
+                    banner.setDelayTime(3000);
+                    banner.setIndicatorGravity(BannerConfig.CENTER);
+                    banner.start();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+            });
+            final ImageView firstIV, secondIv, thirdIv, fourthIv, fifthIv, sixthIv;
+            firstIV = (ImageView) itemHeadView.findViewById(R.id.iv_first_head_body_details_home_page);
+            secondIv = (ImageView) itemHeadView.findViewById(R.id.iv_second_head_body_details_home_page);
+            thirdIv = (ImageView) itemHeadView.findViewById(R.id.iv_third_head_body_details_home_page);
+            fourthIv = (ImageView) itemHeadView.findViewById(R.id.iv_fourth_head_body_details_home_page);
+            fifthIv = (ImageView) itemHeadView.findViewById(R.id.iv_fifth_head_body_details_home_page);
+            sixthIv = (ImageView) itemHeadView.findViewById(R.id.iv_sixth_head_body_details_home_page);
+            NetTool.getInstance().startRequest(WebsiteInter.MODULE, SecondBannerBean.class, new CallBack<SecondBannerBean>() {
+                @Override
+                public void onSuccess(SecondBannerBean response) {
+                    SecondBannerBean secondBannerBean = response;
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(0).getImage_url()).into(firstIV);
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(1).getImage_url()).into(secondIv);
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(2).getImage_url()).into(thirdIv);
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(3).getImage_url()).into(fourthIv);
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(4).getImage_url()).into(fifthIv);
+                    Glide.with(getContext()).load(secondBannerBean.getData().getSecondary_banners().get(5).getImage_url()).into(sixthIv);
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+            });
+
+            lRecyclerViewAdapter.addHeaderView(itemHeadView);
+
+
+        }
+        mLRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                if (netUrl !=null){
+                    NetTool.getInstance().startRequest(netUrl, DetailsBean.class, new CallBack<DetailsBean>() {
+                        @Override
+                        public void onSuccess(DetailsBean response) {
+                            itemsBeen.addAll(response.getData().getItems());
+                            mDetialsRecyclerViewAdapter.notifyDataSetChanged();
+                            netUrl=response.getData().getPaging().getNext_url();
+                            Log.e(TAG, "onSuccess: "+netUrl );
+                            mLRecyclerView.setNoMore(false);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+                    });
+                }else {
+                    mLRecyclerView.setNoMore(true);
+                }
+            }
+        });
+    }
+
+    class ImageLoader extends com.youth.banner.loader.ImageLoader {
+
+
+        @Override
+        public void displayImage(Context context, Object path, ImageView imageView) {
+            Glide.with(context).load(path).into(imageView);
+        }
+
     }
 
     @Override
@@ -85,8 +194,8 @@ public class HomePageDetailsFragment extends BaseFragment {
     public static Fragment getInstance(int position, TitleBean.DataBean.ChannelsBean channelsBean) {
         HomePageDetailsFragment homePageDetailsFragment = new HomePageDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("id",channelsBean.getId());
-        bundle.putInt("position",position);
+        bundle.putInt("id", channelsBean.getId());
+        bundle.putInt("position", position);
         homePageDetailsFragment.setArguments(bundle);
         return homePageDetailsFragment;
     }

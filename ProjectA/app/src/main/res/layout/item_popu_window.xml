@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="#f88"
-    android:layout_height="300dp">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_popupwindow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_popup_window_shape"
+    android:orientation="vertical">
+
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="频道列表"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:src="@mipmap/arrow_grey_up"
+            android:layout_width="40dp"
+            android:id="@+id/iv_close_popup_window"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+    <com.jieleo.projecta.custromview.MyGridView
+        android:id="@+id/grid_view_popup_window"
+        android:layout_width="match_parent"
+        android:numColumns="4"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </com.jieleo.projecta.custromview.MyGridView>
 </LinearLayout>

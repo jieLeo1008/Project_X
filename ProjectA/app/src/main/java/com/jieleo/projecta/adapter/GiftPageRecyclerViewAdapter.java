@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 
+import java.util.List;
+
 
 /**
  * Created by yuyongjie on 17/2/15.
@@ -16,15 +18,15 @@ import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 
 public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final String TAG = "GiftPageRecyclerViewAda";
-    private GiftDetailsBean.DataBean dataBean;
+    private List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen;
     private Context context;
 
     public GiftPageRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDataBean(GiftDetailsBean.DataBean dataBean) {
-        this.dataBean = dataBean;
+    public void setItemsBeen(List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen) {
+        this.itemsBeen = itemsBeen;
         notifyDataSetChanged();
     }
 
@@ -41,13 +43,13 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.setCustromImage(R.id.iv_details_gift_page,dataBean.getItems().get(position).getCover_image_url());
-        holder.setText(R.id.tv_short_description_details_gift_page,dataBean.getItems().get(position).getShort_description());
-        holder.setText(R.id.tv_name_details_gift_page,dataBean.getItems().get(position).getName());
-        if (dataBean.getItems().get(position).getSkus()!=null){
-            holder.setText(R.id.tv_price_details_gift_page,dataBean.getItems().get(position).getSkus().get(0).getFixed_price());
+        holder.setCustromImage(R.id.iv_details_gift_page,itemsBeen.get(position).getCover_image_url());
+        holder.setText(R.id.tv_short_description_details_gift_page,itemsBeen.get(position).getShort_description());
+        holder.setText(R.id.tv_name_details_gift_page,itemsBeen.get(position).getName());
+        if (itemsBeen.get(position).getSkus()!=null){
+            holder.setText(R.id.tv_price_details_gift_page,itemsBeen.get(position).getSkus().get(0).getFixed_price());
         }else {
-            holder.setText(R.id.tv_price_details_gift_page,dataBean.getItems().get(position).getPrice());
+            holder.setText(R.id.tv_price_details_gift_page,itemsBeen.get(position).getPrice());
         }
 
 
@@ -55,6 +57,6 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemCount() {
-        return dataBean!=null?dataBean.getItems().size():0;
+        return itemsBeen!=null?itemsBeen.size():0;
     }
 }
