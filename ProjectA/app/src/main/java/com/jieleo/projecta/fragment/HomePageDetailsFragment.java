@@ -1,6 +1,7 @@
 package com.jieleo.projecta.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.WebActivity;
 import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.adapter.HomePageDetailsRecyclerViewAdapter;
 import com.jieleo.projecta.bean.homepage.BannerBean;
@@ -27,6 +29,7 @@ import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,8 @@ public class HomePageDetailsFragment extends BaseFragment {
 
     private HomePageDetailsRecyclerViewAdapter mDetialsRecyclerViewAdapter;
     private String netUrl;
+    private List<String> bannerRes;
+    private BannerBean bannerBean;
 
     @Override
     protected int getLayoutId() {
@@ -98,8 +103,8 @@ public class HomePageDetailsFragment extends BaseFragment {
             NetTool.getInstance().startRequest(WebsiteInter.BANNER, BannerBean.class, new CallBack<BannerBean>() {
                 @Override
                 public void onSuccess(BannerBean response) {
-                    BannerBean bannerBean = response;
-                    List<String> bannerRes = new ArrayList<String>();
+                    bannerBean = response;
+                    bannerRes = new ArrayList<String>();
                     for (int i = 0; i < bannerBean.getData().getBanners().size(); i++) {
                         bannerRes.add(bannerBean.getData().getBanners().get(i).getImage_url());
                     }
@@ -114,6 +119,15 @@ public class HomePageDetailsFragment extends BaseFragment {
                 @Override
                 public void onError(Throwable e) {
 
+                }
+            });
+
+            banner.setOnBannerClickListener(new OnBannerClickListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    Intent intent=new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra("url",bannerRes.get(position));
+                    startActivity(intent);
                 }
             });
             final ImageView firstIV, secondIv, thirdIv, fourthIv, fifthIv, sixthIv;
