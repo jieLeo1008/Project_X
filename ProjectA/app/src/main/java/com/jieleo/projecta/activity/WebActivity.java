@@ -3,7 +3,9 @@ package com.jieleo.projecta.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.jieleo.projecta.R;
 
@@ -25,6 +27,9 @@ public class WebActivity extends BaseActivity {
         Intent intent=getIntent();
         url=intent.getStringExtra("url");
         webView.loadUrl(url);
+        WebSettings webSettings=webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDisplayZoomControls(true);
     }
 
     @Override

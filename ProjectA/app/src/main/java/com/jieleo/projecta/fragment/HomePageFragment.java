@@ -1,7 +1,9 @@
 package com.jieleo.projecta.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -14,7 +16,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.GiftDetailsActivity;
 import com.jieleo.projecta.activity.SearchActivity;
+import com.jieleo.projecta.activity.WebActivity;
 import com.jieleo.projecta.adapter.HomePageFragmentPageAdapter;
 import com.jieleo.projecta.adapter.TestAdapter;
 import com.jieleo.projecta.bean.homepage.TitleBean;
@@ -88,7 +92,7 @@ public class HomePageFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                     showPopuWindow();
-                popupWindow.showAsDropDown(v,0,-45);
+                popupWindow.showAsDropDown(v,0,-55);
             }
         });
         searchTv.setOnClickListener(this);
@@ -110,6 +114,9 @@ public class HomePageFragment extends BaseFragment {
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setContentView(popView);
         popupWindow.setFocusable(true);
+        //设置popupWindow没有黑边
+        popupWindow.setAnimationStyle(R.anim.popup_window);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(),(Bitmap) null));
         popupWindow.setOutsideTouchable(true);
         MyGridView gridView= (MyGridView) popView.findViewById(R.id.grid_view_popup_window);
         ImageView closeIv= (ImageView) popView.findViewById(R.id.iv_close_popup_window);

@@ -35,11 +35,6 @@ public class GiftPageFragmentAdapter extends FragmentPagerAdapter {
         return giftTitleBean!=null?giftTitleBean.getData().getRanks().size():0;
     }
 
-    public String getGiftTitle(int position){
-        Log.e(TAG, "getGiftTitle: "+giftTitleBean.getData().getRanks().get(position).getName() );
-        return giftTitleBean.getData().getRanks().get(position).getName();
-    }
-
     @Override
     public CharSequence getPageTitle(int position) {
         return giftTitleBean.getData().getRanks().get(position).getName();

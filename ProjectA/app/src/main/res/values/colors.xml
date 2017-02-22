@@ -6,4 +6,6 @@
     <color name="text_selected">#FF4258</color>
     <color name="text_normal">#000000</color>
     <color name="color_Primary_White">#FFFFFF</color>
+    <color name="color_primary_alpha_white">#00fdfdfd</color>
+    <color name="gift_details_title_shape_color">#1a000000</color>
 </resources>

@@ -13,7 +13,7 @@
             android:layout_alignParentLeft="true"
             android:gravity="center"
             android:layout_width="100dp"
-            android:layout_height="50dp" />
+            android:layout_height="30dp" />
         <ImageView
             android:src="@mipmap/arrow_grey_up"
             android:layout_width="40dp"
@@ -21,7 +21,7 @@
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:scaleType="center"
-            android:layout_height="50dp" />
+            android:layout_height="30dp" />
     </RelativeLayout>
 
     <com.jieleo.projecta.custromview.MyGridView

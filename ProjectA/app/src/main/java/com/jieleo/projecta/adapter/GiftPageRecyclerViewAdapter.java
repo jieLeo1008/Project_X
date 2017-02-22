@@ -3,10 +3,12 @@ package com.jieleo.projecta.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
+import com.jieleo.projecta.inter.OnClickListenerInter;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
     private static final String TAG = "GiftPageRecyclerViewAda";
     private List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen;
     private Context context;
+    private OnClickListenerInter onClickListenerInter;
 
     public GiftPageRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -35,6 +38,9 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
         return 2333;
     }
 
+    public void setOnClickListenerInter(OnClickListenerInter onClickListenerInter) {
+        this.onClickListenerInter = onClickListenerInter;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,16 +48,21 @@ public class GiftPageRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, final int position) {
         holder.setCustromImage(R.id.iv_details_gift_page,itemsBeen.get(position).getCover_image_url());
         holder.setText(R.id.tv_short_description_details_gift_page,itemsBeen.get(position).getShort_description());
         holder.setText(R.id.tv_name_details_gift_page,itemsBeen.get(position).getName());
         if (itemsBeen.get(position).getSkus()!=null){
-            holder.setText(R.id.tv_price_details_gift_page,itemsBeen.get(position).getSkus().get(0).getFixed_price());
+            holder.setText(R.id.tv_price_details_gift_page,"¥"+itemsBeen.get(position).getSkus().get(0).getFixed_price());
         }else {
-            holder.setText(R.id.tv_price_details_gift_page,itemsBeen.get(position).getPrice());
+            holder.setText(R.id.tv_price_details_gift_page,"¥"+itemsBeen.get(position).getPrice());
         }
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListenerInter.onItemClickListener(position);
+            }
+        });
 
     }
 

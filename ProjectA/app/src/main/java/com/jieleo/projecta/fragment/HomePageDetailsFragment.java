@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -18,7 +16,6 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.activity.WebActivity;
-import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.adapter.HomePageDetailsRecyclerViewAdapter;
 import com.jieleo.projecta.bean.homepage.BannerBean;
 import com.jieleo.projecta.bean.homepage.DetailsBean;
@@ -49,10 +46,8 @@ public class HomePageDetailsFragment extends BaseFragment {
     private List<DetailsBean.DataBean.ItemsBean> itemsBeen;
 
 
-
-
     private HomePageDetailsRecyclerViewAdapter mDetialsRecyclerViewAdapter;
-    private String netUrl;
+    private String nextUrl;
     private List<String> bannerRes;
     private BannerBean bannerBean;
 
@@ -81,7 +76,7 @@ public class HomePageDetailsFragment extends BaseFragment {
             public void onSuccess(DetailsBean response) {
                 itemsBeen = response.getData().getItems();
                 mDetialsRecyclerViewAdapter.setItemsBeen(itemsBeen);
-                netUrl = response.getData().getPaging().getNext_url();
+                nextUrl = response.getData().getPaging().getNext_url();
 
             }
 
@@ -125,8 +120,8 @@ public class HomePageDetailsFragment extends BaseFragment {
             banner.setOnBannerClickListener(new OnBannerClickListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    Intent intent=new Intent(getActivity(), WebActivity.class);
-                    intent.putExtra("url",bannerRes.get(position));
+                    Intent intent = new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra("url", bannerRes.get(position-1));
                     startActivity(intent);
                 }
             });
@@ -163,14 +158,17 @@ public class HomePageDetailsFragment extends BaseFragment {
         mLRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if (netUrl !=null){
-                    NetTool.getInstance().startRequest(netUrl, DetailsBean.class, new CallBack<DetailsBean>() {
+                if (nextUrl != null) {
+                    NetTool.getInstance().startRequest(nextUrl, DetailsBean.class, new CallBack<DetailsBean>() {
                         @Override
                         public void onSuccess(DetailsBean response) {
+                            if (response.getData().getPaging().getNext_url() != null) {
+                                nextUrl = response.getData().getPaging().getNext_url();
+                            } else {
+                                nextUrl = null;
+                            }
                             itemsBeen.addAll(response.getData().getItems());
                             mDetialsRecyclerViewAdapter.notifyDataSetChanged();
-                            netUrl=response.getData().getPaging().getNext_url();
-                            Log.e(TAG, "onSuccess: "+netUrl );
                             mLRecyclerView.setNoMore(false);
                         }
 
@@ -179,7 +177,7 @@ public class HomePageDetailsFragment extends BaseFragment {
 
                         }
                     });
-                }else {
+                } else {
                     mLRecyclerView.setNoMore(true);
                 }
             }

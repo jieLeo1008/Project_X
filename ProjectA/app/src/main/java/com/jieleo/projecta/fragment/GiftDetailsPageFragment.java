@@ -1,5 +1,6 @@
 package com.jieleo.projecta.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,16 +8,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.GiftDetailsActivity;
 import com.jieleo.projecta.adapter.GiftPageRecyclerViewAdapter;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.jieleo.projecta.bean.gift.GiftTitleBean;
 import com.jieleo.projecta.inter.CallBack;
+import com.jieleo.projecta.inter.OnClickListenerInter;
 import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
 
@@ -27,7 +31,7 @@ import java.util.List;
  */
 
 
-public class GiftDetailsPageFragment extends BaseFragment {
+public class GiftDetailsPageFragment extends BaseFragment implements OnClickListenerInter {
     private GiftPageRecyclerViewAdapter giftPageRecyclerViewAdapter;
     private static final String TAG = "GiftDetailsPageFragment";
     private LRecyclerView mLRecyclerView;
@@ -82,6 +86,8 @@ public class GiftDetailsPageFragment extends BaseFragment {
                         public void onSuccess(GiftDetailsBean response) {
                             if (response.getData().getPaging().getNext_url()!=null){
                             nextUrl=response.getData().getPaging().getNext_url();
+                            }else {
+                                nextUrl=null;
                             }
                             itemsBeen.addAll(response.getData().getItems());
                             giftPageRecyclerViewAdapter.notifyDataSetChanged();
@@ -99,6 +105,8 @@ public class GiftDetailsPageFragment extends BaseFragment {
             }
         });
 
+
+        giftPageRecyclerViewAdapter.setOnClickListenerInter(this);
     }
 
     @Override
@@ -120,4 +128,12 @@ public class GiftDetailsPageFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onItemClickListener(int position) {
+        Intent intent=new Intent(getActivity(), GiftDetailsActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putParcelable("itemdetails",itemsBeen.get(position));
+        intent.putExtra("details",bundle);
+        startActivity(intent);
+    }
 }

@@ -12,7 +12,7 @@
     <dimen name="activity_horizontal_margin_200">200dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="fragment_title_tv_margin_left">15dp</dimen>
-    <dimen name="fragment_lin_layout_height">30dp</dimen>
+    <dimen name="fragment_lin_layout_height">40dp</dimen>
     <dimen name="weight_width">0dp</dimen>
     <dimen name="weight_height">0dp</dimen>
     <dimen name="tab_layout_height">50dp</dimen>

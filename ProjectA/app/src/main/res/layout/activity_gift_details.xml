@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gift_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.jieleo.projecta.activity.GiftDetailsActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fa_btn_gift_details"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:src="@mipmap/btn_sticky_to_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@drawable/gift_details_title_shape"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@mipmap/credit_btn_back"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:text="礼物详情"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:scaleType="center"
+            android:src="@mipmap/icon_cart_white"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/scrollView_gift_details"
+        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_bg_gift_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_title_gift_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_short_description_gift_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </WebView>
+
+    </ScrollView>
+</RelativeLayout>
