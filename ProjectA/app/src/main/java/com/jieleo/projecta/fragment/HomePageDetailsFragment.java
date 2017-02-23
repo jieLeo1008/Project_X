@@ -162,11 +162,8 @@ public class HomePageDetailsFragment extends BaseFragment {
                     NetTool.getInstance().startRequest(nextUrl, DetailsBean.class, new CallBack<DetailsBean>() {
                         @Override
                         public void onSuccess(DetailsBean response) {
-                            if (response.getData().getPaging().getNext_url() != null) {
-                                nextUrl = response.getData().getPaging().getNext_url();
-                            } else {
-                                nextUrl = null;
-                            }
+                            nextUrl = response.getData().getPaging().getNext_url();
+
                             itemsBeen.addAll(response.getData().getItems());
                             mDetialsRecyclerViewAdapter.notifyDataSetChanged();
                             mLRecyclerView.setNoMore(false);

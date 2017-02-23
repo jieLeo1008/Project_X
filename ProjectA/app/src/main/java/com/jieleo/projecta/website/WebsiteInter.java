@@ -36,6 +36,10 @@ public class WebsiteInter {
     public static final String STRATEGY = BASIC_URL + "channel_groups/all?";
     //单品页接口
     public static final String SINGLE = "http://api.liwushuo.com/v2/item_categories/tree";
+
+    //单品页二级页面
+    public static final String SINGE_SECOND_UP = "http://api.liwushuo.com/v2/item_subcategories/";
+    public static final String SINGE_SECOND_DOWN = "/items?limit=20&offset=0";
     public  static  String getHomePageDetailsUrl(int id){
         String Id=id+"";
         String url=BASIC_URL+part1+Id+part2;

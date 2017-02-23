@@ -4,65 +4,217 @@
     android:id="@+id/activity_gift_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#FFF5F5"
     tools:context="com.jieleo.projecta.activity.GiftDetailsActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fa_btn_gift_details"
-        android:layout_alignParentRight="true"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="40dp"
-        android:src="@mipmap/btn_sticky_to_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@drawable/gift_details_title_shape"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:scaleType="center"
+        android:src="@mipmap/btn_sticky_to_top" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:scaleType="center"
-            android:src="@mipmap/credit_btn_back"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="8"
-            android:text="礼物详情"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:scaleType="center"
-            android:src="@mipmap/icon_cart_white"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+
     <ScrollView
-        android:layout_width="match_parent"
         android:id="@+id/scrollView_gift_details"
-        android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/iv_bg_gift_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_title_gift_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_short_description_gift_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <WebView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
-        </WebView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner_gift_details"
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+            </com.youth.banner.Banner>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_short_description_gift_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_name_gift_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_price_gift_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textColor="#F00"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_likes_gift_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#FFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="已选"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/web_view_gift_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </WebView>
+        </LinearLayout>
+
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relative_top_white_gift_details"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFF">
+
+
+        <ImageView
+            android:id="@+id/iv_back_dark_gift_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:scaleType="center"
+            android:src="@mipmap/btn_back_grey" />
+
+        <TextView
+            android:id="@+id/tv_top_gift_details"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="礼物详情"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_shop_dark_gift_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:scaleType="center"
+            android:src="@mipmap/icon_cart_black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_top_dark_gift_details"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/gift_details_title_shape">
+        <ImageView
+            android:id="@+id/iv_back_white_gift_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:scaleType="center"
+            android:src="@mipmap/credit_btn_back" />
+
+
+        <ImageView
+            android:id="@+id/iv_shop_white_gift_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@mipmap/icon_cart_white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkbox_heart_gift_details"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:button="@null"
+            android:drawableTop="@drawable/likes_checkbox_selector"
+            android:gravity="top|center_horizontal"
+            android:text="喜欢"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tv_share_gift_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:drawableTop="@mipmap/icon_share_up"
+            android:gravity="top|center_horizontal"
+            android:scaleType="center"
+            android:text="分享"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tv_add_to_shop_gift_details"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:background="#FF6678"
+            android:gravity="center"
+            android:text="加入购物车" />
+
+        <TextView
+            android:id="@+id/tv_buy_now_gift_details"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5"
+            android:background="#FF2D47"
+            android:gravity="center"
+            android:text="立即购买" />
+
+    </LinearLayout>
 </RelativeLayout>
