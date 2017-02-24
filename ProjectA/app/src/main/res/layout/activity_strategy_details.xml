@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_strategy_sdetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context="com.jieleo.projecta.activity.StrategyDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/relate_layout_strategy_details"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back_strategy_details"
+            android:layout_width="50dp"
+            android:scaleType="center"
+            android:src="@mipmap/btn_back_black"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:text="攻略详情"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_look_all_strategy_details"
+            android:layout_width="70dp"
+            android:textSize="15sp"
+            android:text="查看全集"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_below="@id/relate_layout_strategy_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_cover_image_strategy_details"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:id="@+id/tv_share_msg_strategy_details"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="100dp" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="1dp" />
+            <WebView
+                android:id="@+id/web_view_strategy_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </WebView>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

@@ -124,6 +124,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     }
 
 
+
     private void setBanner() {
         bannerUrl = new ArrayList<>();
         for (int i = 0; i < itemsBean.getImage_urls().size(); i++) {

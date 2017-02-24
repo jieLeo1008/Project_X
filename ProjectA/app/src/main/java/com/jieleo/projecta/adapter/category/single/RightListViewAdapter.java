@@ -1,15 +1,20 @@
 package com.jieleo.projecta.adapter.category.single;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.SingleListDetailsActivity;
 import com.jieleo.projecta.bean.category.SingleBean;
 import com.jieleo.projecta.custromview.MyGridView;
 
@@ -54,12 +59,25 @@ public class RightListViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position==0){
+
             convertView=LayoutInflater.from(context).inflate(R.layout.item_head_right_single_page,parent,false);
             MyGridView gridView= (MyGridView) convertView.findViewById(R.id.grid_view_head);
-
             HeadGridViewAdapter headGridViewAdapter=new HeadGridViewAdapter(context);
             gridView.setAdapter(headGridViewAdapter);
             headGridViewAdapter.setCategoriesBean(singleBean.getData().getCategories().get(position));
+            final SingleBean.DataBean.CategoriesBean categoriesBean=singleBean.getData().getCategories().get(position);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(context, "哈哈", Toast.LENGTH_SHORT).show();
+                    SingleBean.DataBean.CategoriesBean.SubcategoriesBean subcategoriesBean=categoriesBean.getSubcategories().get(position);
+                    Bundle bundle=new Bundle();
+                    bundle.putParcelable("categoriesBean",subcategoriesBean);
+                    Intent intent=new Intent(context, SingleListDetailsActivity.class);
+                    intent.putExtra("bundle",bundle);
+                    context.startActivity(intent);
+                }
+            });
         }else {
             MyHolder holder=null;
             if (convertView==null){
@@ -73,6 +91,19 @@ public class RightListViewAdapter extends BaseAdapter{
             BodyGridViewAdapter bodyGridViewAdapter=new BodyGridViewAdapter(context);
             holder.gridView.setAdapter(bodyGridViewAdapter);
             bodyGridViewAdapter.setCategoriesBean(singleBean.getData().getCategories().get(position));
+            final SingleBean.DataBean.CategoriesBean categoriesBean=singleBean.getData().getCategories().get(position);
+            holder.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(context, "哈哈", Toast.LENGTH_SHORT).show();
+                    SingleBean.DataBean.CategoriesBean.SubcategoriesBean subcategoriesBean=categoriesBean.getSubcategories().get(position);
+                    Bundle bundle=new Bundle();
+                    bundle.putParcelable("categoriesBean",subcategoriesBean);
+                    Intent intent=new Intent(context, SingleListDetailsActivity.class);
+                    intent.putExtra("bundle",bundle);
+                    context.startActivity(intent);
+                }
+            });
         }
         return convertView;
     }

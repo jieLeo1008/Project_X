@@ -22,7 +22,10 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.WebActivity" />
-        <activity android:name=".activity.GiftDetailsActivity"></activity>
+        <activity android:name=".activity.GiftDetailsActivity" />
+        <activity android:name=".activity.GiftDetailsTaoBaoActivity" />
+        <activity android:name=".activity.SingleListDetailsActivity" />
+        <activity android:name=".activity.StrategyDetailsActivity"></activity>
     </application>
 
 </manifest>

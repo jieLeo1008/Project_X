@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_single_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF5F5"
+    tools:context="com.jieleo.projecta.activity.SingleListDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_single_list"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_back_single_list_details"
+            android:layout_weight="1"
+            android:src="@mipmap/btn_back_black"
+            android:layout_width="0dp"
+            android:scaleType="center"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_title_single_list_details"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/iv_sort_single_list_details"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@mipmap/icon_sort_black"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/recycler_view_single_list"
+        android:layout_below="@id/linear_layout_single_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.github.jdsjlzx.recyclerview.LRecyclerView>
+</RelativeLayout>

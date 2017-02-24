@@ -99,7 +99,7 @@ public class HomePageDetailsFragment extends BaseFragment {
                 @Override
                 public void onSuccess(BannerBean response) {
                     bannerBean = response;
-                    bannerRes = new ArrayList<String>();
+                    bannerRes = new ArrayList<>();
                     for (int i = 0; i < bannerBean.getData().getBanners().size(); i++) {
                         bannerRes.add(bannerBean.getData().getBanners().get(i).getImage_url());
                     }

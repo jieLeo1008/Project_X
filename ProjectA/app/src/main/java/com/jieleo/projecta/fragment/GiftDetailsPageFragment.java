@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +15,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.activity.GiftDetailsActivity;
+import com.jieleo.projecta.activity.GiftDetailsTaoBaoActivity;
 import com.jieleo.projecta.adapter.GiftPageRecyclerViewAdapter;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.jieleo.projecta.bean.gift.GiftTitleBean;
@@ -47,47 +47,47 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         mLRecyclerView = (LRecyclerView) view.findViewById(R.id.recycler_l_view_item);
-        giftPageRecyclerViewAdapter=new GiftPageRecyclerViewAdapter(getContext());
+        giftPageRecyclerViewAdapter = new GiftPageRecyclerViewAdapter(getContext());
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(giftPageRecyclerViewAdapter);
-        mLRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,LinearLayoutManager.VERTICAL,false));
+        mLRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false));
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
     }
 
     @Override
     protected void initData() {
-            Bundle bundle=getArguments();
-            int id=bundle.getInt("id",1);
-            String url =WebsiteInter.getGiftDetailsUrl(id);
+        Bundle bundle = getArguments();
+        int id = bundle.getInt("id", 1);
+        String url = WebsiteInter.getGiftDetailsUrl(id);
 
 
-            NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
-                @Override
-                public void onSuccess(GiftDetailsBean response) {
-                    View head=LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page,mLRecyclerView,false);
-                    ImageView imageView= (ImageView) head.findViewById(R.id.iv_head_gift_page);
-                    Glide.with(getContext()).load(response.getData().getCover_image()).into(imageView);
-                    mLRecyclerViewAdapter.addHeaderView(head);
-                    itemsBeen=response.getData().getItems();
-                    giftPageRecyclerViewAdapter.setItemsBeen(itemsBeen);
-                    nextUrl=response.getData().getPaging().getNext_url();
-                }
+        NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
+            @Override
+            public void onSuccess(GiftDetailsBean response) {
+                View head = LayoutInflater.from(getContext()).inflate(R.layout.item_head_gift_page, mLRecyclerView, false);
+                ImageView imageView = (ImageView) head.findViewById(R.id.iv_head_gift_page);
+                Glide.with(getContext()).load(response.getData().getCover_image()).into(imageView);
+                mLRecyclerViewAdapter.addHeaderView(head);
+                itemsBeen = response.getData().getItems();
+                giftPageRecyclerViewAdapter.setItemsBeen(itemsBeen);
+                nextUrl = response.getData().getPaging().getNext_url();
+            }
 
-                @Override
-                public void onError(Throwable e) {
-                }
-            });
+            @Override
+            public void onError(Throwable e) {
+            }
+        });
 
         mLRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if (nextUrl!=null){
+                if (nextUrl != null) {
                     NetTool.getInstance().startRequest(nextUrl, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
                         @Override
                         public void onSuccess(GiftDetailsBean response) {
-                            if (response.getData().getPaging().getNext_url()!=null){
-                            nextUrl=response.getData().getPaging().getNext_url();
-                            }else {
-                                nextUrl=null;
+                            if (response.getData().getPaging().getNext_url() != null) {
+                                nextUrl = response.getData().getPaging().getNext_url();
+                            } else {
+                                nextUrl = null;
                             }
                             itemsBeen.addAll(response.getData().getItems());
                             giftPageRecyclerViewAdapter.notifyDataSetChanged();
@@ -99,7 +99,7 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
 
                         }
                     });
-                }else {
+                } else {
                     mLRecyclerView.setNoMore(true);
                 }
             }
@@ -121,7 +121,7 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
 
     public static GiftDetailsPageFragment newInstance(GiftTitleBean.DataBean.RanksBean ranksBean) {
         Bundle args = new Bundle();
-        args.putInt("id",ranksBean.getId());
+        args.putInt("id", ranksBean.getId());
         GiftDetailsPageFragment fragment = new GiftDetailsPageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -130,10 +130,17 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
 
     @Override
     public void onItemClickListener(int position) {
-        Intent intent=new Intent(getActivity(), GiftDetailsActivity.class);
-        Bundle bundle=new Bundle();
-        bundle.putParcelable("itemdetails",itemsBeen.get(position));
-        intent.putExtra("details",bundle);
-        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("itemdetails", itemsBeen.get(position));
+        if (itemsBeen.get(position).getFavorites_count() == 0) {
+            Intent intent = new Intent(getActivity(), GiftDetailsActivity.class);
+            intent.putExtra("details", bundle);
+            startActivity(intent);
+        }else {
+            Toast.makeText(getActivity(), "哈哈", Toast.LENGTH_SHORT).show();
+//            Intent intent=new Intent(getActivity(), GiftDetailsTaoBaoActivity.class);
+//            intent.putExtra("details",bundle);
+//            startActivity(intent);
+        }
     }
 }

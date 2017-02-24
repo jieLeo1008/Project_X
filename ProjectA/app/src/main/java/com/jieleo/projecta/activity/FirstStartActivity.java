@@ -1,6 +1,9 @@
 package com.jieleo.projecta.activity;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 
 import com.jieleo.projecta.R;
 
@@ -9,7 +12,7 @@ import com.jieleo.projecta.R;
  */
 
 public class FirstStartActivity extends  BaseActivity {
-
+    private Handler handler;
     @Override
     public int setLayout() {
         return R.layout.activity_first_start;
@@ -18,6 +21,16 @@ public class FirstStartActivity extends  BaseActivity {
     @Override
     protected void initView() {
         startActivity(new Intent(FirstStartActivity.this,MainActivity.class));
+        handler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                if (msg.what==100){
+                finish();
+                }
+                return false;
+            }
+        });
+        handler.sendEmptyMessageDelayed(100,3000);
     }
 
     @Override
