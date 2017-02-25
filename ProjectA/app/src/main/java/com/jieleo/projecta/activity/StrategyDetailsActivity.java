@@ -3,6 +3,9 @@ package com.jieleo.projecta.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,7 +21,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class StrategyDetailsActivity extends BaseActivity {
+public class StrategyDetailsActivity extends BaseActivity implements View.OnClickListener {
     private ImageView backTv,coverIv;
     private TextView lookAllTv,shareDetailsTv;
     private WebView webView;
@@ -46,25 +49,37 @@ public class StrategyDetailsActivity extends BaseActivity {
         Glide.with(this).load(itemsBean.getCover_image_url()).into(coverIv);
         shareDetailsTv.setText(itemsBean.getShare_msg());
         WebSettings webSettings=webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDisplayZoomControls(true);
-        webSettings.setAppCacheEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
+        //设置webView
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setJavaScriptEnabled(false);
+        webSettings.setBlockNetworkImage(false);
+        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        webSettings.setDomStorageEnabled(true);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(itemsBean.getContent_url());
+                return true;
+            }
+        });
         webView.loadUrl(itemsBean.getContent_url());
     }
 
-    private String getNewContent(String htmltext) {
 
-        Document doc = Jsoup.parse(htmltext);
-        Elements elements = doc.getElementsByTag("img");
-        for (Element element : elements) {
-            element.attr("width", "100%").attr("height", "auto");
-        }
-
-        return doc.toString();
-    }
     @Override
     protected void bindEvent() {
+        backTv.setOnClickListener(this);
+        lookAllTv.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back_strategy_details:
+                finish();
+                break;
+            case R.id.iv_cover_image_strategy_details:
+                break;
+        }
     }
 }

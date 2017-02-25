@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_special"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context="com.jieleo.projecta.activity.SpecialActivity">
+    <RelativeLayout
+        android:id="@+id/relative_layout_special_page"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/iv_back_special"
+            android:layout_width="50dp"
+            android:scaleType="center"
+            android:src="@mipmap/btn_back_black"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:text="专题"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:id="@+id/iv_share_special"
+            android:src="@mipmap/ic_action_compact_share"
+            android:scaleType="center"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:layout_below="@id/relative_layout_special_page"
+        android:id="@+id/lrecycler_view_special"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.jdsjlzx.recyclerview.LRecyclerView>
+</RelativeLayout>

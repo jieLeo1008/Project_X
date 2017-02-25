@@ -25,7 +25,8 @@
         <activity android:name=".activity.GiftDetailsActivity" />
         <activity android:name=".activity.GiftDetailsTaoBaoActivity" />
         <activity android:name=".activity.SingleListDetailsActivity" />
-        <activity android:name=".activity.StrategyDetailsActivity"></activity>
+        <activity android:name=".activity.StrategyDetailsActivity" />
+        <activity android:name=".activity.SpecialActivity"></activity>
     </application>
 
 </manifest>

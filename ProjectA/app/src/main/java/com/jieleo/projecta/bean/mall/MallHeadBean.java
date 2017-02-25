@@ -1,5 +1,8 @@
 package com.jieleo.projecta.bean.mall;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -54,7 +57,7 @@ public class MallHeadBean  {
             this.items = items;
         }
 
-        public static class ItemsBeanX {
+        public static class ItemsBeanX implements Parcelable{
             /**
              * cover_image : image/170215/zt025sofd.png
              * cover_image_url : http://img03.liwushuo.com/image/170215/zt025sofd.png-w720
@@ -88,6 +91,35 @@ public class MallHeadBean  {
             private String title;
             private String type;
             private List<ItemsBean> items;
+
+            protected ItemsBeanX(Parcel in) {
+                cover_image = in.readString();
+                cover_image_url = in.readString();
+                cover_webp_url = in.readString();
+                created_at = in.readInt();
+                editor_id = in.readInt();
+                head_link = in.readString();
+                id = in.readInt();
+                introduction = in.readString();
+                order = in.readInt();
+                published_at = in.readInt();
+                status = in.readInt();
+                title = in.readString();
+                type = in.readString();
+                items = in.createTypedArrayList(ItemsBean.CREATOR);
+            }
+
+            public static final Creator<ItemsBeanX> CREATOR = new Creator<ItemsBeanX>() {
+                @Override
+                public ItemsBeanX createFromParcel(Parcel in) {
+                    return new ItemsBeanX(in);
+                }
+
+                @Override
+                public ItemsBeanX[] newArray(int size) {
+                    return new ItemsBeanX[size];
+                }
+            };
 
             public String getCover_image() {
                 return cover_image;
@@ -209,7 +241,30 @@ public class MallHeadBean  {
                 this.items = items;
             }
 
-            public static class ItemsBean {
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(cover_image);
+                dest.writeString(cover_image_url);
+                dest.writeString(cover_webp_url);
+                dest.writeInt(created_at);
+                dest.writeInt(editor_id);
+                dest.writeString(head_link);
+                dest.writeInt(id);
+                dest.writeString(introduction);
+                dest.writeInt(order);
+                dest.writeInt(published_at);
+                dest.writeInt(status);
+                dest.writeString(title);
+                dest.writeString(type);
+                dest.writeTypedList(items);
+            }
+
+            public static class ItemsBean implements Parcelable{
                 /**
                  * activity_ended_at : 0
                  * activity_started_at : 0
@@ -277,6 +332,52 @@ public class MallHeadBean  {
                 private List<String> image_urls;
                 private List<SkusBean> skus;
                 private List<SpecsDomainsBean> specs_domains;
+
+                protected ItemsBean(Parcel in) {
+                    activity_ended_at = in.readInt();
+                    activity_started_at = in.readInt();
+                    cover_image_key = in.readString();
+                    cover_image_url = in.readString();
+                    cover_webp_url = in.readString();
+                    created_at = in.readInt();
+                    description = in.readString();
+                    detail_html = in.readString();
+                    feature = in.readString();
+                    hot_sale_threshold = in.readInt();
+                    id = in.readString();
+                    is_haitao = in.readInt();
+                    is_puyin = in.readByte() != 0;
+                    merchant_id = in.readInt();
+                    merchant_type = in.readInt();
+                    postage = in.readString();
+                    quota = in.readInt();
+                    scarcity_threshold = in.readInt();
+                    short_description = in.readString();
+                    show_stock = in.readInt();
+                    start_sold_at = in.readInt();
+                    status = in.readInt();
+                    support_generic_coupons = in.readByte() != 0;
+                    take_down_at = in.readInt();
+                    title = in.readString();
+                    total_sold = in.readInt();
+                    updated_at = in.readInt();
+                    recommendable = in.readByte() != 0;
+                    image_urls = in.createStringArrayList();
+                    skus = in.createTypedArrayList(SkusBean.CREATOR);
+                    specs_domains = in.createTypedArrayList(SpecsDomainsBean.CREATOR);
+                }
+
+                public static final Creator<ItemsBean> CREATOR = new Creator<ItemsBean>() {
+                    @Override
+                    public ItemsBean createFromParcel(Parcel in) {
+                        return new ItemsBean(in);
+                    }
+
+                    @Override
+                    public ItemsBean[] newArray(int size) {
+                        return new ItemsBean[size];
+                    }
+                };
 
                 public int getActivity_ended_at() {
                     return activity_ended_at;
@@ -534,7 +635,47 @@ public class MallHeadBean  {
                     this.specs_domains = specs_domains;
                 }
 
-                public static class SkusBean {
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(activity_ended_at);
+                    dest.writeInt(activity_started_at);
+                    dest.writeString(cover_image_key);
+                    dest.writeString(cover_image_url);
+                    dest.writeString(cover_webp_url);
+                    dest.writeInt(created_at);
+                    dest.writeString(description);
+                    dest.writeString(detail_html);
+                    dest.writeString(feature);
+                    dest.writeInt(hot_sale_threshold);
+                    dest.writeString(id);
+                    dest.writeInt(is_haitao);
+                    dest.writeByte((byte) (is_puyin ? 1 : 0));
+                    dest.writeInt(merchant_id);
+                    dest.writeInt(merchant_type);
+                    dest.writeString(postage);
+                    dest.writeInt(quota);
+                    dest.writeInt(scarcity_threshold);
+                    dest.writeString(short_description);
+                    dest.writeInt(show_stock);
+                    dest.writeInt(start_sold_at);
+                    dest.writeInt(status);
+                    dest.writeByte((byte) (support_generic_coupons ? 1 : 0));
+                    dest.writeInt(take_down_at);
+                    dest.writeString(title);
+                    dest.writeInt(total_sold);
+                    dest.writeInt(updated_at);
+                    dest.writeByte((byte) (recommendable ? 1 : 0));
+                    dest.writeStringList(image_urls);
+                    dest.writeTypedList(skus);
+                    dest.writeTypedList(specs_domains);
+                }
+
+                public static class SkusBean implements Parcelable{
                     /**
                      * cover_image_url : http://img01.liwushuo.com/image/170215/1fa5cgxpp_w.jpg-w720
                      * fixed_price : 128.00
@@ -556,6 +697,30 @@ public class MallHeadBean  {
                     private int stock;
                     private String supply_price;
                     private List<SpecsBean> specs;
+
+                    protected SkusBean(Parcel in) {
+                        cover_image_url = in.readString();
+                        fixed_price = in.readString();
+                        id = in.readInt();
+                        item_id = in.readInt();
+                        price = in.readString();
+                        sold = in.readInt();
+                        stock = in.readInt();
+                        supply_price = in.readString();
+                        specs = in.createTypedArrayList(SpecsBean.CREATOR);
+                    }
+
+                    public static final Creator<SkusBean> CREATOR = new Creator<SkusBean>() {
+                        @Override
+                        public SkusBean createFromParcel(Parcel in) {
+                            return new SkusBean(in);
+                        }
+
+                        @Override
+                        public SkusBean[] newArray(int size) {
+                            return new SkusBean[size];
+                        }
+                    };
 
                     public String getCover_image_url() {
                         return cover_image_url;
@@ -629,7 +794,25 @@ public class MallHeadBean  {
                         this.specs = specs;
                     }
 
-                    public static class SpecsBean {
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(cover_image_url);
+                        dest.writeString(fixed_price);
+                        dest.writeInt(id);
+                        dest.writeInt(item_id);
+                        dest.writeString(price);
+                        dest.writeInt(sold);
+                        dest.writeInt(stock);
+                        dest.writeString(supply_price);
+                        dest.writeTypedList(specs);
+                    }
+
+                    public static class SpecsBean implements Parcelable{
                         /**
                          * property : MC小花熊
                          * title : 款式
@@ -637,6 +820,23 @@ public class MallHeadBean  {
 
                         private String property;
                         private String title;
+
+                        protected SpecsBean(Parcel in) {
+                            property = in.readString();
+                            title = in.readString();
+                        }
+
+                        public static final Creator<SpecsBean> CREATOR = new Creator<SpecsBean>() {
+                            @Override
+                            public SpecsBean createFromParcel(Parcel in) {
+                                return new SpecsBean(in);
+                            }
+
+                            @Override
+                            public SpecsBean[] newArray(int size) {
+                                return new SpecsBean[size];
+                            }
+                        };
 
                         public String getProperty() {
                             return property;
@@ -653,10 +853,21 @@ public class MallHeadBean  {
                         public void setTitle(String title) {
                             this.title = title;
                         }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel dest, int flags) {
+                            dest.writeString(property);
+                            dest.writeString(title);
+                        }
                     }
                 }
 
-                public static class SpecsDomainsBean {
+                public static class SpecsDomainsBean implements Parcelable{
                     /**
                      * domains : ["MC小花熊","MC小粉熊"]
                      * title : 款式
@@ -664,6 +875,23 @@ public class MallHeadBean  {
 
                     private String title;
                     private List<String> domains;
+
+                    protected SpecsDomainsBean(Parcel in) {
+                        title = in.readString();
+                        domains = in.createStringArrayList();
+                    }
+
+                    public static final Creator<SpecsDomainsBean> CREATOR = new Creator<SpecsDomainsBean>() {
+                        @Override
+                        public SpecsDomainsBean createFromParcel(Parcel in) {
+                            return new SpecsDomainsBean(in);
+                        }
+
+                        @Override
+                        public SpecsDomainsBean[] newArray(int size) {
+                            return new SpecsDomainsBean[size];
+                        }
+                    };
 
                     public String getTitle() {
                         return title;
@@ -679,6 +907,17 @@ public class MallHeadBean  {
 
                     public void setDomains(List<String> domains) {
                         this.domains = domains;
+                    }
+
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(title);
+                        dest.writeStringList(domains);
                     }
                 }
             }

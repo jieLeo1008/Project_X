@@ -39,7 +39,6 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv;
     private ImageView backWhiteIv, backDarkIv, shopWhiteIv,shopDarkIv;
     private WebView webView;
-    private List<String> bannerUrl;
     private CheckBox checkBox;
     private RelativeLayout relativeWhiteLayout, relativeDarkLayout;
 
@@ -70,12 +69,12 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
         Intent intent = getIntent();
+        if (intent.getBundleExtra("details")!=null){
         Bundle bundle = intent.getBundleExtra("details");
         itemsBean = bundle.getParcelable("itemdetails");
+        }
         setBanner();
         shortDescriotionTv.setText(itemsBean.getShort_description());
-        Log.d(TAG, itemsBean.getShort_description());
-        Log.d(TAG, itemsBean.getName());
         nameTv.setText(itemsBean.getName());
         priceTv.setText("¥" + itemsBean.getSkus().get(0).getFixed_price());
         WebSettings webSettings = webView.getSettings();
@@ -126,7 +125,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
 
 
     private void setBanner() {
-        bannerUrl = new ArrayList<>();
+        List<String> bannerUrl = new ArrayList<>();
         for (int i = 0; i < itemsBean.getImage_urls().size(); i++) {
             bannerUrl.add(itemsBean.getImage_urls().get(i));
         }

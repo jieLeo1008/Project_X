@@ -1,6 +1,8 @@
 package com.jieleo.projecta.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.SpecialActivity;
 import com.jieleo.projecta.bean.mall.MallHeadBean;
 
 /**
@@ -26,6 +29,8 @@ public class MallPageHeadRecyclerAdapter extends RecyclerView.Adapter<MallPageHe
         this.mallHeadBean = mallHeadBean;
         notifyDataSetChanged();
     }
+
+
 
     public MallPageHeadRecyclerAdapter(Context context) {
         this.context = context;
@@ -43,12 +48,24 @@ public class MallPageHeadRecyclerAdapter extends RecyclerView.Adapter<MallPageHe
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
         if (position>=0&&position<=3){
-        Glide.with(context).load(mallHeadBean.getData().getItems().get(position).getCover_image_url()).into(holder.imageView);
-        holder.textView.setText(mallHeadBean.getData().getItems().get(position).getTitle());
+            final MallHeadBean.DataBean.ItemsBeanX itemsBeanX=mallHeadBean.getData().getItems().get(position);
+        Glide.with(context).load(itemsBeanX.getCover_image_url()).into(holder.imageView);
+        holder.textView.setText(itemsBeanX.getTitle());
         MallPageHeadDetailsRecyclerAdapter mallPageHeadDetailsRecyclerAdapter=new MallPageHeadDetailsRecyclerAdapter(context);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
         holder.recyclerView.setAdapter(mallPageHeadDetailsRecyclerAdapter);
-        mallPageHeadDetailsRecyclerAdapter.setItemsBeanX(mallHeadBean.getData().getItems().get(position));
+        mallPageHeadDetailsRecyclerAdapter.setItemsBeanX(itemsBeanX);
+        mallPageHeadDetailsRecyclerAdapter.setId(position);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context, SpecialActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("itemsBean",itemsBeanX);
+                intent.putExtra("bundle",bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -58,6 +75,8 @@ public class MallPageHeadRecyclerAdapter extends RecyclerView.Adapter<MallPageHe
     public int getItemCount() {
         return mallHeadBean!=null?mallHeadBean.getData().getItems().size():0;
     }
+
+
 
     class  MyHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
