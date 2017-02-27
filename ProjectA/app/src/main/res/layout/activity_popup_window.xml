@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_popup_window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jieleo.projecta.activity.PopupWindowActivity"
+    >
+
+    <LinearLayout
+        android:id="@+id/liner_layout_popup_window"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_cover_image_popup_window"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_price_popup_window"
+                android:textColor="#000"
+                android:layout_toRightOf="@id/iv_cover_image_popup_window"
+                android:layout_alignTop="@id/iv_cover_image_popup_window"
+                android:layout_width="wrap_content"
+                android:text="¥79"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_stock_popup_window"
+                android:text="库存488件"
+                android:textSize="10sp"
+                android:textColor="#000"
+                android:layout_below="@id/tv_price_popup_window"
+                android:layout_alignLeft="@id/tv_price_popup_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_property_popup_window"
+                android:layout_below="@id/tv_stock_popup_window"
+                android:text="已选'男地鼠'"
+                android:textSize="10sp"
+                android:textColor="#000"
+                android:layout_alignLeft="@id/tv_price_popup_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/iv_destroy_activity_popup_window"
+                android:src="@mipmap/icon_delete_cross"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="款式"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioGroup
+                android:layout_marginLeft="10dp"
+                android:id="@+id/radio_group_popup_window"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+            </RadioGroup>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="购买数量"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/btn_increase_normal"
+                android:id="@+id/iv_increase_popup_window"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_count_popup_window"
+                android:layout_toLeftOf="@id/iv_increase_popup_window"
+                android:layout_width="wrap_content"
+                android:text="1"
+                android:layout_centerVertical="true"
+                android:cursorVisible="false"
+                android:background="@drawable/edittext_shape"
+                android:maxLength="3"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/btn_reduce_normal"
+                android:layout_toLeftOf="@id/et_count_popup_window"
+                android:layout_alignTop="@id/iv_increase_popup_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <TextView
+                    android:id="@+id/tv_add_to_shop_popup_window"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:textColor="#000"
+                    android:text="加入购物车"
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_buy_now_popup_window"
+                    android:layout_width="0dp"
+                    android:text="立即购买"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

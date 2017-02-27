@@ -36,7 +36,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private ScrollView scrollView;
     private Banner banner;
-    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv;
+    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv,addShopTv;
     private ImageView backWhiteIv, backDarkIv, shopWhiteIv,shopDarkIv;
     private WebView webView;
     private CheckBox checkBox;
@@ -64,6 +64,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         backDarkIv = (ImageView) findViewById(R.id.iv_back_dark_gift_page);
         relativeWhiteLayout = (RelativeLayout) findViewById(R.id.relative_top_white_gift_details);
         relativeDarkLayout = (RelativeLayout) findViewById(R.id.relative_top_dark_gift_details);
+        addShopTv = (TextView) findViewById(R.id.tv_add_to_shop_gift_details);
     }
 
     @Override
@@ -120,6 +121,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         shopWhiteIv.setOnClickListener(this);
         shopDarkIv.setOnClickListener(this);
         backDarkIv.setOnClickListener(this);
+        addShopTv.setOnClickListener(this);
     }
 
 
@@ -162,8 +164,15 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_shop_white_gift_details:
 
                 break;
+            case R.id.tv_add_to_shop_gift_details:
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("itemsBean",itemsBean);
+                Intent intent=new Intent(this,PopupWindowActivity.class);
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+                break;
 
-            //TODO 完成popipWindow
+            //TODO 完成popupWindow
 
         }
     }

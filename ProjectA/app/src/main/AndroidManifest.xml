@@ -26,7 +26,8 @@
         <activity android:name=".activity.GiftDetailsTaoBaoActivity" />
         <activity android:name=".activity.SingleListDetailsActivity" />
         <activity android:name=".activity.StrategyDetailsActivity" />
-        <activity android:name=".activity.SpecialActivity"></activity>
+        <activity android:name=".activity.SpecialActivity" />
+        <activity android:name=".activity.PopupWindowActivity" android:theme="@style/MyPopupWindow"></activity>
     </application>
 
 </manifest>

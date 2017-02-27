@@ -12,7 +12,7 @@ public class WebsiteInter {
     //频道列表的接口
     public    static    String CHANNELS_URL=BASIC_URL+"channels/preset?gender=2&generation=1";
 
-
+    //精选轮播图接口
     public static String BANNER="http://api.liwushuo.com/v2/banners?channel=IOS";
 
     public static final String MODULE = BASIC_URL + "secondary_banners?gender=2&generation=1";
