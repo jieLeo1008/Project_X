@@ -18,8 +18,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.mall.PopupWindowRecyclerViewAdapter;
@@ -27,8 +29,9 @@ import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 
 public class PopupWindowActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "PopupWindowActivity";
-    private ImageView destroyIv;
+    private ImageView destroyIv,coverIv;
     private LinearLayout linearLayout;
+    private TextView priceTv,stockTv,propertyTv,addToShopTv,buyNowTv;
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private RadioGroup radioGroup;
     private int lastId = 0;
@@ -39,21 +42,36 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_window);
-        Intent intent = getIntent();
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+        Intent intent = getIntent();//接受传过来的数据
         Bundle bundle = intent.getBundleExtra("bundle");
         itemsBean = bundle.getParcelable("itemsBean");
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
         destroyIv = (ImageView) findViewById(R.id.iv_destroy_activity_popup_window);
         linearLayout = (LinearLayout) findViewById(R.id.liner_layout_popup_window);
         radioGroup = (RadioGroup) findViewById(R.id.radio_group_popup_window);
+        coverIv= (ImageView) findViewById(R.id.iv_cover_image_popup_window);
+        priceTv= (TextView) findViewById(R.id.tv_price_popup_window);
+        stockTv= (TextView) findViewById(R.id.tv_stock_popup_window);
+        propertyTv= (TextView) findViewById(R.id.tv_property_popup_window);
+        addToShopTv= (TextView) findViewById(R.id.tv_add_to_shop_popup_window);
+        buyNowTv= (TextView) findViewById(R.id.tv_buy_now_popup_window);
         destroyIv.setOnClickListener(this);
         linearLayout.setOnClickListener(this);
+
+
+
+
         //动态添加RadioButton
         for (int i = 0; i < itemsBean.getSpecs_domains().get(0).getDomains().size(); i++) {
             RadioButton radioButton = new RadioButton(MyApp.getmContext());
             radioButton.setBackgroundResource(R.drawable.popup_window_details_secector);
             radioButton.setTextColor(Color.BLACK);
-            radioButton.setId(i+1);
+            radioButton.setId(i + 1);
+            radioButton.setPadding(10,5,5,10);
             radioButton.setOnClickListener(this);
             radioButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             Log.d("PopupWindowActivity", itemsBean.getSpecs_domains().get(0).getDomains().get(i));
@@ -62,68 +80,28 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
             radioGroup.addView(radioButton);
         }
 
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, final int checkedId) {
-//                radioButton = null;
-//                if (checkedId != lastId) {
-//                    radioButton = (RadioButton) findViewById(checkedId);
-//                    radioButton.setTextColor(Color.RED);
-//                    if (lastId != 0) {
-//                        radioButton = (RadioButton) findViewById(lastId);
-//                        radioButton.setTextColor(Color.BLACK);
-//                    }
-//                    lastId = checkedId;
-//                }
-//
-//            }
-//        });
-
-//        radioGroup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e(TAG, "onClick: " + lastId + ",id---"+v.getId());
-//                if (lastId == 0) {
-//                    Log.e(TAG, "onClick: first in");
-//                    ((RadioButton) v).setChecked(true);
-//                    lastId = v.getId();
-//                } else {
-//                    Log.e(TAG, "onClick: repeat click");
-//                    if (lastId == v.getId()) {
-//                        ((RadioButton) v).setChecked(false);
-//                        lastId = 0;
-//                    } else {
-//                        Log.e(TAG, "onClick: change click");
-//                        ((RadioButton) v).setChecked(true);
-//                        ((RadioButton)findViewById(lastId)).setChecked(false);
-//                        lastId = v.getId();
-//                    }
-//                }
-//
-//            }
-//        });
 
         for (int i = 0; i < itemsBean.getSpecs_domains().get(0).getDomains().size(); i++) {
-            findViewById(i+1).setOnClickListener(new View.OnClickListener() {
+            findViewById(i + 1).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(lastId == 0){
-                        ((RadioButton)v).setChecked(true);
-                        ((RadioButton)v).setTextColor(Color.RED);
+                    if (lastId == 0) {//如果是第一次点击
+                        ((RadioButton) v).setChecked(true);
+                        ((RadioButton) v).setTextColor(Color.RED);
                         lastId = v.getId();
-                    }else {
-                        if (v.getId() == lastId) {
+                    } else {
+                        if (v.getId() == lastId) {//如果点击了两次
                             ((RadioButton) v).setChecked(false);
                             ((RadioButton) v).setTextColor(Color.BLACK);
-                            lastId=0;
-                        } else {
+                            lastId = 0;
+                        } else {//如果两次点击了不同的按钮
                             ((RadioButton) findViewById(lastId)).setTextColor(Color.BLACK);
 
                             ((RadioButton) v).setChecked(true);
                             ((RadioButton) v).setTextColor(Color.RED);
                         }
                     }
-                    lastId=v.getId();
+                    lastId = v.getId();
                 }
             });
         }
@@ -133,13 +111,28 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
 
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        //设置布局文字
+        priceTv.setText(itemsBean.getSkus().get(0).getPrice());
+        Log.e(TAG, "onStart: "+itemsBean.getSkus().get(0).getStock() );
+//        Log.e(TAG, "onStart: "+itemsBean.getSkus().get(0).getSpecs().get(0).getProperty() );
+        stockTv.setText("库存"+itemsBean.getSkus().get(0).getStock()+"件");
+//        propertyTv.setText(itemsBean.getSkus().get(0).getSpecs().get(0).getProperty());
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_destroy_activity_popup_window:
+            case R.id.iv_destroy_activity_popup_window://点击关闭按钮
                 finish();
                 break;
-            case R.id.liner_layout_popup_window:
+            case R.id.liner_layout_popup_window://点击弹出以外的界面
                 break;
+
+
+
 
         }
     }
@@ -150,41 +143,4 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
         return true;
     }
 
-    //    @Override
-//    public int setLayout() {
-//        return R.layout.activity_popup_window;
-//    }
-//
-//    @Override
-//    protected void initView() {
-//        destroyIv=bindView(R.id.iv_destroy_activity_popup_window);
-//        linearLayout=bindView(R.id.liner_layout_popup_window);
-//    }
-//
-//    @Override
-//    protected void initData() {
-//
-//    }
-//
-//    @Override
-//    protected void bindEvent() {
-//        destroyIv.setOnClickListener(this);
-//        linearLayout.setOnClickListener(this);
-//    }
-//
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.iv_destroy_activity_popup_window:
-//                break;
-//            case R.id.liner_layout_popup_window:
-//                break;
-//        }
-//    }
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        finish();
-//        return true;
-//    }
 }

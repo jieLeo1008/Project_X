@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,11 +37,14 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private ScrollView scrollView;
     private Banner banner;
-    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv,addShopTv;
+    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv,addShopTv,chooseTv;
     private ImageView backWhiteIv, backDarkIv, shopWhiteIv,shopDarkIv;
     private WebView webView;
     private CheckBox checkBox;
     private RelativeLayout relativeWhiteLayout, relativeDarkLayout;
+    private LinearLayout chooseLinerLayout;
+    private Bundle bundle;
+    private Intent intent;
 
     @Override
     public int setLayout() {
@@ -64,7 +68,9 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         backDarkIv = (ImageView) findViewById(R.id.iv_back_dark_gift_page);
         relativeWhiteLayout = (RelativeLayout) findViewById(R.id.relative_top_white_gift_details);
         relativeDarkLayout = (RelativeLayout) findViewById(R.id.relative_top_dark_gift_details);
+        chooseTv=bindView(R.id.tv_choose_gift_details);
         addShopTv = (TextView) findViewById(R.id.tv_add_to_shop_gift_details);
+        chooseLinerLayout=bindView(R.id.liner_layout_choose_gift_details);
     }
 
     @Override
@@ -122,6 +128,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         shopDarkIv.setOnClickListener(this);
         backDarkIv.setOnClickListener(this);
         addShopTv.setOnClickListener(this);
+        chooseLinerLayout.setOnClickListener(this);
     }
 
 
@@ -164,14 +171,20 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_shop_white_gift_details:
 
                 break;
-            case R.id.tv_add_to_shop_gift_details:
-                Bundle bundle=new Bundle();
+            case R.id.tv_add_to_shop_gift_details://点击添加到购物车
+                bundle = new Bundle();
                 bundle.putParcelable("itemsBean",itemsBean);
-                Intent intent=new Intent(this,PopupWindowActivity.class);
-                intent.putExtra("bundle",bundle);
+                intent = new Intent(this,PopupWindowActivity.class);
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
                 break;
-
+            case R.id.liner_layout_choose_gift_details:
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("itemsBean",itemsBean);
+                intent = new Intent(this,PopupWindowActivity.class);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+                break;
             //TODO 完成popupWindow
 
         }

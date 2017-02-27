@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/tv_property_popup_window"
                 android:layout_below="@id/tv_stock_popup_window"
-                android:text="已选'男地鼠'"
+                android:text="请选择 款式"
                 android:textSize="10sp"
                 android:textColor="#000"
                 android:layout_alignLeft="@id/tv_price_popup_window"
