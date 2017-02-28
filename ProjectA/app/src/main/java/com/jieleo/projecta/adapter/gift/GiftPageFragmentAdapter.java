@@ -1,4 +1,4 @@
-package com.jieleo.projecta.adapter;
+package com.jieleo.projecta.adapter.gift;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

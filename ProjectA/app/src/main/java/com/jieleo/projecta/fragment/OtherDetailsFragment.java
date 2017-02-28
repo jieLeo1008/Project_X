@@ -6,14 +6,13 @@ import android.view.View;
 import com.jieleo.projecta.R;
 
 /**
- * Created by yuyongjie on 17/2/28.
+ * Created by jie on 2017/2/28.
  */
 
-
-public class OtherSingleFragment  extends BaseFragment{
+public class OtherDetailsFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_other_single;
+        return R.layout.fragment_other_details;
     }
 
     @Override

@@ -79,7 +79,6 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
             RadioButton radioButton = new RadioButton(MyApp.getmContext());
             radioButton.setBackgroundResource(R.drawable.popup_window_details_secector);
             radioButton.setTextColor(getResources().getColorStateList(R.drawable.radio_btn_text_selector));
-//            radioButton.setTextColor(Color.BLACK);
             radioButton.setId(i + 1);
             radioButton.setPadding(10, 5, 5, 10);
             radioButton.setOnClickListener(this);

@@ -1,4 +1,4 @@
-package com.jieleo.projecta.adapter;
+package com.jieleo.projecta.adapter.gift;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.jieleo.projecta.inter.OnClickListenerInter;
 

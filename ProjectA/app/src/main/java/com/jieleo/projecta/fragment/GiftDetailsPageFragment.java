@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -16,8 +15,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.activity.DetailsForOtherActivity;
 import com.jieleo.projecta.activity.GiftDetailsActivity;
-import com.jieleo.projecta.activity.GiftDetailsTaoBaoActivity;
-import com.jieleo.projecta.adapter.GiftPageRecyclerViewAdapter;
+import com.jieleo.projecta.adapter.gift.GiftPageRecyclerViewAdapter;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.jieleo.projecta.bean.gift.GiftTitleBean;
 import com.jieleo.projecta.inter.CallBack;

@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.jieleo.projecta.R;
-import com.jieleo.projecta.adapter.GiftPageFragmentAdapter;
+import com.jieleo.projecta.adapter.gift.GiftPageFragmentAdapter;
 import com.jieleo.projecta.bean.gift.GiftTitleBean;
 import com.jieleo.projecta.inter.CallBack;
 import com.jieleo.projecta.tool.NetTool;
