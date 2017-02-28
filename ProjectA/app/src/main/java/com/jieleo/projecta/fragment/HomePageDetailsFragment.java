@@ -150,6 +150,12 @@ public class HomePageDetailsFragment extends BaseFragment {
 
                 }
             });
+            firstIV.setOnClickListener(this);
+            secondIv.setOnClickListener(this);
+            thirdIv.setOnClickListener(this);
+            fourthIv.setOnClickListener(this);
+            fifthIv.setOnClickListener(this);
+            sixthIv.setOnClickListener(this);
 
             lRecyclerViewAdapter.addHeaderView(itemHeadView);
 
@@ -197,7 +203,21 @@ public class HomePageDetailsFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_first_head_body_details_home_page:
+                break;
+            case R.id.iv_second_head_body_details_home_page:
+                break;
+            case R.id.iv_third_head_body_details_home_page:
+                break;
+            case R.id.iv_fourth_head_body_details_home_page:
+                break;
+            case R.id.iv_fifth_head_body_details_home_page:
+                break;
+            case R.id.iv_sixth_head_body_details_home_page:
+                break;
 
+        }
     }
 
     public static Fragment getInstance(int position, TitleBean.DataBean.ChannelsBean channelsBean) {

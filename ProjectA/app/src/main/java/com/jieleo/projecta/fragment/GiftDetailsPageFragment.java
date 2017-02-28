@@ -14,6 +14,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.DetailsForOtherActivity;
 import com.jieleo.projecta.activity.GiftDetailsActivity;
 import com.jieleo.projecta.activity.GiftDetailsTaoBaoActivity;
 import com.jieleo.projecta.adapter.GiftPageRecyclerViewAdapter;
@@ -131,16 +132,15 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
     @Override
     public void onItemClickListener(int position) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("itemdetails", itemsBeen.get(position));
+        bundle.putParcelable("itemsDetails", itemsBeen.get(position));
         if (itemsBeen.get(position).getFavorites_count() == 0) {
             Intent intent = new Intent(getActivity(), GiftDetailsActivity.class);
             intent.putExtra("details", bundle);
             startActivity(intent);
         }else {
-            Toast.makeText(getActivity(), "哈哈", Toast.LENGTH_SHORT).show();
-//            Intent intent=new Intent(getActivity(), GiftDetailsTaoBaoActivity.class);
-//            intent.putExtra("details",bundle);
-//            startActivity(intent);
+            Intent intent=new Intent(getActivity(), DetailsForOtherActivity.class);
+            intent.putExtra("details",bundle);
+            startActivity(intent);
         }
     }
 }

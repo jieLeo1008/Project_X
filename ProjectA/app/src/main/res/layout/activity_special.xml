@@ -41,6 +41,7 @@
         android:layout_below="@id/relative_layout_special_page"
         android:id="@+id/lrecycler_view_special"
         android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_height="match_parent">
 
     </com.github.jdsjlzx.recyclerview.LRecyclerView>

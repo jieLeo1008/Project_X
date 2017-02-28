@@ -29,14 +29,14 @@ public class SpecialRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHol
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return BaseViewHolder.createViewHolder(context,parent, R.layout.item_head_first_details_mall_page);
+        return BaseViewHolder.createViewHolder(context,parent, R.layout.item_special_details);
     }
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.setCustromImage(R.id.iv_head_first_details_mall_page,itemsBeen.get(position).getCover_image_url());
-        holder.setText(R.id.tv_head_first_short_description_details_mall_page,itemsBeen.get(position).getShort_description());
-        holder.setText(R.id.tv_head_first_price_details_mall_page,"¥"+itemsBeen.get(position).getSkus().get(0).getPrice());
+        holder.setCustromImage(R.id.iv_head_special_details_page,itemsBeen.get(position).getCover_image_url());
+        holder.setText(R.id.tv_short_description_special_page,itemsBeen.get(position).getShort_description());
+        holder.setText(R.id.tv_price_special_page,"¥"+itemsBeen.get(position).getSkus().get(0).getPrice());
 
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -19,11 +20,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -37,14 +42,15 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private ScrollView scrollView;
     private Banner banner;
-    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv,addShopTv,chooseTv;
-    private ImageView backWhiteIv, backDarkIv, shopWhiteIv,shopDarkIv;
+    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv, addShopTv, chooseTv, choosedTv, bugNowTv;
+    private ImageView backWhiteIv, backDarkIv, shopWhiteIv, shopDarkIv;
     private WebView webView;
     private CheckBox checkBox;
     private RelativeLayout relativeWhiteLayout, relativeDarkLayout;
     private LinearLayout chooseLinerLayout;
-    private Bundle bundle;
     private Intent intent;
+    private Bundle bundle;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     public int setLayout() {
@@ -68,17 +74,20 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         backDarkIv = (ImageView) findViewById(R.id.iv_back_dark_gift_page);
         relativeWhiteLayout = (RelativeLayout) findViewById(R.id.relative_top_white_gift_details);
         relativeDarkLayout = (RelativeLayout) findViewById(R.id.relative_top_dark_gift_details);
-        chooseTv=bindView(R.id.tv_choose_gift_details);
+        chooseTv = bindView(R.id.tv_choose_gift_details);
+        choosedTv = bindView(R.id.tv_choosed_gift_details);
+        bugNowTv = (TextView) findViewById(R.id.tv_buy_now_gift_details);
         addShopTv = (TextView) findViewById(R.id.tv_add_to_shop_gift_details);
-        chooseLinerLayout=bindView(R.id.liner_layout_choose_gift_details);
+        chooseLinerLayout = bindView(R.id.liner_layout_choose_gift_details);
+        floatingActionButton = bindView(R.id.fa_btn_gift_details);
     }
 
     @Override
     protected void initData() {
         Intent intent = getIntent();
-        if (intent.getBundleExtra("details")!=null){
-        Bundle bundle = intent.getBundleExtra("details");
-        itemsBean = bundle.getParcelable("itemdetails");
+        if (intent.getBundleExtra("details") != null) {
+            Bundle bundle = intent.getBundleExtra("details");
+            itemsBean = bundle.getParcelable("itemsDetails");
         }
         setBanner();
         shortDescriotionTv.setText(itemsBean.getShort_description());
@@ -95,6 +104,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void bindEvent() {
+        floatingActionButton.setVisibility(View.INVISIBLE);
         relativeWhiteLayout.setVisibility(View.INVISIBLE);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -111,14 +121,21 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY - oldScrollY > 0 && scrollY > 350) {
-                    relativeWhiteLayout.setVisibility(View.VISIBLE);
-                    relativeDarkLayout.setVisibility(View.INVISIBLE);
+                if (scrollY - oldScrollY > 0) {
+                    if (scrollY > 350) {
+                        relativeWhiteLayout.setVisibility(View.VISIBLE);
+                        relativeDarkLayout.setVisibility(View.INVISIBLE);
+                    }
+                    floatingActionButton.setVisibility(View.INVISIBLE);
 
-                } else if (scrollY - oldScrollY < 0 && scrollY < 350) {
-                    relativeWhiteLayout.setVisibility(View.INVISIBLE);
-                    relativeDarkLayout.setVisibility(View.VISIBLE);
-
+                } else if (scrollY - oldScrollY < 0) {
+                    if (scrollY < 350) {
+                        relativeWhiteLayout.setVisibility(View.INVISIBLE);
+                        relativeDarkLayout.setVisibility(View.VISIBLE);
+                    }
+                    if (scrollY > 500) {
+                        floatingActionButton.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
@@ -129,8 +146,11 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         backDarkIv.setOnClickListener(this);
         addShopTv.setOnClickListener(this);
         chooseLinerLayout.setOnClickListener(this);
-    }
+        bugNowTv.setOnClickListener(this);
+        EventBus.getDefault().register(this);
+        floatingActionButton.setOnClickListener(this);
 
+    }
 
 
     private void setBanner() {
@@ -173,21 +193,45 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.tv_add_to_shop_gift_details://点击添加到购物车
                 bundle = new Bundle();
-                bundle.putParcelable("itemsBean",itemsBean);
-                intent = new Intent(this,PopupWindowActivity.class);
+                bundle.putParcelable("itemsBean", itemsBean);
+                intent = new Intent(this, PopupWindowActivity.class);
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
                 break;
             case R.id.liner_layout_choose_gift_details:
-                Bundle bundle=new Bundle();
-                bundle.putParcelable("itemsBean",itemsBean);
-                intent = new Intent(this,PopupWindowActivity.class);
+                bundle = new Bundle();
+                bundle.putParcelable("itemsBean", itemsBean);
+                intent = new Intent(this, PopupWindowActivity.class);
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
                 break;
-            //TODO 完成popupWindow
+            case R.id.tv_buy_now_gift_details://弹出菜单
+                bundle = new Bundle();
+                bundle.putParcelable("itemsBean", itemsBean);
+                intent = new Intent(this, PopupWindowActivity.class);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+                break;
+            case R.id.fa_btn_gift_details://返回顶部
+                scrollView.scrollTo(0, 0);
+                break;
 
         }
+    }
+
+    //EventBus接收的方法
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setChoose(PopupWindowBean popupWindowBean) {
+        chooseTv.setText(popupWindowBean.getText() + "     " + popupWindowBean.getCount() + "件");
+        choosedTv.setVisibility(View.GONE);
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     class ImageLoader extends com.youth.banner.loader.ImageLoader {

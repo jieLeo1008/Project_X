@@ -38,6 +38,7 @@
         android:id="@+id/recycler_view_single_list"
         android:layout_below="@id/linear_layout_single_list"
         android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
         android:layout_height="match_parent">
     </com.github.jdsjlzx.recyclerview.LRecyclerView>
 </RelativeLayout>

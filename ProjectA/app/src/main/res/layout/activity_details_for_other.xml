@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_details_for_tian_mao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jieleo.projecta.activity.DetailsForOtherActivity">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_details_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+    <RelativeLayout
+        android:id="@+id/liner_layout_details_for_others"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back_details_for_others"
+            android:src="@mipmap/btn_back_black"
+            android:scaleType="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout_details_others"
+            android:layout_width="280dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent">
+
+        </android.support.design.widget.TabLayout>
+    </RelativeLayout>
+</FrameLayout>
