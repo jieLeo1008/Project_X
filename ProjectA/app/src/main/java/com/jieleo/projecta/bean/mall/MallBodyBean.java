@@ -1,5 +1,8 @@
 package com.jieleo.projecta.bean.mall;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -84,7 +87,7 @@ public class MallBodyBean {
             }
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Parcelable{
             /**
              * cover_image_url : http://img02.liwushuo.com/image/170215/2xq6c3mtv_w.jpg-w720
              * cover_webp_url : http://img02.liwushuo.com/image/170215/2xq6c3mtv_w.jpg?imageView2/2/w/720/q/85/format/webp
@@ -102,6 +105,28 @@ public class MallBodyBean {
             private String short_description;
             private String title;
             private List<SkusBean> skus;
+
+            protected ItemsBean(Parcel in) {
+                cover_image_url = in.readString();
+                cover_webp_url = in.readString();
+                id = in.readString();
+                merchant_type = in.readInt();
+                short_description = in.readString();
+                title = in.readString();
+                skus = in.createTypedArrayList(SkusBean.CREATOR);
+            }
+
+            public static final Creator<ItemsBean> CREATOR = new Creator<ItemsBean>() {
+                @Override
+                public ItemsBean createFromParcel(Parcel in) {
+                    return new ItemsBean(in);
+                }
+
+                @Override
+                public ItemsBean[] newArray(int size) {
+                    return new ItemsBean[size];
+                }
+            };
 
             public String getCover_image_url() {
                 return cover_image_url;
@@ -159,7 +184,23 @@ public class MallBodyBean {
                 this.skus = skus;
             }
 
-            public static class SkusBean {
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(cover_image_url);
+                dest.writeString(cover_webp_url);
+                dest.writeString(id);
+                dest.writeInt(merchant_type);
+                dest.writeString(short_description);
+                dest.writeString(title);
+                dest.writeTypedList(skus);
+            }
+
+            public static class SkusBean implements Parcelable{
                 /**
                  * cover_image_url : null
                  * fixed_price : 51.00
@@ -181,6 +222,29 @@ public class MallBodyBean {
                 private int stock;
                 private String supply_price;
                 private List<SpecsBean> specs;
+
+                protected SkusBean(Parcel in) {
+                    fixed_price = in.readString();
+                    id = in.readInt();
+                    item_id = in.readInt();
+                    price = in.readString();
+                    sold = in.readInt();
+                    stock = in.readInt();
+                    supply_price = in.readString();
+                    specs = in.createTypedArrayList(SpecsBean.CREATOR);
+                }
+
+                public static final Creator<SkusBean> CREATOR = new Creator<SkusBean>() {
+                    @Override
+                    public SkusBean createFromParcel(Parcel in) {
+                        return new SkusBean(in);
+                    }
+
+                    @Override
+                    public SkusBean[] newArray(int size) {
+                        return new SkusBean[size];
+                    }
+                };
 
                 public Object getCover_image_url() {
                     return cover_image_url;
@@ -254,7 +318,24 @@ public class MallBodyBean {
                     this.specs = specs;
                 }
 
-                public static class SpecsBean {
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(fixed_price);
+                    dest.writeInt(id);
+                    dest.writeInt(item_id);
+                    dest.writeString(price);
+                    dest.writeInt(sold);
+                    dest.writeInt(stock);
+                    dest.writeString(supply_price);
+                    dest.writeTypedList(specs);
+                }
+
+                public static class SpecsBean implements Parcelable{
                     /**
                      * property : 均码
                      * title : 规格
@@ -262,6 +343,23 @@ public class MallBodyBean {
 
                     private String property;
                     private String title;
+
+                    protected SpecsBean(Parcel in) {
+                        property = in.readString();
+                        title = in.readString();
+                    }
+
+                    public static final Creator<SpecsBean> CREATOR = new Creator<SpecsBean>() {
+                        @Override
+                        public SpecsBean createFromParcel(Parcel in) {
+                            return new SpecsBean(in);
+                        }
+
+                        @Override
+                        public SpecsBean[] newArray(int size) {
+                            return new SpecsBean[size];
+                        }
+                    };
 
                     public String getProperty() {
                         return property;
@@ -277,6 +375,17 @@ public class MallBodyBean {
 
                     public void setTitle(String title) {
                         this.title = title;
+                    }
+
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(property);
+                        dest.writeString(title);
                     }
                 }
             }
