@@ -20,8 +20,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.bean.Collection;
 import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
+import com.jieleo.projecta.inter.MoveToFive;
+import com.jieleo.projecta.tool.DaoTool;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -150,6 +153,20 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         EventBus.getDefault().register(this);
         floatingActionButton.setOnClickListener(this);
 
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Collection collection=new Collection();
+                collection.setName(itemsBean.getName());
+                collection.setContentUrl(itemsBean.getDetail_html());
+                if (isChecked){
+                    Log.d(TAG, "选中");
+                    //TODO 完成数据库操作
+                }else {
+                    Log.d(TAG, "未选中");
+                }
+            }
+        });
     }
 
 

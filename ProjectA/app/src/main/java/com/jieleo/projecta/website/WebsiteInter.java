@@ -10,15 +10,15 @@ public class WebsiteInter {
     //公共接口部分
     public  static String BASIC_URL="http://api.liwushuo.com/v2/";
     //频道列表的接口
-    public    static    String CHANNELS_URL=BASIC_URL+"channels/preset?gender=2&generation=1";
+    public    static    String CHANNELS_URL=BASIC_URL+"channels/preset?gender=1&generation=3";
 
     //精选轮播图接口
     public static String BANNER="http://api.liwushuo.com/v2/banners?channel=IOS";
 
-    public static final String MODULE = BASIC_URL + "secondary_banners?gender=2&generation=1";
+    public static final String MODULE = BASIC_URL + "secondary_banners?gender=1&generation=3";
 
     public static String part1="channels/";
-    protected static String part2="/items_v2?gender=2&generation=1&limit=20&offset=0";
+    protected static String part2="/items_v2?gender=1&generation=3&limit=20&offset=0";
     public static final String LIST = "ranks_v3/ranks/";
     public static final String LIST_OTHER = "?limit=20&offset=0";
 

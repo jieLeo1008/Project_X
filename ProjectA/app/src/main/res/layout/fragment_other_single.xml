@@ -8,9 +8,7 @@
     <ScrollView
         android:id="@+id/scrollView_other_single"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +18,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_other_single"
                 android:layout_width="match_parent"
-                android:layout_height="240dp">
+                android:layout_height="300dp">
 
             </android.support.v4.view.ViewPager>
 
@@ -48,7 +46,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/tv_price_gift_details"
+                    android:id="@+id/tv_price_other_single"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -68,12 +66,7 @@
 
 
 
-            <WebView
-                android:id="@+id/web_view_other_single"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-            </WebView>
         </LinearLayout>
 
 

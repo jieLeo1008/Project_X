@@ -34,7 +34,7 @@
             <com.youth.banner.Banner
                 android:id="@+id/banner_gift_details"
                 android:layout_width="match_parent"
-                android:layout_height="240dp">
+                android:layout_height="300dp">
 
             </com.youth.banner.Banner>
 

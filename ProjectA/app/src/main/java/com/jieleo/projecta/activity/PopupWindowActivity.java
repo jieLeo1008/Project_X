@@ -94,20 +94,21 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
                 @Override
                 public void onClick(View v) {
                     if (v.getId() == lastId) {//如果点击了两次
-                            radioGroup.clearCheck();
-                                propertyTv.setText("请选择 款式");
-                            lastId = 0;
-                        } else {//如果两次点击了不同的按钮
-                            lastId = v.getId();
-                        }
+                        radioGroup.clearCheck();
+                        propertyTv.setText("请选择 款式");
+                        lastId = 0;
+                    } else {//如果两次点击了不同的按钮
+                        lastId = v.getId();
+                    }
                 }
             });
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {//设置选中的文字
                     RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                    if(checkedId!=-1){
-                    propertyTv.setText("已选" + "''" + radioButton.getText() + "''");
+                    if (checkedId != -1) {
+                        propertyTv.setText("已选" + "''" + radioButton.getText() + "''");
+                        Glide.with(MyApp.getmContext()).load(itemsBean.getSkus().get(checkedId - 1).getCover_image_url()).into(coverIv);
                     }
 
                 }
@@ -125,6 +126,7 @@ public class PopupWindowActivity extends Activity implements View.OnClickListene
         //设置布局文字
         priceTv.setText(itemsBean.getSkus().get(0).getPrice());
         stockTv.setText("库存" + itemsBean.getSkus().get(0).getStock() + "件");
+
 
     }
 

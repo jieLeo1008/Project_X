@@ -43,10 +43,6 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
         this.context = context;
     }
 
-
-
-
-
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -58,7 +54,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
     @Override
     public void onBindViewHolder(final BaseViewHolder holder, int position) {
 
-        itemsBean = itemsBeen.get(position);
+            itemsBean = itemsBeen.get(position+2);
             holder.setText(R.id.tv_author_nickname_item_details_home_page, itemsBean.getAuthor().getNickname());
             holder.setText(R.id.tv_author_introduction_item_details_home_page, itemsBean.getAuthor().getIntroduction());
             if (itemsBean.getColumn() != null) {
@@ -87,7 +83,7 @@ public class HomePageDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Bas
 
     @Override
     public int getItemCount() {
-        return itemsBeen != null ? itemsBeen.size() : 0;
+        return itemsBeen != null ? itemsBeen.size()-2 : 0;
     }
 
 

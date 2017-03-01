@@ -12,7 +12,9 @@ import java.util.List;
 
 public class OtherFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
+    private int pos;
     private String[] title=new String[]{"单品","详情","评论"};
+
     public OtherFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -24,6 +26,7 @@ public class OtherFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        this.pos=position;
         return fragments.get(position);
     }
 
@@ -36,4 +39,6 @@ public class OtherFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return title[position];
     }
+
+
 }
