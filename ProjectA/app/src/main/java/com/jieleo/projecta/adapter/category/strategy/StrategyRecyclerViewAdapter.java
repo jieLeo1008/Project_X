@@ -1,19 +1,14 @@
 package com.jieleo.projecta.adapter.category.strategy;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.Toast;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.bean.category.StrategyDownBean;
-import com.jieleo.projecta.bean.category.StrategyUpBean;
-import com.jieleo.projecta.inter.CallBack;
-import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
 
 /**
@@ -54,9 +49,23 @@ public class StrategyRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
         switch (viewType){
             case UP_VIEW:
                 holder.setHorizonalRecyclerView(R.id.recycler_view_item_up_strategy_page,WebsiteInter.STRATEGY_UP_TITLE);
+                holder.getView(R.id.tv_show_all_item_strategy_up_page).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "上面的", Toast.LENGTH_SHORT).show();
+                        //TODO 完成查看全部的点击跳转
+                    }
+                });
                 break;
             case DOWN_VIEW:
                 holder.setVerticalRecyclerView(R.id.recycler_view_down_strategy_page,strategyDownBean.getData().getChannel_groups().get(position-1));
+                holder.getView(R.id.tv_show_all_item_strategy_down_page).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "下面的", Toast.LENGTH_SHORT).show();
+                        //TODO   完成 查看全部的点击跳转
+                    }
+                });
                 break;
 
         }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
@@ -26,6 +27,7 @@ import com.jieleo.projecta.bean.category.StrategyDownBean;
 import com.jieleo.projecta.bean.category.StrategyUpBean;
 import com.jieleo.projecta.bean.homepage.BannerBean;
 import com.jieleo.projecta.inter.CallBack;
+import com.jieleo.projecta.inter.OnClickListenerInter;
 import com.jieleo.projecta.tool.NetTool;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -131,6 +133,14 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
                 }
             });
+
+            strategyUpRecyclerViewAdapter.setOnClickListenerInter(new OnClickListenerInter() {
+                @Override
+                public void onItemClickListener(int position) {
+                    Toast.makeText(mContext, "哈哈哈哈", Toast.LENGTH_SHORT).show();
+                    //TODO 完成攻略页上面的Item的点击跳转
+                }
+            });
         }
         return this;
     }
@@ -142,6 +152,13 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2, LinearLayoutManager.VERTICAL, false));
             recyclerView.setAdapter(strategyDownRecyclerViewAdapter);
             strategyDownRecyclerViewAdapter.setChannelGroupsBean(channelGroupsBean);
+            strategyDownRecyclerViewAdapter.setOnClickListenerInter(new OnClickListenerInter() {
+                @Override
+                public void onItemClickListener(int position) {
+                    Toast.makeText(mContext, "哈哈", Toast.LENGTH_SHORT).show();
+                    //TODO 完成攻略页 下面的item的点击
+                }
+            });
         }
         return this;
     }

@@ -133,11 +133,11 @@ public class MallPageFragment extends BaseFragment implements OnClickListenerInt
 
     @Override
     public void onItemClickListener(int position) {
-        Intent intent =new Intent(getActivity(), GiftDetailsActivity.class);
-        Bundle bundle=new Bundle();
-        bundle.putParcelable("itemsBean",itemsBeen.get(position));
-        intent.putExtra("bundle",bundle);
-        startActivity(intent);
+//        Intent intent =new Intent(getActivity(), GiftDetailsActivity.class);
+//        Bundle bundle=new Bundle();
+//        bundle.putParcelable("itemsBean",itemsBeen.get(position));
+//        intent.putExtra("bundle",bundle);
+//        startActivity(intent);
 
     }
 }

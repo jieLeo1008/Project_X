@@ -10,7 +10,7 @@
         android:text="@string/item_strategy_up_tv"
         android:layout_height="20dp" />
     <TextView
-        android:id="@+id/tv_show_all_item_strategy_up_page"
+        android:id="@+id/tv_show_all_item_strategy_down_page"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"

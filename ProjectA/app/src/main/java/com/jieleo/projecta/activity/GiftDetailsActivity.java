@@ -23,6 +23,7 @@ import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.Collection;
 import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
+import com.jieleo.projecta.bean.mall.DetailsBean;
 import com.jieleo.projecta.bean.mall.MallBodyBean;
 import com.jieleo.projecta.inter.MoveToFive;
 import com.jieleo.projecta.tool.DaoTool;
@@ -55,7 +56,9 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     private Intent intent;
     private Bundle bundle;
     private FloatingActionButton floatingActionButton;
-    private MallBodyBean.DataBean.ItemsBean itemBean;
+
+
+
 
     @Override
     public int setLayout() {
@@ -93,9 +96,6 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         if (intent.getBundleExtra("details") != null) {
             Bundle bundle = intent.getBundleExtra("details");
             itemsBean = bundle.getParcelable("itemsDetails");
-        }else {
-            Bundle bundle=intent.getBundleExtra("bundle");
-            itemBean=bundle.getParcelable("itemsBean");
         }
         setBanner();
         shortDescriotionTv.setText(itemsBean.getShort_description());
