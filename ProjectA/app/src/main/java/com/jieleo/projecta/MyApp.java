@@ -2,10 +2,9 @@ package com.jieleo.projecta;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 
-import com.jieleo.projecta.bean.DaoMaster;
-import com.jieleo.projecta.bean.DaoSession;
+import com.jieleo.projecta.bean.greendao.DaoMaster;
+import com.jieleo.projecta.bean.greendao.DaoSession;
 
 /**
  * Created by yuyongjie on 17/2/23.

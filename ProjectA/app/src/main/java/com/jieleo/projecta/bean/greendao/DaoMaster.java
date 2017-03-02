@@ -1,4 +1,4 @@
-package com.jieleo.projecta.bean;
+package com.jieleo.projecta.bean.greendao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,11 +22,13 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         CollectionDao.createTable(db, ifNotExists);
+        CollectSingleDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         CollectionDao.dropTable(db, ifExists);
+        CollectSingleDao.dropTable(db, ifExists);
     }
 
     /**
@@ -46,6 +48,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(CollectionDao.class);
+        registerDaoClass(CollectSingleDao.class);
     }
 
     public DaoSession newSession() {

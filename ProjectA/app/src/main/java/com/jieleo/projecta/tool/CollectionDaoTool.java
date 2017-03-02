@@ -1,8 +1,8 @@
 package com.jieleo.projecta.tool;
 
 import com.jieleo.projecta.MyApp;
-import com.jieleo.projecta.bean.Collection;
-import com.jieleo.projecta.bean.CollectionDao;
+import com.jieleo.projecta.bean.greendao.Collection;
+import com.jieleo.projecta.bean.greendao.CollectionDao;
 
 import org.greenrobot.greendao.query.DeleteQuery;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -13,23 +13,23 @@ import java.util.List;
  * Created by yuyongjie on 17/3/1.
  */
 
-public class DaoTool {
-    private static DaoTool ourInstance ;
+public class CollectionDaoTool {
+    private static CollectionDaoTool ourInstance ;
 
     private CollectionDao mCollectionDao;
 
-    public static DaoTool getInstance() {
+    public static CollectionDaoTool getInstance() {
         if (ourInstance==null){
-            synchronized (DaoTool.class){
+            synchronized (CollectionDaoTool.class){
                 if (ourInstance==null){
-                    ourInstance=new DaoTool();
+                    ourInstance=new CollectionDaoTool();
                 }
             }
         }
         return ourInstance;
     }
 
-    private DaoTool() {
+    private CollectionDaoTool() {
         mCollectionDao= MyApp.getmDaoSession().getCollectionDao();
     }
 

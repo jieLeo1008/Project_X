@@ -1,4 +1,4 @@
-package com.jieleo.projecta.bean;
+package com.jieleo.projecta.bean.greendao;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;

@@ -1,4 +1,4 @@
-package com.jieleo.projecta.bean;
+package com.jieleo.projecta.bean.greendao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
