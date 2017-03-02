@@ -42,4 +42,9 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     testCompile 'junit:junit:4.12'
     compile 'org.greenrobot:greendao:3.2.0'
+    compile files('libs/libs/ShareSDK-QQ-2.8.1.jar')
+    compile files('libs/libs/ShareSDK-Core-2.8.1.jar')
+    compile files('libs/libs/MobCommons-2017.0216.1054.jar')
+    compile files('libs/libs/MobTools-2017.0216.1054.jar')
+    compile files('libs/libs/ShareSDK-SinaWeibo-2.8.1.jar')
 }

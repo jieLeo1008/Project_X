@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.Collection;
 import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
@@ -27,6 +28,7 @@ import com.jieleo.projecta.bean.mall.DetailsBean;
 import com.jieleo.projecta.bean.mall.MallBodyBean;
 import com.jieleo.projecta.inter.MoveToFive;
 import com.jieleo.projecta.tool.DaoTool;
+import com.jieleo.projecta.tool.SPUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -214,11 +216,17 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.tv_add_to_shop_gift_details://点击添加到购物车
-                bundle = new Bundle();
-                bundle.putParcelable("itemsBean", itemsBean);
-                intent = new Intent(this, PopupWindowActivity.class);
-                intent.putExtra("bundle", bundle);
-                startActivity(intent);
+                boolean a= (boolean) SPUtils.get(MyApp.getmContext(),"LOGIN",false);
+                if (a){
+                    bundle = new Bundle();
+                    bundle.putParcelable("itemsBean", itemsBean);
+                    intent = new Intent(this, PopupWindowActivity.class);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(this, "请登录", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.liner_layout_choose_gift_details:
                 bundle = new Bundle();

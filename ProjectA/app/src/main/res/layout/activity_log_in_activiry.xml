@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_log_in_activiry"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    android:layout_height="match_parent"
+    tools:context="com.jieleo.projecta.activity.LogInActiviry">
+
+
+    <ImageView
+        android:id="@+id/iv_head_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@mipmap/me_avatar_boy_grey"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/iv_head_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_below="@id/iv_head_login"
+        android:id="@+id/user_name_et"
+        android:hint="请输入电话号码"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="80dp"
+        android:layout_below="@id/iv_head_login"
+        android:id="@+id/password_et"
+        android:hint="请输入密码"
+        android:password="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="120dp"
+        android:layout_below="@id/iv_head_login"
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:text="登录"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_sina_share_login"
+            android:src="@mipmap/icon_share_sina"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@mipmap/icon_share_wechat"
+            android:id="@+id/iv_wechat_share_login"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@mipmap/icon_share_qq"
+            android:layout_width="0dp"
+            android:id="@+id/iv_qq_share_login"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>

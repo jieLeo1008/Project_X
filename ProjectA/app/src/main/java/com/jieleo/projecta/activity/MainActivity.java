@@ -1,9 +1,11 @@
 package com.jieleo.projecta.activity;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
+import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.fragment.BaseFragment;
 import com.jieleo.projecta.fragment.CategoryPageFragment;
@@ -11,6 +13,9 @@ import com.jieleo.projecta.fragment.HomePageFragment;
 import com.jieleo.projecta.fragment.GiftPageFragmnet;
 import com.jieleo.projecta.fragment.ProfilePageFragment;
 import com.jieleo.projecta.fragment.MallPageFragment;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private static final String TAG = "MainActivity";
@@ -35,6 +40,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initView() {
+        ShareSDK.initSDK(MyApp.getmContext(),"1bbbcf490d44e");
         radioGroup = (RadioGroup) findViewById(R.id.radio_group_main_activity);
         homePageFragment = new HomePageFragment();
         giftPageFragmnet = new GiftPageFragmnet();
@@ -98,6 +104,18 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 .hide(mallPageFragment)
                 .hide(categoryPageFragment)
                 .hide(profilePageFragment);
+    }
+
+    private void showShare(){
+        ShareSDK.initSDK(this);
+        OnekeyShare oks=new OnekeyShare();
+
+        oks.disableSSOWhenAuthorize();
+
+        oks.setTitleUrl("www.baidu.com");
+        oks.setText("我是分享文本");
+
+        oks.show(this);
     }
 
 

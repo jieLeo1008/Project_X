@@ -2,6 +2,7 @@ package com.jieleo.projecta;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.jieleo.projecta.bean.DaoMaster;
 import com.jieleo.projecta.bean.DaoSession;
@@ -15,6 +16,7 @@ public class MyApp extends Application {
     public static Context mContext;
     public static DaoMaster mDaoMaster;
     public static DaoSession mDaoSession;
+
 
     @Override
     public void onCreate() {
@@ -42,4 +44,6 @@ public class MyApp extends Application {
         mDaoSession=mDaoMaster.newSession();
         return mDaoSession;
     }
+
+
 }
