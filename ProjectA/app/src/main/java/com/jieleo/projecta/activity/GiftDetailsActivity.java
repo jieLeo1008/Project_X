@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.bean.greendao.Collect;
 import com.jieleo.projecta.bean.greendao.Collection;
 import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
+import com.jieleo.projecta.tool.CollectTool;
 import com.jieleo.projecta.tool.SPUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -104,7 +107,6 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setSupportZoom(true);
         webView.loadDataWithBaseURL(null, getNewContent(itemsBean.getDetail_html()), "text/html", "utf-8", null);
-
     }
 
 
@@ -112,16 +114,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     protected void bindEvent() {
         floatingActionButton.setVisibility(View.INVISIBLE);
         relativeWhiteLayout.setVisibility(View.INVISIBLE);
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(GiftDetailsActivity.this, "选中", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(GiftDetailsActivity.this, "未选中", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
 
 
         scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
@@ -156,17 +149,24 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         EventBus.getDefault().register(this);
         floatingActionButton.setOnClickListener(this);
 
+        //查询是否存在
+        if (CollectTool.getInstance().queryByName(itemsBean.getName())){
+            checkBox.setChecked(true);
+        }else {
+            checkBox.setChecked(false);
+        }
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Collection collection=new Collection();
-                collection.setName(itemsBean.getName());
-                collection.setContentUrl(itemsBean.getDetail_html());
                 if (isChecked){
-                    Log.d(TAG, "选中");
-                    //TODO 完成数据库操作
+                    Collect collect=new Collect();
+                    collect.setCollectName(itemsBean.getName());
+                    collect.setCollectCoverIconUrl(itemsBean.getCover_image_url());
+                    collect.setCollectContentUrl(itemsBean.getDetail_html());
+                    CollectTool.getInstance().insert(collect);
                 }else {
-                    Log.d(TAG, "未选中");
+                    CollectTool.getInstance().deletByName(itemsBean.getName());
                 }
             }
         });
@@ -221,22 +221,31 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
                     startActivity(intent);
                 }else {
                     Toast.makeText(this, "请登录", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this,LogInActiviry.class));
                 }
 
                 break;
             case R.id.liner_layout_choose_gift_details:
-                bundle = new Bundle();
-                bundle.putParcelable("itemsBean", itemsBean);
-                intent = new Intent(this, PopupWindowActivity.class);
-                intent.putExtra("bundle", bundle);
-                startActivity(intent);
+                if ((boolean) SPUtils.get(MyApp.getmContext(),"LOGIN",false)){
+                    bundle = new Bundle();
+                    bundle.putParcelable("itemsBean", itemsBean);
+                    intent = new Intent(this, PopupWindowActivity.class);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(this,LogInActiviry.class));
+                }
                 break;
             case R.id.tv_buy_now_gift_details://弹出菜单
-                bundle = new Bundle();
-                bundle.putParcelable("itemsBean", itemsBean);
-                intent = new Intent(this, PopupWindowActivity.class);
-                intent.putExtra("bundle", bundle);
-                startActivity(intent);
+                if ((boolean) SPUtils.get(MyApp.getmContext(),"LOGIN",false)) {
+                    bundle = new Bundle();
+                    bundle.putParcelable("itemsBean", itemsBean);
+                    intent = new Intent(this, PopupWindowActivity.class);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(this,LogInActiviry.class));
+                }
                 break;
             case R.id.fa_btn_gift_details://返回顶部
                 scrollView.scrollTo(0, 0);
@@ -250,7 +259,6 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
     public void setChoose(PopupWindowBean popupWindowBean) {
         chooseTv.setText(popupWindowBean.getText() + "     " + popupWindowBean.getCount() + "件");
         choosedTv.setVisibility(View.GONE);
-
     }
 
 

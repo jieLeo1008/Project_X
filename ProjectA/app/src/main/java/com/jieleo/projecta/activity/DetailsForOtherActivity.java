@@ -6,16 +6,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.details.OtherDetailsSingleVpAdapter;
 import com.jieleo.projecta.adapter.gift.OtherFragmentAdapter;
 import com.jieleo.projecta.bean.eventbus.EventBusBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
+import com.jieleo.projecta.bean.greendao.Collect;
 import com.jieleo.projecta.fragment.OtherCommentsFragment;
 import com.jieleo.projecta.fragment.OtherDetailsFragment;
 import com.jieleo.projecta.fragment.OtherSingleFragment;
 import com.jieleo.projecta.inter.MoveToFive;
+import com.jieleo.projecta.tool.CollectTool;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,6 +33,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
     private List<Fragment> fragments;
     private OtherFragmentAdapter adapter;
     private MoveToFive moveToFive;
+    private CheckBox likeCheck;
 
     @Override
     public int setLayout() {
@@ -39,6 +44,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
     protected void initView() {
         tabLayout=bindView(R.id.tab_layout_details_others);
         viewPager=bindView(R.id.vp_details_for_others);
+        likeCheck = (CheckBox) findViewById(R.id.checkbox_heart_other_single);
     }
 
     @Override
@@ -47,6 +53,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
         Bundle bundle=intent.getBundleExtra("details");
         itemsBean=bundle.getParcelable("itemsDetails");
         fragments=new ArrayList<>();
+
         OtherSingleFragment otherSingleFragment=new OtherSingleFragment();
         OtherDetailsFragment otherDetailsFragment=new OtherDetailsFragment();
         OtherCommentsFragment otherCommentsFragment=new OtherCommentsFragment();
@@ -57,6 +64,14 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(adapter);
         adapter.setFragments(fragments);
+
+        if (CollectTool.getInstance().queryByName(itemsBean.getName())){
+            likeCheck.setChecked(true);
+        }else {
+            likeCheck.setChecked(false);
+        }
+
+
         otherSingleFragment.setArguments(bundle);
         otherDetailsFragment.setArguments(bundle);
 
@@ -83,6 +98,20 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        likeCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    Collect collect=new Collect();
+                    collect.setCollectName(itemsBean.getName());
+                    collect.setCollectCoverIconUrl(itemsBean.getCover_image_url());
+                    collect.setCollectCoverIconUrl(itemsBean.getUrl());
+                }else {
+
+                }
             }
         });
     }

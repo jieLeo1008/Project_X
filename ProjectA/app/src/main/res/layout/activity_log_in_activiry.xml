@@ -72,4 +72,59 @@
             android:layout_weight="1"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/tv_move_to_home_page"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="首页"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:drawableTop="@mipmap/ic_tab_home_normal"
+            android:layout_height="match_parent" />
+        <TextView
+
+            android:id="@+id/tv_move_to_gift_page"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="榜单"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:drawableTop="@mipmap/ic_tab_gift_normal"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_move_to_mall_page"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="商店"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:drawableTop="@mipmap/ic_tab_mall_normal"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_move_to_category_page"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="分类"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:drawableTop="@mipmap/ic_tab_category_normal"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="我的"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:textColor="@color/text_selected"
+            android:drawableTop="@mipmap/ic_tab_profile_selected"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </RelativeLayout>

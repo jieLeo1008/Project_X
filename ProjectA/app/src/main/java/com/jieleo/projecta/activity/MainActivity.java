@@ -1,8 +1,14 @@
 package com.jieleo.projecta.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jieleo.projecta.MyApp;
@@ -33,6 +39,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private BaseFragment currentFragment;
 
+
+    private MyBroadCastReveiver myBroadCastReveiver;
+
+    private RadioButton homePageBtn,giftPageBtn,mallPageBtn,categoryPageBtn;
+
     @Override
     public int setLayout() {
         return R.layout.activity_main;
@@ -51,7 +62,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //        fragmentTransaction=fragmentManager.beginTransaction();
 //        fragmentTransaction.add(R.id.content,homePageFragment);
 //        fragmentTransaction.commit();
-
+        homePageBtn = (RadioButton) findViewById(R.id.radio_btn_home_page);
+        giftPageBtn = (RadioButton) findViewById(R.id.radio_bt_gift_page);
+        mallPageBtn = (RadioButton) findViewById(R.id.radio_btn_mall_page);
+        categoryPageBtn = (RadioButton) findViewById(R.id.radio_btn_category_page);
     }
 
     @Override
@@ -65,6 +79,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         hideAll(fragmentTransaction);
         fragmentTransaction.show(homePageFragment).commit();
+
+        myBroadCastReveiver=new MyBroadCastReveiver();
+        IntentFilter intentFilter=new IntentFilter("moveToHome");
+        intentFilter.addAction("moveToGift");
+        intentFilter.addAction("moveToMall");
+        intentFilter.addAction("moveToCategory");
+        registerReceiver(myBroadCastReveiver,intentFilter);
     }
 
     @Override
@@ -106,17 +127,50 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 .hide(profilePageFragment);
     }
 
-    private void showShare(){
-        ShareSDK.initSDK(this);
-        OnekeyShare oks=new OnekeyShare();
+//    private void showShare(){
+//        ShareSDK.initSDK(this);
+//        OnekeyShare oks=new OnekeyShare();
+//
+//        oks.disableSSOWhenAuthorize();
+//
+//        oks.setTitleUrl("www.baidu.com");
+//        oks.setText("我是分享文本");
+//
+//        oks.show(this);
+//    }
 
-        oks.disableSSOWhenAuthorize();
 
-        oks.setTitleUrl("www.baidu.com");
-        oks.setText("我是分享文本");
 
-        oks.show(this);
+
+    class MyBroadCastReveiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            fmTransaction = fragmentManager.beginTransaction();
+            hideAll(fmTransaction);
+            switch (intent.getAction()) {
+                case "moveToHome":
+                    fmTransaction.show(homePageFragment);
+                    break;
+                case "moveToGift":
+                    fmTransaction.show(giftPageFragmnet);
+                    break;
+                case "moveToMall":
+                    fmTransaction.show( mallPageFragment);
+                    break;
+                case "moveToCategory":
+                    fmTransaction.show( categoryPageFragment);
+                    break;
+
+            }
+
+            fmTransaction.commitAllowingStateLoss();
+        }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myBroadCastReveiver);
+    }
 }
