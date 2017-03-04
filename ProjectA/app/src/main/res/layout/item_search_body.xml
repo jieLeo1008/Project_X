@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#FFF"
+    android:layout_height="50dp">
+
+    <ImageView
+        android:id="@+id/iv_hist_search"
+        android:scaleType="center"
+        android:src="@mipmap/time_commodity"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/tv_name_search"
+        android:text="搜索内容"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/iv_hist_search"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/iv_delete_search"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/icon_delete_cross"
+        android:layout_width="50dp"
+        android:scaleType="center"
+        android:layout_height="50dp" />
+</RelativeLayout>

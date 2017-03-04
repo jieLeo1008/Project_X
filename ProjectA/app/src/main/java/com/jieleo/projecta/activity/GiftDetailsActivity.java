@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -22,11 +20,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
-import com.jieleo.projecta.bean.greendao.Collect;
-import com.jieleo.projecta.bean.greendao.Collection;
 import com.jieleo.projecta.bean.eventbus.PopupWindowBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
-import com.jieleo.projecta.tool.CollectTool;
+import com.jieleo.projecta.bean.greendao.Enshrine;
+import com.jieleo.projecta.tool.EnshirneTool;
 import com.jieleo.projecta.tool.SPUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -150,7 +147,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         floatingActionButton.setOnClickListener(this);
 
         //查询是否存在
-        if (CollectTool.getInstance().queryByName(itemsBean.getName())){
+        if (EnshirneTool.getInstance().queryByName(itemsBean.getName())){
             checkBox.setChecked(true);
         }else {
             checkBox.setChecked(false);
@@ -160,13 +157,14 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    Collect collect=new Collect();
-                    collect.setCollectName(itemsBean.getName());
-                    collect.setCollectCoverIconUrl(itemsBean.getCover_image_url());
-                    collect.setCollectContentUrl(itemsBean.getDetail_html());
-                    CollectTool.getInstance().insert(collect);
+                    Enshrine enshrine=new Enshrine();
+                    enshrine.setEnshireName(itemsBean.getName());
+                    enshrine.setEnshrineCoverImage(itemsBean.getCover_image_url());
+                    enshrine.setDetailsUrl(itemsBean.getDetail_html());
+                    enshrine.setType(1);
+                    EnshirneTool.getInstance().insert(enshrine);
                 }else {
-                    CollectTool.getInstance().deletByName(itemsBean.getName());
+                    EnshirneTool.getInstance().deletByName(itemsBean.getName());
                 }
             }
         });

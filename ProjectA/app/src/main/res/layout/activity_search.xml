@@ -8,6 +8,7 @@
     tools:context="com.jieleo.projecta.activity.SearchActivity">
 
 
+
     <LinearLayout
         android:id="@+id/line_layout_search"
         android:layout_alignParentTop="true"
@@ -22,7 +23,9 @@
             android:hint="选份走心得好礼送给Ta"
             android:textSize="15sp"
             android:imeOptions="actionSearch"
+            android:padding="5dp"
             android:singleLine="true"
+            android:drawablePadding="10dp"
             android:layout_gravity="center_vertical"
             android:drawableLeft="@mipmap/icon_search"
             android:textCursorDrawable="@drawable/edit_text_cursor_shape"
@@ -38,26 +41,21 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <TextView
-        android:layout_below="@id/line_layout_search"
-        android:drawableLeft="@mipmap/icon_start"
-        android:text="大家都在搜"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--<TextView-->
+        <!--android:layout_below="@id/line_layout_search"-->
+        <!--android:drawableLeft="@mipmap/icon_start"-->
+        <!--android:text="大家都在搜"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
-    <android.support.v7.widget.RecyclerView
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:layout_below="@id/line_layout_search"
         android:id="@+id/recycler_view_hot_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/recycler_view_data"
-        android:layout_below="@id/recycler_view_hot_search"
-        android:layout_height="match_parent">
+    </com.github.jdsjlzx.recyclerview.LRecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

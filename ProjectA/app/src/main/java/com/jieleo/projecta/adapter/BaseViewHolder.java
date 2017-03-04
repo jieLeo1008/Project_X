@@ -137,8 +137,11 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             strategyUpRecyclerViewAdapter.setOnClickListenerInter(new OnClickListenerInter() {
                 @Override
                 public void onItemClickListener(int position) {
-                    Toast.makeText(mContext, "哈哈哈哈", Toast.LENGTH_SHORT).show();
-                    //TODO 完成攻略页上面的Item的点击跳转
+
+                    if (position==11){
+                        //TODO  完成传值
+                    }
+
                 }
             });
         }

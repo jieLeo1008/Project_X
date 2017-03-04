@@ -29,6 +29,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile files('libs/libs/ShareSDK-QQ-2.8.1.jar')
+    compile files('libs/libs/ShareSDK-Core-2.8.1.jar')
+    compile files('libs/libs/MobCommons-2017.0216.1054.jar')
+    compile files('libs/libs/MobTools-2017.0216.1054.jar')
+    compile files('libs/libs/ShareSDK-SinaWeibo-2.8.1.jar')
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
@@ -40,11 +45,7 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:support-v4:25.2.0'
-    testCompile 'junit:junit:4.12'
     compile 'org.greenrobot:greendao:3.2.0'
-    compile files('libs/libs/ShareSDK-QQ-2.8.1.jar')
-    compile files('libs/libs/ShareSDK-Core-2.8.1.jar')
-    compile files('libs/libs/MobCommons-2017.0216.1054.jar')
-    compile files('libs/libs/MobTools-2017.0216.1054.jar')
-    compile files('libs/libs/ShareSDK-SinaWeibo-2.8.1.jar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    testCompile 'junit:junit:4.12'
 }

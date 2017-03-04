@@ -62,7 +62,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LogInActiviry"></activity>
+        <activity android:name=".activity.LogInActiviry" />
+        <activity android:name=".activity.EnshrineDetailsActivity" />
+        <activity android:name=".activity.ColumnActivity"></activity>
     </application>
 
 </manifest>

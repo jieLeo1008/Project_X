@@ -5,23 +5,18 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.jieleo.projecta.R;
-import com.jieleo.projecta.adapter.details.OtherDetailsSingleVpAdapter;
 import com.jieleo.projecta.adapter.gift.OtherFragmentAdapter;
-import com.jieleo.projecta.bean.eventbus.EventBusBean;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
-import com.jieleo.projecta.bean.greendao.Collect;
+import com.jieleo.projecta.bean.greendao.Enshrine;
 import com.jieleo.projecta.fragment.OtherCommentsFragment;
 import com.jieleo.projecta.fragment.OtherDetailsFragment;
 import com.jieleo.projecta.fragment.OtherSingleFragment;
 import com.jieleo.projecta.inter.MoveToFive;
-import com.jieleo.projecta.tool.CollectTool;
-
-import org.greenrobot.eventbus.EventBus;
+import com.jieleo.projecta.tool.EnshirneTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +60,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
         viewPager.setAdapter(adapter);
         adapter.setFragments(fragments);
 
-        if (CollectTool.getInstance().queryByName(itemsBean.getName())){
+        if (EnshirneTool.getInstance().queryByName(itemsBean.getName())){
             likeCheck.setChecked(true);
         }else {
             likeCheck.setChecked(false);
@@ -105,12 +100,14 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    Collect collect=new Collect();
-                    collect.setCollectName(itemsBean.getName());
-                    collect.setCollectCoverIconUrl(itemsBean.getCover_image_url());
-                    collect.setCollectCoverIconUrl(itemsBean.getUrl());
+                    Enshrine enshrine=new Enshrine();
+                    enshrine.setEnshireName(itemsBean.getName());
+                    enshrine.setEnshrineCoverImage(itemsBean.getCover_image_url());
+                    enshrine.setDetailsUrl(itemsBean.getUrl());
+                    enshrine.setType(2);
+                    EnshirneTool.getInstance().insert(enshrine);
                 }else {
-
+                    EnshirneTool.getInstance().deletByName(itemsBean.getName());
                 }
             }
         });

@@ -56,7 +56,7 @@ public class SingleListDetailsActivity extends BaseActivity {
         Bundle bundle=intent.getBundleExtra("bundle");
         subcategoriesBean=bundle.getParcelable("categoriesBean");
         titleTv.setText(subcategoriesBean.getName());
-        String url= WebsiteInter.SINGE_SECOND_UP+subcategoriesBean.getId()+WebsiteInter.SINGE_SECOND_DOWN;
+        String url= WebsiteInter.SINGE_SECOND_UP+subcategoriesBean.getId ()+WebsiteInter.SINGE_SECOND_DOWN;
         NetTool.getInstance().startRequest(url, SingleListDetailsBean.class, new CallBack<SingleListDetailsBean>() {
             @Override
             public void onSuccess(SingleListDetailsBean response) {

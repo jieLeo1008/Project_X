@@ -1,14 +1,20 @@
 package com.jieleo.projecta.adapter.category.strategy;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jieleo.projecta.R;
+import com.jieleo.projecta.activity.ColumnActivity;
 import com.jieleo.projecta.adapter.BaseViewHolder;
 import com.jieleo.projecta.bean.category.StrategyDownBean;
+import com.jieleo.projecta.bean.category.StrategyUpBean;
+import com.jieleo.projecta.inter.CallBack;
+import com.jieleo.projecta.tool.NetTool;
 import com.jieleo.projecta.website.WebsiteInter;
 
 /**
@@ -54,6 +60,23 @@ public class StrategyRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
                     public void onClick(View v) {
                         Toast.makeText(context, "上面的", Toast.LENGTH_SHORT).show();
                         //TODO 完成查看全部的点击跳转
+                        NetTool.getInstance().startRequest(WebsiteInter.STRATEGY_UP_TITLE, StrategyUpBean.class, new CallBack<StrategyUpBean>() {
+                            @Override
+                            public void onSuccess(StrategyUpBean response) {
+                                StrategyUpBean strategyUpBean=response;
+                                Bundle bundle=new Bundle();
+                                bundle.putParcelable("strategy",strategyUpBean);
+                                Intent intent=new Intent(context, ColumnActivity.class);
+                                intent.putExtra("bundle",bundle);
+                                context.startActivity(intent);
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+                        });
+
                     }
                 });
                 break;

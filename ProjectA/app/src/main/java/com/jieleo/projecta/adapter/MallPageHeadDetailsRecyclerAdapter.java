@@ -84,7 +84,15 @@ public class MallPageHeadDetailsRecyclerAdapter extends RecyclerView.Adapter<Bas
 
     @Override
     public int getItemCount() {
-        return itemsBeanX!=null?7:0;
+        if (itemsBeanX!=null){
+            if (itemsBeanX.getItems().size()<7){
+                return itemsBeanX.getItems().size();
+            }else {
+                return 7;
+            }
+        }else {
+            return 0;
+        }
     }
 
     @Override
