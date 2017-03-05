@@ -1,11 +1,14 @@
 package com.jieleo.projecta.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.greendao.Search;
+import com.jieleo.projecta.tool.SearchTool;
 
 import java.util.List;
 
@@ -33,8 +36,15 @@ public class SearchBodyAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, final int position) {
         holder.setText(R.id.tv_name_search,searchs.get(position).getName());
+        holder.getView(R.id.iv_delete_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SearchTool.getInstance().deleteByName(searchs.get(position).getName());
+                context.sendBroadcast(new Intent("notifyData"));
+            }
+        });
     }
 
     @Override

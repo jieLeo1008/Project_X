@@ -31,7 +31,7 @@ public class SearchTool {
     }
 
     private SearchTool() {
-        mSearchDao= MyApp.mDaoSession.getSearchDao();
+        mSearchDao= MyApp.getmDaoSession().getSearchDao();
     }
 
     //增加数据
@@ -51,6 +51,12 @@ public class SearchTool {
     public List<Search> queryAll(){
         List<Search> searches=mSearchDao.loadAll();
         return searches;
+    }
+    //查重
+    public  boolean isrepeate(String name){
+        QueryBuilder<Search> queryBuilder=mSearchDao.queryBuilder().where(SearchDao.Properties.Name.eq(name));
+        Long count=queryBuilder.buildCount().count();
+        return count>0?true:false;
     }
 
 
