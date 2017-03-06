@@ -9,19 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="频道列表"
+            android:text="@string/chennels"
             android:layout_alignParentLeft="true"
             android:gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="30dp" />
+            android:layout_width="@dimen/activity_horizontal_margin_100"
+            android:layout_height="@dimen/activity_horizontal_margin_30" />
         <ImageView
             android:src="@mipmap/arrow_grey_up"
-            android:layout_width="40dp"
+            android:layout_width="@dimen/activity_horizontal_margin_40"
             android:id="@+id/iv_close_popup_window"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/dp_10"
             android:layout_alignParentRight="true"
             android:scaleType="center"
-            android:layout_height="30dp" />
+            android:layout_height="@dimen/activity_horizontal_margin_30" />
     </RelativeLayout>
 
     <com.jieleo.projecta.custromview.MyGridView

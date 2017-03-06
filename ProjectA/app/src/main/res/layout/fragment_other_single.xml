@@ -18,7 +18,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_other_single"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="@dimen/activity_horizontal_margin_300">
 
             </android.support.v4.view.ViewPager>
 
@@ -33,9 +33,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_5"
                     android:gravity="center"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/activity_horizontal_margin__25" />
 
                 <TextView
                     android:id="@+id/tv_name_other_single"
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_size_15" />
 
                 <TextView
                     android:id="@+id/tv_price_other_single"
@@ -52,7 +52,7 @@
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
                     android:textColor="#F00"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/text_size_20" />
 
                 <TextView
                     android:id="@+id/tv_likes_other_single"
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/text_size_10" />
             </LinearLayout>
 
 

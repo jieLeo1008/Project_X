@@ -2,9 +2,11 @@ package com.jieleo.projecta.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.greendao.Search;
@@ -45,6 +47,7 @@ public class SearchBodyAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 context.sendBroadcast(new Intent("notifyData"));
             }
         });
+
     }
 
     @Override

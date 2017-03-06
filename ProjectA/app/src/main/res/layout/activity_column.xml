@@ -10,17 +10,17 @@
         android:id="@+id/relative_layout_column"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="@dimen/activity_horizontal_margin_30">
         <ImageView
             android:src="@mipmap/btn_back_black"
             android:scaleType="center"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <TextView
-            android:text="栏目"
+            android:text="@string/item_strategy_up_tv"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_20"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -29,8 +29,8 @@
         android:layout_below="@id/relative_layout_column"
         android:id="@+id/l_recycler_view_column"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_10"
         android:layout_height="match_parent">
 
     </com.github.jdsjlzx.recyclerview.LRecyclerView>

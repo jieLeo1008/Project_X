@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
     <com.jieleo.projecta.custromview.MyGridView
         android:id="@+id/grid_view_head"
-        android:columnWidth="70dp"
+        android:columnWidth="@dimen/activity_horizontal_margin_70"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="3">

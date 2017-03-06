@@ -10,8 +10,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
+import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.activity.DetailsForOtherActivity;
 import com.jieleo.projecta.activity.GiftDetailsActivity;
@@ -37,6 +39,7 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
     private List<GiftDetailsBean.DataBean.ItemsBean> itemsBeen;
     private String nextUrl;
+    private String url;
 
     @Override
     protected int getLayoutId() {
@@ -56,7 +59,7 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
     protected void initData() {
         Bundle bundle = getArguments();
         int id = bundle.getInt("id", 1);
-        String url = WebsiteInter.getGiftDetailsUrl(id);
+        url = WebsiteInter.getGiftDetailsUrl(id);
 
 
         NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
@@ -106,6 +109,24 @@ public class GiftDetailsPageFragment extends BaseFragment implements OnClickList
 
 
         giftPageRecyclerViewAdapter.setOnClickListenerInter(this);
+        mLRecyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                NetTool.getInstance().startRequest(url, GiftDetailsBean.class, new CallBack<GiftDetailsBean>() {
+                    @Override
+                    public void onSuccess(GiftDetailsBean response) {
+                        mLRecyclerView.refreshComplete(10);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+
+            }
+        });
+        mLRecyclerView.setRefreshProgressStyle(ProgressStyle.BallScale);
     }
 
     @Override

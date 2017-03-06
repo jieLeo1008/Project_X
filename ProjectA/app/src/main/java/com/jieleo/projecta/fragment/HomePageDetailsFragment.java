@@ -12,8 +12,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
+import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.activity.WebActivity;
 import com.jieleo.projecta.adapter.HomePageDetailsRecyclerViewAdapter;
@@ -50,6 +52,7 @@ public class HomePageDetailsFragment extends BaseFragment {
     private String nextUrl;
     private List<String> bannerRes;
     private BannerBean bannerBean;
+    private String url;
 
     @Override
     protected int getLayoutId() {
@@ -69,7 +72,7 @@ public class HomePageDetailsFragment extends BaseFragment {
         Bundle bundle = getArguments();
         id = bundle.getInt("id", 108);
         position = bundle.getInt("position", 0);
-        String url = WebsiteInter.getHomePageDetailsUrl(id);
+        url = WebsiteInter.getHomePageDetailsUrl(id);
         mDetialsRecyclerViewAdapter = new HomePageDetailsRecyclerViewAdapter(getContext());
         NetTool.getInstance().startRequest(url, DetailsBean.class, new CallBack<DetailsBean>() {
             @Override
@@ -185,6 +188,26 @@ public class HomePageDetailsFragment extends BaseFragment {
                 }
             }
         });
+        mLRecyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                NetTool.getInstance().startRequest(url, DetailsBean.class, new CallBack<DetailsBean>() {
+                    @Override
+                    public void onSuccess(DetailsBean response) {
+//                        itemsBeen.clear();
+//                        itemsBeen=response.getData().getItems();
+//                        mDetialsRecyclerViewAdapter.setItemsBeen(itemsBeen);
+                        mLRecyclerView.refreshComplete(18);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+            }
+        });
+        mLRecyclerView.setRefreshProgressStyle(ProgressStyle.BallScale);
     }
 
     class ImageLoader extends com.youth.banner.loader.ImageLoader {

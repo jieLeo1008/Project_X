@@ -2,14 +2,33 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="activity_horizontal_margin_10">12dp</dimen>
+    <dimen name="activity_horizontal_margin_12">12dp</dimen>
     <dimen name="fragment_linear_layout_margin">7dp</dimen>
     <dimen name="activity_horizontal_margin_80">80dp</dimen>
     <dimen name="fragment_title_tv_margin_right">10dp</dimen>
     <dimen name="activity_horizontal_margin_100">100dp</dimen>
     <dimen name="activity_horizontal_margin_140">140dp</dimen>
+    <dimen name="activity_horizontal_margin_40">40dp</dimen>
+    <dimen name="activity_horizontal_margin_60">60dp</dimen>
+    <dimen name="activity_horizontal_margin_90">90dp</dimen>
+    <dimen name="activity_horizontal_margin_15">15dp</dimen>
+    <dimen name="activity_horizontal_margin_300">300dp</dimen>
+    <dimen name="activity_horizontal_margin_320">320dp</dimen>
+    <dimen name="activity_horizontal_margin_70">70dp</dimen>
     <dimen name="activity_horizontal_margin_120">120dp</dimen>
+    <dimen name="activity_horizontal_margin_165">165dp</dimen>
+    <dimen name="activity_horizontal_margin_150">150dp</dimen>
+    <dimen name="activity_horizontal_margin_10">10dp</dimen>
     <dimen name="activity_horizontal_margin_200">200dp</dimen>
+    <dimen name="activity_horizontal_margin_240">240dp</dimen>
+    <dimen name="activity_horizontal_margin_30">30dp</dimen>
+    <dimen name="activity_horizontal_margin_50">50dp</dimen>
+    <dimen name="activity_horizontal_margin_35">35dp</dimen>
+    <dimen name="activity_horizontal_margin_5">5dp</dimen>
+    <dimen name="activity_horizontal_margin__5">-5dp</dimen>
+    <dimen name="activity_horizontal_margin__25">25dp</dimen>
+    <dimen name="activity_horizontal_margin_280">280dp</dimen>
+    <dimen name="activity_horizontal_margin_270">270dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="fragment_title_tv_margin_left">15dp</dimen>
     <dimen name="fragment_lin_layout_height">40dp</dimen>
@@ -29,4 +48,9 @@
     <dimen name="item_head_first_details_mall_text_height">20dp</dimen>
     <dimen name="item_head_first_mall_page_height">260dp</dimen>
     <dimen name="layout_margin_1dp">1dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_25">25sp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package com.jieleo.projecta.adapter.mall;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -45,8 +46,10 @@ public class ColumnRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHold
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     buttonView.setText("已关注");
+                    buttonView.setBackgroundColor(Color.parseColor("#FFECEC"));
                 }else {
                     buttonView.setText("未关注");
+                    buttonView.setBackgroundColor(Color.WHITE);
                 }
             }
         });

@@ -175,7 +175,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/activity_horizontal_margin_50"
         android:layout_alignParentBottom="true"
         android:background="#FFF"
         android:orientation="horizontal">
@@ -185,13 +185,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin_5"
             android:layout_weight="2"
             android:button="@null"
             android:drawableTop="@drawable/likes_checkbox_selector"
             android:gravity="top|center_horizontal"
-            android:text="喜欢"
-            android:textSize="10sp" />
+            android:text="@string/activity_gift_details_like"
+            android:textSize="@dimen/activity_horizontal_margin_10" />
 
         <TextView
             android:id="@+id/tv_share_gift_details"
@@ -202,8 +202,8 @@
             android:drawableTop="@mipmap/icon_share_up"
             android:gravity="top|center_horizontal"
             android:scaleType="center"
-            android:text="分享"
-            android:textSize="10sp" />
+            android:text="@string/activity_gift_details_share"
+            android:textSize="@dimen/activity_horizontal_margin_10" />
 
         <TextView
             android:id="@+id/tv_add_to_shop_gift_details"
@@ -212,7 +212,7 @@
             android:layout_weight="2.5"
             android:background="#FF6678"
             android:gravity="center"
-            android:text="加入购物车" />
+            android:text="@string/activity_gift_details_add_to_shop" />
 
         <TextView
             android:id="@+id/tv_buy_now_gift_details"
@@ -221,7 +221,7 @@
             android:layout_weight="3.5"
             android:background="#FF2D47"
             android:gravity="center"
-            android:text="立即购买" />
+            android:text="@string/activity_gift_details_buy_now" />
 
     </LinearLayout>
 </RelativeLayout>

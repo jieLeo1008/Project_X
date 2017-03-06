@@ -2,9 +2,11 @@ package com.jieleo.projecta.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.bean.HotSearch;
@@ -57,6 +59,10 @@ public class SearchHeadRecyclerViewAdapter extends RecyclerView.Adapter<BaseView
                 }
             }
         });
+        if (position>2){
+            ((TextView)holder.getView(R.id.tv_item_hot_search)).setTextColor(Color.BLACK);
+            ((TextView)holder.getView(R.id.tv_item_hot_search)).setBackgroundColor(Color.parseColor("#FFFFFE"));
+        }
     }
 
     @Override

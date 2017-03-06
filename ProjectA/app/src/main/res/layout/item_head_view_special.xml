@@ -8,22 +8,22 @@
     <ImageView
         android:id="@+id/iv_head_special"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="@dimen/activity_horizontal_margin_200" />
     <TextView
-        android:layout_marginLeft="10dp"
-        android:textSize="20sp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:textSize="@dimen/text_size_20"
         android:textColor="#000"
         android:id="@+id/tv_title_head_special"
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="@dimen/activity_horizontal_margin_80" />
     <TextView
-        android:layout_width="100dp"
+        android:layout_width="@dimen/activity_horizontal_margin_100"
         android:background="#000"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
         android:layout_height="1dp" />
     <TextView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
         android:id="@+id/tv_introduction_head_special"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

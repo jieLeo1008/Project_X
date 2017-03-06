@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="@dimen/activity_horizontal_margin_10"
-    android:paddingRight="@dimen/activity_horizontal_margin_10"
+    android:paddingLeft="@dimen/activity_horizontal_margin_12"
+    android:paddingRight="@dimen/activity_horizontal_margin_12"
     android:background="@drawable/fragment_bg_shape"
     android:layout_height="wrap_content">
 
@@ -28,8 +28,8 @@
         android:id="@+id/card_view_home_page"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
+        app:cardCornerRadius="@dimen/activity_horizontal_margin_5"
+        app:cardElevation="@dimen/activity_horizontal_margin_5"
         android:layout_below="@id/iv_author_head_item_details_home_page"
         android:layout_height="wrap_content">
 
@@ -43,6 +43,7 @@
         android:id="@+id/tv_title_item_details_home_page"
         android:layout_below="@id/card_view_home_page"
         android:layout_width="match_parent"
+
         android:textSize="@dimen/item_body_home_page_textSize"
         android:layout_height="wrap_content" />
     <TextView
@@ -50,7 +51,7 @@
         android:layout_below="@id/tv_title_item_details_home_page"
         android:layout_width="match_parent"
         android:textSize="13sp"
-        android:layout_height="30dp" />
+        android:layout_height="@dimen/activity_horizontal_margin_30" />
     <LinearLayout
         android:layout_below="@id/tv_introduction_item_details_home_page"
         android:orientation="horizontal"

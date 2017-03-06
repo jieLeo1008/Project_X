@@ -40,12 +40,15 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 public class GiftDetailsActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "GiftDetailsActivity";
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private ScrollView scrollView;
     private Banner banner;
-    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv, addShopTv, chooseTv, choosedTv, bugNowTv;
+    private TextView shortDescriotionTv, nameTv, priceTv, likesTv, topTv, addShopTv, chooseTv, choosedTv, bugNowTv,shareTv;
     private ImageView backWhiteIv, backDarkIv, shopWhiteIv, shopDarkIv;
     private WebView webView;
     private CheckBox checkBox;
@@ -86,6 +89,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         addShopTv = (TextView) findViewById(R.id.tv_add_to_shop_gift_details);
         chooseLinerLayout = bindView(R.id.liner_layout_choose_gift_details);
         floatingActionButton = bindView(R.id.fa_btn_gift_details);
+        shareTv = (TextView) findViewById(R.id.tv_share_gift_details);
     }
 
     @Override
@@ -145,6 +149,7 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
         bugNowTv.setOnClickListener(this);
         EventBus.getDefault().register(this);
         floatingActionButton.setOnClickListener(this);
+        shareTv.setOnClickListener(this);
 
         //查询是否存在
         if (EnshirneTool.getInstance().queryByName(itemsBean.getName())){
@@ -248,6 +253,10 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.fa_btn_gift_details://返回顶部
                 scrollView.scrollTo(0, 0);
                 break;
+            case R.id.tv_share_gift_details:
+               //分享
+                showShare();
+                break;
 
         }
     }
@@ -274,6 +283,19 @@ public class GiftDetailsActivity extends BaseActivity implements View.OnClickLis
             Glide.with(context).load(path).into(imageView);
         }
 
+    }
+
+
+    private void showShare(){
+        ShareSDK.initSDK(MyApp.getmContext());
+        OnekeyShare oks=new OnekeyShare();
+
+        oks.disableSSOWhenAuthorize();
+        oks.setSite(getString(R.string.app_name));
+        oks.setTitleUrl(itemsBean.getCover_image_url());
+        oks.setText(itemsBean.getShort_description());
+        oks.setTitle(itemsBean.getName());
+        oks.show(MyApp.getmContext());
     }
 
 }

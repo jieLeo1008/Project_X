@@ -7,7 +7,7 @@
 
     <ListView
         android:id="@+id/list_view_left"
-        android:layout_width="70dp"
+        android:layout_width="@dimen/activity_horizontal_margin_70"
         android:scrollbars="none"
         android:layout_height="match_parent">
     </ListView>

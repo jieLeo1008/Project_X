@@ -24,6 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/StartTheme">
         <activity android:name=".activity.FirstStartActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,5 +67,6 @@
         <activity android:name=".activity.EnshrineDetailsActivity" />
         <activity android:name=".activity.ColumnActivity"></activity>
     </application>
+
 
 </manifest>

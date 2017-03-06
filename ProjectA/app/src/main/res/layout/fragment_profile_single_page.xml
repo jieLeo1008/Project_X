@@ -5,8 +5,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_profile_single_page"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_10"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>

@@ -12,37 +12,43 @@
     <ImageView
         android:id="@+id/iv_head_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_100"
         android:src="@mipmap/me_avatar_boy_grey"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_width="@dimen/activity_horizontal_margin_80"
+        android:layout_height="@dimen/activity_horizontal_margin_80" />
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_10"
         android:layout_below="@id/iv_head_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
         android:layout_below="@id/iv_head_login"
         android:id="@+id/user_name_et"
-        android:hint="请输入电话号码"
-        android:layout_marginTop="40dp"
+        android:hint="@string/activity_log_in_input_number"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_40"
+        android:background="#FFF"
+        android:textCursorDrawable="@drawable/edit_text_cursor_shape"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/activity_horizontal_margin_30" />
 
     <EditText
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_80"
         android:layout_below="@id/iv_head_login"
         android:id="@+id/password_et"
-        android:hint="请输入密码"
+        android:hint="@string/activity_log_in_input_password"
+        android:background="#FFF"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
+        android:textCursorDrawable="@drawable/edit_text_cursor_shape"
         android:password="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/activity_horizontal_margin_30" />
     <Button
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_120"
         android:layout_below="@id/iv_head_login"
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
-        android:text="登录"
+        android:text="@string/activity_log_in_login"
         android:layout_height="wrap_content" />
 
 

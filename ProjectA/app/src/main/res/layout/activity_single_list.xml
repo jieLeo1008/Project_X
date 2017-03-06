@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_weight="8"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textSize="@dimen/text_size_25"
             android:layout_height="match_parent" />
         <ImageView
             android:id="@+id/iv_sort_single_list_details"

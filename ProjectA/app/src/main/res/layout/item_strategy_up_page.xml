@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="280dp">
+    android:layout_height="@dimen/activity_horizontal_margin_280">
     <TextView
         android:id="@+id/tv_item_strategy_up_page"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:text="@string/item_strategy_up_tv"
-        android:layout_height="20dp" />
+        android:layout_height="@dimen/margin_20" />
     <TextView
         android:id="@+id/tv_show_all_item_strategy_up_page"
         android:layout_alignParentRight="true"
@@ -16,12 +16,12 @@
         android:layout_width="wrap_content"
         android:text="@string/item_strategy_up_show_all"
         android:drawableRight="@mipmap/abc_ic_go_search_api_holo_light"
-        android:layout_height="20dp" />
+        android:layout_height="@dimen/margin_20" />
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/tv_item_strategy_up_page"
         android:id="@+id/recycler_view_item_up_strategy_page"
         android:layout_width="wrap_content"
-        android:layout_height="270dp">
+        android:layout_height="@dimen/activity_horizontal_margin_270">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

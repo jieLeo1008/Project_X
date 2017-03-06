@@ -4,11 +4,16 @@
     android:layout_width="match_parent"
     android:background="#FFF"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/head_search"
+        android:gravity="center_vertical"
+        android:drawableLeft="@mipmap/icon_start"
+        android:layout_height="wrap_content" />
 <android.support.v7.widget.RecyclerView
     android:id="@+id/recycler_view_search_head"
     android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
     android:layout_height="wrap_content">
 
 </android.support.v7.widget.RecyclerView>
@@ -17,15 +22,25 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-        <TextView
+        <ImageView
+            android:src="@mipmap/icon_search_grey"
+            android:scaleType="center"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
             android:layout_width="wrap_content"
-            android:text="搜索历史"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="@dimen/activity_horizontal_margin_300"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text_size_15"
+            android:text="我搜过的"
             android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/iv_delete_all_search"
             android:layout_width="wrap_content"
-            android:src="@mipmap/abc_ic_clear_search_api_disabled_holo_light"
+            android:src="@mipmap/btn_delete_all"
             android:scaleType="center"
+            android:layout_gravity="center_vertical"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

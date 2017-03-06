@@ -25,6 +25,8 @@
             android:layout_marginLeft="@dimen/fragment_title_tv_margin_left"
             android:layout_marginRight="@dimen/fragment_title_tv_margin_right"
             android:layout_width="@dimen/weight_width"
+            android:text="选份走心好礼送给Ta"
+            android:gravity="center"
             android:layout_weight="7"
             android:background="@drawable/title_edt_shape"
             android:layout_height="match_parent" />

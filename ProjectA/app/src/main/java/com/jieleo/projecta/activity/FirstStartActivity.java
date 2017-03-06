@@ -30,7 +30,7 @@ public class FirstStartActivity extends  BaseActivity {
                 return false;
             }
         });
-        handler.sendEmptyMessageDelayed(100,3000);
+        handler.sendEmptyMessageDelayed(100,6000);
     }
 
     @Override

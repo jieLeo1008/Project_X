@@ -2,28 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="#FFF"
-    android:layout_height="50dp">
+    android:layout_height="@dimen/tab_layout_height">
 
     <ImageView
         android:id="@+id/iv_hist_search"
         android:scaleType="center"
         android:src="@mipmap/time_commodity"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="@dimen/activity_horizontal_margin_50"
+        android:layout_height="@dimen/activity_horizontal_margin_50" />
     <TextView
         android:id="@+id/tv_name_search"
         android:text="搜索内容"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_20"
         android:layout_toRightOf="@id/iv_hist_search"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_10"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
     <ImageView
         android:id="@+id/iv_delete_search"
         android:layout_alignParentRight="true"
         android:src="@mipmap/icon_delete_cross"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/activity_horizontal_margin_50"
         android:scaleType="center"
-        android:layout_height="50dp" />
+        android:layout_height="@dimen/activity_horizontal_margin_50" />
 </RelativeLayout>

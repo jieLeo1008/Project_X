@@ -13,29 +13,29 @@
         android:id="@+id/line_layout_search"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="@dimen/activity_horizontal_margin_50">
         <EditText
             android:id="@+id/et_search"
             android:layout_width="0dp"
             android:layout_weight="8.5"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:hint="选份走心得好礼送给Ta"
-            android:textSize="15sp"
+            android:hint="@string/activity_search_title"
+            android:textSize="@dimen/text_size_15"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:padding="5dp"
+            android:padding="@dimen/activity_horizontal_margin_5"
             android:singleLine="true"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin_10"
             android:layout_gravity="center_vertical"
             android:drawableLeft="@mipmap/icon_search"
             android:textCursorDrawable="@drawable/edit_text_cursor_shape"
             android:background="@drawable/mall_title_tv_shape"
-            android:layout_height="35dp" />
+            android:layout_height="@dimen/activity_horizontal_margin_35" />
 
         <TextView
             android:layout_weight="1.5"
-            android:text="取消"
+            android:text="@string/activity_cancel"
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:layout_width="0dp"

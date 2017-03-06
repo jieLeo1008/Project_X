@@ -13,7 +13,7 @@
         android:id="@+id/grid_view_right_single_page"
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
-        android:horizontalSpacing="20dp"
+        android:horizontalSpacing="@dimen/margin_20"
         android:scrollbars="none"
         android:stretchMode="columnWidth"
         android:layout_height="wrap_content"

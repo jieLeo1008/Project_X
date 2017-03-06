@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
+import com.jieleo.projecta.MyApp;
 import com.jieleo.projecta.R;
 import com.jieleo.projecta.adapter.gift.OtherFragmentAdapter;
 import com.jieleo.projecta.bean.gift.GiftDetailsBean;
@@ -21,7 +24,10 @@ import com.jieleo.projecta.tool.EnshirneTool;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailsForOtherActivity extends BaseActivity implements OtherSingleFragment.MoveToSecond{
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
+public class DetailsForOtherActivity extends BaseActivity implements OtherSingleFragment.MoveToSecond, View.OnClickListener {
     private GiftDetailsBean.DataBean.ItemsBean itemsBean;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -29,6 +35,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
     private OtherFragmentAdapter adapter;
     private MoveToFive moveToFive;
     private CheckBox likeCheck;
+    private TextView shareTv;
 
     @Override
     public int setLayout() {
@@ -40,6 +47,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
         tabLayout=bindView(R.id.tab_layout_details_others);
         viewPager=bindView(R.id.vp_details_for_others);
         likeCheck = (CheckBox) findViewById(R.id.checkbox_heart_other_single);
+        shareTv = (TextView) findViewById(R.id.tv_share_other_single);
     }
 
     @Override
@@ -70,7 +78,7 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
         otherSingleFragment.setArguments(bundle);
         otherDetailsFragment.setArguments(bundle);
 
-
+        shareTv.setOnClickListener(this);
         otherSingleFragment.setMoveToSecond(this);
         moveToFive=otherSingleFragment;
     }
@@ -120,7 +128,26 @@ public class DetailsForOtherActivity extends BaseActivity implements OtherSingle
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_share_other_single:
+                showShare();
+                break;
+        }
+    }
 
 
+    private void showShare(){
+        ShareSDK.initSDK(MyApp.getmContext());
+        OnekeyShare oks=new OnekeyShare();
+
+        oks.disableSSOWhenAuthorize();
+        oks.setSite(getString(R.string.app_name));
+        oks.setTitleUrl(itemsBean.getCover_image_url());
+        oks.setText(itemsBean.getShort_description());
+        oks.setTitle(itemsBean.getName());
+        oks.show(MyApp.getmContext());
+    }
 
 }
