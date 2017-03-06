@@ -58,7 +58,6 @@ public class StrategyRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
                 holder.getView(R.id.tv_show_all_item_strategy_up_page).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "上面的", Toast.LENGTH_SHORT).show();
                         //TODO 完成查看全部的点击跳转
                         NetTool.getInstance().startRequest(WebsiteInter.STRATEGY_UP_TITLE, StrategyUpBean.class, new CallBack<StrategyUpBean>() {
                             @Override
@@ -85,7 +84,6 @@ public class StrategyRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHo
                 holder.getView(R.id.tv_show_all_item_strategy_down_page).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "下面的", Toast.LENGTH_SHORT).show();
                         //TODO   完成 查看全部的点击跳转
                     }
                 });
