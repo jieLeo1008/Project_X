@@ -1,6 +1,9 @@
 package com.jieleo.projecta.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +28,7 @@ public class ProfileSingleFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private ProfileSingleRecyclerViewAdapter adapter;
     private List<Enshrine> enshrines;
+    private Notify notify;
 
     @Override
     protected int getLayoutId() {
@@ -43,6 +47,9 @@ public class ProfileSingleFragment extends BaseFragment {
         recyclerView.setLayoutManager(new GridLayoutManager(MyApp.getmContext(), 4));
         recyclerView.setAdapter(adapter);
         adapter.setEnshrines(enshrines);
+        notify=new Notify();
+        IntentFilter intentFilter=new IntentFilter("shuaxinjiemian");
+        getContext().registerReceiver(notify,intentFilter);
 
     }
 
@@ -63,5 +70,15 @@ public class ProfileSingleFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
+    }
+
+    class Notify extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            enshrines.clear();
+            enshrines= EnshirneTool.getInstance().queryAll();
+            adapter.setEnshrines(enshrines);
+        }
     }
 }

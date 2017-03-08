@@ -96,6 +96,7 @@ public class ProfilePageFragment extends BaseFragment {
                 Glide.with(MyApp.getmContext()).load(user.getUserIcon()).into(headIv);
                 userNameTv.setText(user.getUserName());
                 relativeLayout.setVisibility(View.VISIBLE);
+                getContext().sendBroadcast(new Intent("shuaxinjiemian"));
             }
         }
     }
